@@ -1,0 +1,15 @@
+全局设置：
+下载并安装 Git
+git config --global user.name "Your Name"
+git config --global user.email sesehai@gmail.com
+下一步：
+mkdir sesehai.github.com
+cd sesehai.github.com 
+git init
+touch README
+git add README
+git commit -m 'first commit'
+git remote add origin git@github.com:sesehai/sesehai.github.com.git
+git push -u origin master
+
+--END--
