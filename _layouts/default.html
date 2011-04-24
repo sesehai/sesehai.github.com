@@ -1,56 +1,51 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-<title>决胜烟柳</title>
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
-<link rel="stylesheet" type="text/css" href="/css/syntax.css" />
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>{{ page.title }}</title>
+   <meta name="author" content="Sese Hai" />
+   <!--link href="http://feeds.feedburner.com/sesehai" rel="alternate" title="Sese Hai" type="application/atom+xml" /-->
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+  
 </head>
-
 <body>
-<div id="logo"><h1><a href="/">决胜烟柳</a></h1></div>
-<div id="wrapper">
-<div id="content" class="index">
-<div id="sidebar">
-<ul>
-<li>
-<a href="#">ARTICLES</a>
-<ul>
-{% for category in site.categories %}
-<li><a href="/{{ category[0] }}.html"> {{ category[0] }}</a></li>
-{% endfor %}
-</ul>
-</li>
-<li><a href="/quotes.html">QUOTES</a></li>
-<li><a href="/projects.html">PROJECTS</a></li>
-<li><a href="/about.html">ABOUT</a></li>
-<li><a href="/links.html">LINKS</a></li>
-<li><a href="/contact.html">CONTACT</a></li>
-</ul>
+
+
+<div class="site">
+  <div class="title">
+    <a href="/">Sese Hai</a>
+    <a class="extra" href="/">home</a>
+  </div>
+  
+  {{ content }}
+  
+  <div class="footer">
+    <div class="contact">
+      <p>
+        Tom Preston-Werner<br />
+        Cofounder of <a href="http://github.com/">GitHub</a><br />
+        sesehai@gmail.com
+      </p>
+    </div>
+    <div class="contact">
+      <p>
+        <a href="http://github.com/sesehai/">github.com/sesehai</a><br />
+      </p>
+    </div>
+    <div class="rss">
+      <!--a href="http://feeds.feedburner.com/sesehai" -->
+        <img src="/images/rss.png" alt="Subscribe to RSS Feed" />
+      <!--/a-->
+    </div>
+  </div>
 </div>
 
-<div id="main">
-{{ content }}
-</div>
-
-<div id="footer">
-<div id="feed">
-<div class="badget" id="github">
-<a href="http://github.com/sesehai">
-<span class="service">github</span>
-<span class="info"> </span>
-</a>
-</div>
-<div class="badget" id="twt">
-</div>
-<div class="badget" id="feedburner">
-</div>
-</div>
-<span style="color:#bbb;font-size:12px">渺小亦要彪悍</span>
-<p style="clear:both"></p>
-</div>
-
+<a href="http://github.com/sesehai"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
 
 </body>
 </html>
-
