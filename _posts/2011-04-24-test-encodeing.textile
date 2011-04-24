@@ -1,6 +1,6 @@
 ---
-layout:post
-title:demo
-category:tech
+layout: post
+title: demo
+category: tech
 ---
 sfsfasdf
