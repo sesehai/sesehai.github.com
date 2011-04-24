@@ -1,5 +1,5 @@
 layout: post
-title: 使用github
+title: github
 category: tech
 
 git config --global user.name "Your Name"
@@ -13,5 +13,3 @@ git add README
 git commit -m 'first commit'
 git remote add origin git@github.com:sesehai/sesehai.github.com.git
 git push -u origin master
-
---END--
