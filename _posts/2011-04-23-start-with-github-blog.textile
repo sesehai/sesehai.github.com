@@ -1,8 +1,10 @@
-全局设置：
-下载并安装 Git
+layout: post
+title: 浣跨敤github
+category: tech
+
 git config --global user.name "Your Name"
 git config --global user.email sesehai@gmail.com
-下一步：
+
 mkdir sesehai.github.com
 cd sesehai.github.com 
 git init
