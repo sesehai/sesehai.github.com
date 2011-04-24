@@ -71,7 +71,19 @@ ul.posts {
     font-family: Monaco, "Courier New", monospace;
     font-size: 80%;
   }
+#main {
+  float:left;
+  width:550px;
+}
 
+#sidebar {
+  float:right;
+  width:200px;
+  font-size: 100%;
+}
+#footer {
+  clear:both;
+}
 /*****************************************************************************/
 /*
 /* Site
@@ -80,11 +92,42 @@ ul.posts {
 
 .site {
   font-size: 110%;
-  text-align: justify;
-  width: 40em;
+  text-align: left;
+  width: 800px;
   margin: 3em auto 2em auto;
   line-height: 1.5em;
 }
+
+#menu {
+  float: right;
+}
+   
+#menu ul {
+  list-style: none;
+  margin: 0;
+  text-align: center;
+  margin-top: 25px;
+}
+
+#menu ul li {
+  display: block;
+  float: left;
+  margin-left: 10px;
+}
+
+#menu ul li a {
+  display: block;
+  background: url(/images/blog.gif) no-repeat top left;
+  width: 69px;
+  height: 94px;
+  text-indent: -999em;
+}
+                           
+#menu ul li a#twitter_link { background-image: url(images/twitter.gif); }
+#menu ul li a#blog_link { background-image: url(images/blog.gif); }
+#menu ul li a#linkedin_link { background-image: url(images/linkedin.gif); }
+#menu ul li a#github_link { background-image: url(images/github.gif); }
+#menu ul li a#about_link { background-image: url(images/about.gif); }
 
 .title {
   color: #a00;
@@ -162,17 +205,20 @@ ul.posts {
 
   #post ul,
   #post ol {
-    margin-left: 1.35em;
+    margin-left: 1.25em;
+    margin-bottom: 1em;
   }
 
   #post code {
-    border: 1px solid #ddd;
-    background-color: #eef;
-    font-size: 85%;
+    background: rgb(255, 255, 136);
+    border: 1px dotted rgb(136, 136, 136);
+    font-size: 95%;
     padding: 0 .2em;
+    display: inline-block;
   }
 
     #post pre code {
+      background: none;
       border: none;
     }
 
