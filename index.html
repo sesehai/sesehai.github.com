@@ -1,13 +1,24 @@
 ---
 layout: default
-title: 决胜烟柳
+title: Sese Hai 
 ---
-<div>
-<ul class="posts">
-		{% for post in site.posts %}
-		<li><p class="date" cate="{{ post.categories }}">{{ post.date | date:"%Y-%m-%d" }}</p> <a href="{{ post.url }}">{{ post.title }}</a></li>
-		{% endfor %}
-</ul>
 
+<div id="home">
+  <h1>Blog Posts</h1>
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <h1>Interviews, Talks, Etc</h1>
+  <ul class="posts">
+  </ul>
+
+  <h1>Prominent Open Source Projects</h1>
+  <ul class="posts">
+  </ul>
 </div>
+
+
 
