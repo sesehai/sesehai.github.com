@@ -1,9 +1,6 @@
 ---
 layout: post
-title: 说说php的异步请求
+title: fafsdf
 category: tech
 ---
-
-
-如果还有其他的方法，欢迎交流 :)
-
+asdfasdfasdf
