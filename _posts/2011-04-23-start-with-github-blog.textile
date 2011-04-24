@@ -1,6 +1,8 @@
+---
 layout: post
 title: github
 category: tech
+---
 
 git config --global user.name "Your Name"
 git config --global user.email sesehai@gmail.com
