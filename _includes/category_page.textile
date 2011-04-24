@@ -1,6 +1,3 @@
 {% for post in category_posts }
 
-{{ post.date }}
-{{ post.title }}
-
 { endfor %}
