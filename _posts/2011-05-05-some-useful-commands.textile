@@ -6,7 +6,7 @@ category:tech
 
 p(date). 2011-05-05
 
-+----------+
+
 p(date). 2010-11-22
 h3. wget请求播放地址：
 wget -b -i url.txt 
@@ -14,13 +14,13 @@ http://113.57.248.61/smooth/getm3u8url.php?id=881735&mmsid=872687&vtype=1
 取得地址：
 wget -r [url]
 
-+----------+
+
 p(date). 2010-11-22
 h3. 拷贝数据：
 scp * root@113.57.248.32:/lmk/site/mms.letv.com/
 find . -name .svn -type d -exec rm -rf {} \;
 
-+----------+
+
 p(date). 2010-11-25
 h3. 1.进程控制：
   fork,exec
@@ -54,12 +54,12 @@ Usage: php-cgi [-q] [-h] [-s] [-v] [-i] [-f <file>]
   -z <file>        Load Zend extension <file>.
   -T <count>       Measure execution time of script repeated <count> times.
 
- +----------+
+ 
 p(date). 2010-12-13
 h3. 查看系统状态：
   vmstat 1 100 
 
- +----------+
+ 
 p(date). 2010-12-17
 h3. mysql 进程管理
   mysqladmin -u name -ppwd processlist
@@ -76,7 +76,7 @@ h3. mysql 进程管理
    chrome.exe --user-agent="Mozilla/5.0 (iPhone; U; CPU OS 3_2_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B500 Safari/531.21.10"
 
 
-+----------+
+
 p(date). 2010-12-13
 h3. nginx 管理命令
    /usr/sbin/nginx -c /etc/nginx/nginx.conf
@@ -90,7 +90,7 @@ h3. nginx 开启ssi模块
     ssi_types text/shtml;
 
 
-+----------+
+
 p(date). 20111-04-29
 h3. 关闭在LINUX终端下的按键警报声
      setterm -bleng 0
