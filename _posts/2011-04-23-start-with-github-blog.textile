@@ -7,7 +7,7 @@ p(date). 2011-05-05
 
 h3. Start with git
 
-{% highlight shell %}
+{% highlight javascript %}
 git config --global user.name "Your Name"
 git config --global user.email sesehai@gmail.com
 
