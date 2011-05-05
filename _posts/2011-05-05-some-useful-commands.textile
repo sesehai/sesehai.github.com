@@ -1,7 +1,7 @@
 ---
-layout:post
-title:Some Useful Commands
-category:tech
+layout: post
+title: Some Useful Commands
+category: tech
 ---
 
 p(date). 2011-05-05
