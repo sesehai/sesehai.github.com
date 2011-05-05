@@ -16,7 +16,7 @@ html, body {
 }
 
 body {
-  background-color: white;
+  background-color: #F5F5D5;
   font: 1.0em helvetica, arial, clean, sans-serif;
   *font-size: small;
   text-align: center;
@@ -28,7 +28,7 @@ h1{
   background-color: #AAD2F0;
   border-bottom: medium none;
   border-radius: 10px 10px 10px 10px;
-  color: #FCB297;
+  color: #1A4900;
   font-weight: bold;
   margin: 0 0 1em;
   padding: 0.3em 0.5em;
@@ -98,7 +98,7 @@ ul.posts {
 #sidebar {
   float:right;
   width:200px;
-  font-size: 100%;
+  font-size: 1.2em;
 }
 #footer {
   clear:both;
@@ -114,7 +114,7 @@ ul.posts {
   text-align: left;
   width: 800px;
   margin: 3em auto 2em auto;
-  line-height: 1.5em;
+  line-height: 2.0em;
 }
 
 #menu {
