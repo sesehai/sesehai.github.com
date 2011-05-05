@@ -1,31 +1,24 @@
----
-layout:post
-title:Some Useful Commands
-category:tech
----
-p(date). 2011-05-05
-
 +----------+
 p(date). 2010-11-22
-h3. wgetÇëÇó²¥·ÅµØÖ·£º
+h3. wgetè¯·æ±‚æ’­æ”¾åœ°å€ï¼š
 wget -b -i url.txt 
 http://113.57.248.61/smooth/getm3u8url.php?id=881735&mmsid=872687&vtype=1
-È¡µÃµØÖ·£º
+å–å¾—åœ°å€ï¼š
 wget -r [url]
 
 +----------+
 p(date). 2010-11-22
-h3. ¿½±´Êı¾İ£º
+h3. æ‹·è´æ•°æ®ï¼š
 scp * root@113.57.248.32:/lmk/site/mms.letv.com/
 find . -name .svn -type d -exec rm -rf {} \;
 
 +----------+
 p(date). 2010-11-25
-h3. 1.½ø³Ì¿ØÖÆ£º
+h3. 1.è¿›ç¨‹æ§åˆ¶ï¼š
   fork,exec
   http://learn.akae.cn/media/ch30s03.html
-  ½©Ê¬½ø³ÌÊÇ²»ÄÜÓÃkillÃüÁîÇå³ıµôµÄ£¬ÒòÎªkillÃüÁîÖ»ÊÇÓÃÀ´ÖÕÖ¹½ø³ÌµÄ£¬¶ø½©Ê¬½ø³ÌÒÑ¾­ÖÕÖ¹ÁË¡£
-  Ë¼¿¼Ò»ÏÂ£¬ÓÃÊ²Ã´°ì·¨¿ÉÒÔÇå³ıµô½©Ê¬½ø³Ì£¿
+  åƒµå°¸è¿›ç¨‹æ˜¯ä¸èƒ½ç”¨killå‘½ä»¤æ¸…é™¤æ‰çš„ï¼Œå› ä¸ºkillå‘½ä»¤åªæ˜¯ç”¨æ¥ç»ˆæ­¢è¿›ç¨‹çš„ï¼Œè€Œåƒµå°¸è¿›ç¨‹å·²ç»ç»ˆæ­¢äº†ã€‚
+  æ€è€ƒä¸€ä¸‹ï¼Œç”¨ä»€ä¹ˆåŠæ³•å¯ä»¥æ¸…é™¤æ‰åƒµå°¸è¿›ç¨‹ï¼Ÿ
 h3. 2.shell
   #!/bin/bash
   echo `date` >>/letv/data/phone/smst/stat.log
@@ -55,12 +48,12 @@ Usage: php-cgi [-q] [-h] [-s] [-v] [-i] [-f <file>]
 
  +----------+
 p(date). 2010-12-13
-h3. ²é¿´ÏµÍ³×´Ì¬£º
+h3. æŸ¥çœ‹ç³»ç»ŸçŠ¶æ€ï¼š
   vmstat 1 100 
 
  +----------+
 p(date). 2010-12-17
-h3. mysql ½ø³Ì¹ÜÀí
+h3. mysql è¿›ç¨‹ç®¡ç†
   mysqladmin -u name -ppwd processlist
   mysqladmin -u name -ppwd kill 
 
@@ -77,13 +70,13 @@ h3. mysql ½ø³Ì¹ÜÀí
 
 +----------+
 p(date). 2010-12-13
-h3. nginx ¹ÜÀíÃüÁî
+h3. nginx ç®¡ç†å‘½ä»¤
    /usr/sbin/nginx -c /etc/nginx/nginx.conf
    /usr/sbin/nginx -t
    kill -HUP `cat /data/nginx/logs/nginx.pid`
    kill -HUP 977
 
-h3. nginx ¿ªÆôssiÄ£¿é
+h3. nginx å¼€å¯ssiæ¨¡å—
     ssi on;
     ssi_silent_errors on;
     ssi_types text/shtml;
@@ -91,6 +84,5 @@ h3. nginx ¿ªÆôssiÄ£¿é
 
 +----------+
 p(date). 20111-04-29
-h3. ¹Ø±ÕÔÚLINUXÖÕ¶ËÏÂµÄ°´¼ü¾¯±¨Éù
+h3. å…³é—­åœ¨LINUXç»ˆç«¯ä¸‹çš„æŒ‰é”®è­¦æŠ¥å£°
      setterm -bleng 0
-
