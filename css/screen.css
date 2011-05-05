@@ -25,6 +25,13 @@ body {
 h1{
   font-size:1.3em;
   color: #1A4900;
+  background-color: #AAD2F0;
+  border-bottom: medium none;
+  border-radius: 10px 10px 10px 10px;
+  color: #FCB297;
+  font-weight: bold;
+  margin: 0 0 1em;
+  padding: 0.3em 0.5em;
 } 
 h2{
   font-size:1.2em;
@@ -145,6 +152,8 @@ ul.posts {
   color: #1A4900;
   font-weight: bold;
   margin-bottom: 2em;
+  padding-bottom:15px;
+  border-bottom:1px solid #ccc;
 }
 
   .site .title a {
