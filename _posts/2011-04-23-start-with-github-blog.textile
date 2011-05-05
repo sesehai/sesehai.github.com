@@ -3,7 +3,7 @@ layout: post
 title: How to use github
 category: tech
 ---
-
+p(date). 2011-05-05
 git config --global user.name "Your Name"
 git config --global user.email sesehai@gmail.com
 
