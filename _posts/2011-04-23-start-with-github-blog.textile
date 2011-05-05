@@ -7,6 +7,7 @@ p(date). 2011-05-05
 
 h3. Start with git
 
+{% highlight shell %}
 git config --global user.name "Your Name"
 git config --global user.email sesehai@gmail.com
 
@@ -18,7 +19,9 @@ git add README
 git commit -m 'first commit'
 git remote add origin git@github.com:sesehai/sesehai.github.com.git
 git push -u origin master
+{% highlight shell %}
 
-github:help
-link:http://help.github.com/
+
+h3. github:help
+    Help:link:http://help.github.com/
 
