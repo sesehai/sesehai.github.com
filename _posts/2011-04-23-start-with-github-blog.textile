@@ -1,6 +1,6 @@
 ---
 layout: post
-title: github
+title: How to use github
 category: tech
 ---
 
