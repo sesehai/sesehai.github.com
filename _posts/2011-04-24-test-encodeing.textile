@@ -3,5 +3,4 @@ layout: post
 title: demo
 category: tech
 ---
-sfsfa
-ÎÎÎÎÎÎ
+encodeing = utf-8
