@@ -23,16 +23,19 @@ body {
 }
 
 h1{
-  font-size:2.5em;
+  font-size:1.8em;
+  color: #1A4900;
 } 
 h2{
   font-size:1.5em;
   margin-bottom: 1em;
+  color: #1A4900;
 } 
 
 h3, h4, h5, h6 {
   font-size: 1.3em;
   margin-bottom: 1em;
+  color: #1A4900;
 }
 
 h1 {
@@ -44,7 +47,7 @@ p {
 }
 
 a {
-  color: #00a;
+  color: #1A4900;
 }
 
 a:hover {
@@ -52,7 +55,7 @@ a:hover {
 }
 
 a:visited {
-  color: #a0a;
+  color: #1A4900;
 }
 
 table {
@@ -100,7 +103,7 @@ ul.posts {
 /*****************************************************************************/
 
 .site {
-  font-size: 110%;
+  font-size: 1.2em;
   text-align: left;
   width: 800px;
   margin: 3em auto 2em auto;
@@ -139,13 +142,13 @@ ul.posts {
 #menu ul li a#about_link { background-image: url(images/about.gif); }
 
 .title {
-  color: #a00;
+  color: #1A4900;
   font-weight: bold;
   margin-bottom: 2em;
 }
 
   .site .title a {
-    color: #a00;
+    color: #1A4900;
     text-decoration: none;
   }
 
