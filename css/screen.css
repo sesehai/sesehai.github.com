@@ -17,13 +17,20 @@ html, body {
 
 body {
   background-color: white;
-  font: 13.34px helvetica, arial, clean, sans-serif;
+  font: 1.2em helvetica, arial, clean, sans-serif;
   *font-size: small;
   text-align: center;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-size: 100%;
+h1{
+  font-size:3.8em;
+} 
+h2{
+  font-size:1.5em;
+} 
+
+h3, h4, h5, h6 {
+  font-size: 1.3em;
 }
 
 h1 {
