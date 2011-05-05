@@ -1,3 +1,11 @@
+---
+layout:post
+title:Some Useful Commands
+category:tech
+---
+
+p(date). 2011-05-05
+
 +----------+
 p(date). 2010-11-22
 h3. wget请求播放地址：
