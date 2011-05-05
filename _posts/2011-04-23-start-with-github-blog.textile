@@ -19,9 +19,10 @@ git add README
 git commit -m 'first commit'
 git remote add origin git@github.com:sesehai/sesehai.github.com.git
 git push -u origin master
-{% highlight shell %}
+{% endhighlight %}
 
 
 h3. github:help
-    Help:link:http://help.github.com/
+
+    Help:http://help.github.com/
 
