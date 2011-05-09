@@ -1,0 +1,9 @@
+---
+layout: post
+title: Data Types XML
+category: tech
+---
+
+p(date). 2011-05-09
+
+
