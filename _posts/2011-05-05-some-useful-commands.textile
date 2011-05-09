@@ -9,7 +9,7 @@ p(date). 2010-11-22
 h3. wget请求播放地址：
 
 wget -b -i url.txt 
-http://113.57.248.61/smooth/getm3u8url.php?id=881735&mmsid=872687&vtype=1
+http://sesehai.github.com/tech/2011-05-05-some-usefull-commands.html
 取得地址：
 wget -r [url]
 
@@ -18,7 +18,10 @@ p(date). 2010-11-22
 
 h3. 拷贝数据：
 
-scp * root@113.57.248.32:/lmk/site/mms.letv.com/
+scp * root@113.11.111.123:/path/
+
+h3. find 命令
+
 find . -name .svn -type d -exec rm -rf {} \;
 
 
@@ -34,9 +37,9 @@ h3. 1.进程控制：
 h3. 2.shell
 
   #!/bin/bash
-  echo `date` >>/letv/data/phone/smst/stat.log
-  cat /letv/data/phone/smst/mp4m800/mp4m800.log | grep found >> /letv/data/phone/smst/mp4m800/stat_csv.log
-  tail  /letv/data/phone/smst/mp4m800/stat_csv.log
+  echo `date` >>/data/stat.log
+  cat /data/web.log | grep found >> data/stat_csv.log
+  tail  /data/stat_csv.log
 
 h3. 3.php cgi:
 
@@ -79,6 +82,8 @@ h3. mysql 进程管理
    show full processlist;
 
    netstat -ntp | grep 60691
+
+h3. Chrome 模拟 Agent 信息
 
    chrome.exe --user-agent="Mozilla/5.0 (iPad; U; CPU OS 3_2_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B500 Safari/531.21.10"
 
