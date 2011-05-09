@@ -9,12 +9,12 @@ p(date). 2011-05-09
 
 h3. 一.
 
-前几天，我才知道有一种简化的数据交换格式，叫做yaml。
+前几天，我才知道有一种简化的数据交换格式，叫做<a href="http://www.yaml.org/" target="_blank">yaml</a>。
 
-我翻了一遍它的文档，看懂的地方不多，但是有一句话令我茅塞顿开。
+我翻了一遍它的<a href="http://www.yaml.org/spec/" target="_blank">文档</a>，看懂的地方不多，但是有一句话令我茅塞顿开。
 
 h3. 它说，从结构上看，所有的数据（data）最终都可以分解成三种类型：
-{% highlight javascript %}
+{% highlight php %}
 
     第一种类型是标量（scalar），也就是一个单独的字符串（string）或数字（numbers），比如"北京"这个单独的词。
 
@@ -28,13 +28,13 @@ h3. 它说，从结构上看，所有的数据（data）最终都可以分解成
 
 h3. 二.
 
-我马上想到了json。
+我马上想到了<a href="http://www.json.org/json-zh.html" target="_blank">json</a>。
 
 21世纪初，Douglas Crockford寻找一种简便的数据交换格式，能够在服务器之间交换数据。当时通用的数据交换语言是XML，但是Douglas Crockford觉得XML的生成和解析都太麻烦，所以他提出了一种简化格式，也就是Json。
 
 Json的规格非常简单，只用一个页面几百个字就能说清楚，而且Douglas Crockford声称这个规格永远不必升级，因为该规定的都规定了。
 
-{% highlight javascript %}
+{% highlight php %}
 
     1） 并列的数据之间用逗号（"，"）分隔。
 
@@ -50,7 +50,7 @@ Json的规格非常简单，只用一个页面几百个字就能说清楚，而�
 
 比如，下面这句话：
 
-{% highlight javascript %}
+{% highlight php %}
 
     "北京市的面积为16800平方公里，常住人口1600万人。上海市的面积为6400平方公里，常住人口1800万。"
 
@@ -149,4 +149,4 @@ h3. 四.
 
 （完）
 
-[From:http://www.ruanyifeng.com/blog/2009/05/data_types_and_json.html ]
+[From:<a href="http://www.ruanyifeng.com/blog/2009/05/data_types_and_json.html" target="_blank">http://www.ruanyifeng.com/blog/2009/05/data_types_and_json.html</a>]
