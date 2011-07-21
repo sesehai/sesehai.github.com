@@ -1,0 +1,11 @@
+---
+layout: post
+title: Some Php Questions
+category: tech
+---
+
+p.(date)
+
+h3. Some Php Questions
+
+
