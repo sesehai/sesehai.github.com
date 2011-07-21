@@ -1,0 +1,8 @@
+---
+layout: post
+title: ajax not access crosse domain
+category: tech
+---
+p.(date)
+
+
