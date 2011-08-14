@@ -1,13 +1,13 @@
 ---
 layout: post
 title: China rock roll music
-category: tech
+category: music
 ---
 
 p(date). 2011-08-15
 
 
-h3.　　1、<一无所有>
+h3. 1、<一无所有>
 
 　　按照毛***的话，由此上溯到一千八百年，我们看我们的同志。
 
