@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  一个老板的三句话
-category: tech
+category: share
 ---
 
 p(date). 2011-08-31
