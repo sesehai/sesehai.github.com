@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2011-05-05-some-useful-commands</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="Stylesheet" type="text/css" href="../style.css" />
+<script>var root_path = '';</script>
+</head>
+<body>
+<div id="all">
+<div id="header">
+	<ul id="top-nav">
+		<li>
+			<a href="index.html">首页</a>
+		</li>
+		<li>
+			<a href="archive/">文档</a>
+		</li>
+		<li>
+			<a href="article/">文摘</a>
+		</li>
+		<li>
+			<a href="diary/diary.html">日记</a>
+		</li>
+		<li>
+			<a href="sites.html">Sites</a>
+		</li>
+	</ul>
+</div>
+<div id="cse"></div>
+<div id="main">
+
+<p>
+---
+layout: post
+title: Some Useful Commands
+category: tech
+---
+</p>
+
+<p>
+p(date). 2010-11-22
+</p>
+
+<p>
+h3. wget请求播放地址：
+</p>
+
+<p>
+wget -b -i url.txt 
+<a href="http://sesehai.github.com/tech/2011-05-05-some-usefull-commands.html">http://sesehai.github.com/tech/2011-05-05-some-usefull-commands.html</a>
+取得地址：
+wget -r [url]
+</p>
+
+
+<p>
+p(date). 2010-11-22
+</p>
+
+<p>
+h3. 拷贝数据：
+</p>
+
+<p>
+scp * root@113.11.111.123:/path/
+</p>
+
+<p>
+h3. find 命令
+</p>
+
+<p>
+find . -name .svn -type d -exec rm -rf {} \;
+</p>
+
+
+<p>
+p(date). 2010-11-25 
+</p>
+
+<p>
+h3. 1.进程控制：
+</p>
+
+<p>
+  fork,exec
+  <a href="http://learn.akae.cn/media/ch30s03.html">http://learn.akae.cn/media/ch30s03.html</a>
+  僵尸进程是不能用kill命令清除掉的，因为kill命令只是用来终止进程的，而僵尸进程已经终止了。
+  思考一下，用什么办法可以清除掉僵尸进程？
+</p>
+
+<p>
+h3. 2.shell
+</p>
+
+<p>
+  #!/bin/bash
+  echo <code>date</code> &gt;&gt;/data/stat.log
+  cat /data/web.log | grep found &gt;&gt; data/stat_csv.log
+  tail  /data/stat_csv.log
+</p>
+
+<p>
+h3. 3.php cgi:
+</p>
+
+<p>
+Usage: php-cgi [-q] [-h] [-s] [-v] [-i] [-f &lt;file&gt;]
+</p>
+<blockquote>
+php-cgi &lt;file&gt; [args...]
+</blockquote>
+<p>
+  -a               Run interactively
+  -b &lt;address:port&gt;|&lt;port&gt; Bind Path for external FASTCGI Server mode
+  -C               Do not chdir to the script's directory
+  -c &lt;path&gt;|&lt;file&gt; Look for php.ini file in this directory
+  -n               No php.ini file will be used
+  -d foo[=bar]     Define INI entry foo with value 'bar'
+  -e               Generate extended information for debugger/profiler
+  -f &lt;file&gt;        Parse &lt;file&gt;.  Implies `-q'
+  -h               This help
+  -i               PHP information
+  -l               Syntax check only (lint)
+  -m               Show compiled in modules
+  -q               Quiet-mode.  Suppress HTTP Header output.
+  -s               Display colour syntax highlighted source.
+  -v               Version number
+  -w               Display source with stripped comments and whitespace.
+  -z &lt;file&gt;        Load Zend extension &lt;file&gt;.
+  -T &lt;count&gt;       Measure execution time of script repeated &lt;count&gt; times.
+</p>
+
+ 
+<p>
+p(date). 2010-12-13
+</p>
+
+<p>
+h3. 查看系统状态：
+</p>
+
+<p>
+  vmstat 1 100 
+</p>
+
+ 
+<p>
+p(date). 2010-12-17
+</p>
+
+<p>
+h3. mysql 进程管理
+</p>
+
+<p>
+  mysqladmin -u name -ppwd processlist
+  mysqladmin -u name -ppwd kill 
+</p>
+
+<p>
+   show full processlist;
+</p>
+
+<p>
+   netstat -ntp | grep 60691
+</p>
+
+<p>
+h3. Chrome 模拟 Agent 信息
+</p>
+
+<p>
+   chrome.exe --user-agent="Mozilla/5.0 (iPad; U; CPU OS 3_2_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B500 Safari/531.21.10"
+</p>
+
+<p>
+   chrome.exe --user-agent="Mozilla/5.0 (Linux; U; Android 2.2; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1"
+</p>
+
+<p>
+   chrome.exe --user-agent="Mozilla/5.0 (iPhone; U; CPU OS 3_2_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B500 Safari/531.21.10"
+</p>
+
+
+
+<p>
+p(date). 2010-12-13
+</p>
+
+<p>
+h3. nginx 管理命令
+</p>
+
+<p>
+   /usr/sbin/nginx -c /etc/nginx/nginx.conf
+   /usr/sbin/nginx -t
+   kill -HUP <code>cat /data/nginx/logs/nginx.pid</code>
+   kill -HUP 977
+</p>
+
+<p>
+h3. nginx 开启ssi模块
+</p>
+<blockquote>
+ssi on;
+ssi_silent_errors on;
+ssi_types text/shtml;
+</blockquote>
+
+
+
+<p>
+p(date). 20111-04-29
+</p>
+
+<p>
+h3. 关闭在LINUX终端下的按键警报声
+</p>
+<blockquote>
+setterm -bleng 0
+</blockquote>
+
+</div>
+<div id="footer">
+    <p>&copy; 2011 sesehai &nbsp;&nbsp;</p>
+</div>
+</div>
+<script src="jquery-1.4.2.min.js" type="text/javascript"></script>
+<script src="vimwiki.js" type="text/javascript"></script>
+</body>
+</html>

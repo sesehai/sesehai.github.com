@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2011-07-18_zend_router_request_source</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="Stylesheet" type="text/css" href="../style.css" />
+<script>var root_path = '';</script>
+</head>
+<body>
+<div id="all">
+<div id="header">
+	<ul id="top-nav">
+		<li>
+			<a href="index.html">首页</a>
+		</li>
+		<li>
+			<a href="archive/">文档</a>
+		</li>
+		<li>
+			<a href="article/">文摘</a>
+		</li>
+		<li>
+			<a href="diary/diary.html">日记</a>
+		</li>
+		<li>
+			<a href="sites.html">Sites</a>
+		</li>
+	</ul>
+</div>
+<div id="cse"></div>
+<div id="main">
+
+<p>
+---
+layout: post
+title: Zend Framework router and request source
+category: tech
+---
+p(date).2011-07-18
+</p>
+
+<p>
+h3. Zend framework router and request source
+</p>
+
+<p>
+h3. Zend_Controller_Router_Rewrite 
+</p>
+
+<p>
+{% highlight php %}
+</p>
+<blockquote>
+/**
+</blockquote>
+<ul>
+<li>
+Find a matching route to the current PATH_INFO and inject
+
+<ul>
+<li>
+returning values to the Request object.
+	           *
+
+<ul>
+<li>
+@throws Zend_Controller_Router_Exception
+
+<ul>
+<li>
+@return Zend_Controller_Request_Abstract Request object
+			          */
+				      public function route(Zend_Controller_Request_Abstract $request)
+				          {
+
+</ul>
+</ul>
+</ul>
+</ul>
+<blockquote>
+if (!$request instanceof Zend_Controller_Request_Http) {
+require_once 'Zend/Controller/Router/Exception.php';
+throw new Zend_Controller_Router_Exception('Zend_Controller_Router_Rewrite requires a Zend_Controller_Request_Http-based request object');
+}
+</blockquote>
+<blockquote>
+if ($this-&gt;_useDefaultRoutes) {
+$this-&gt;addDefaultRoutes();
+}
+</blockquote>
+<blockquote>
+/** Find the matching route */
+foreach (array_reverse($this-&gt;_routes) as $name =&gt; $route) {
+</blockquote>
+<blockquote>
+// <span class="todo">TODO:</span> Should be an interface method. Hack for 1.0 BC  
+if (!method_exists($route, 'getVersion') || $route-&gt;getVersion() == 1) {
+$match = $request-&gt;getPathInfo();
+} else {
+$match = $request;
+}
+</blockquote>
+<blockquote>
+if ($params = $route-&gt;match($match)) {
+$this-&gt;_setRequestParams($request, $params);
+$this-&gt;_currentRoute = $name;
+break;
+}
+}
+</blockquote>
+<blockquote>
+return $request;
+</blockquote>
+<blockquote>
+}
+</blockquote>
+
+<p>
+{% endhighlight php %}
+</p>
+
+</div>
+<div id="footer">
+    <p>&copy; 2011 sesehai &nbsp;&nbsp;</p>
+</div>
+</div>
+<script src="jquery-1.4.2.min.js" type="text/javascript"></script>
+<script src="vimwiki.js" type="text/javascript"></script>
+</body>
+</html>

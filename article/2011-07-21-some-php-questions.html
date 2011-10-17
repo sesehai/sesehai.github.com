@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2011-07-21-some-php-questions</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="Stylesheet" type="text/css" href="../style.css" />
+<script>var root_path = '';</script>
+</head>
+<body>
+<div id="all">
+<div id="header">
+	<ul id="top-nav">
+		<li>
+			<a href="index.html">首页</a>
+		</li>
+		<li>
+			<a href="archive/">文档</a>
+		</li>
+		<li>
+			<a href="article/">文摘</a>
+		</li>
+		<li>
+			<a href="diary/diary.html">日记</a>
+		</li>
+		<li>
+			<a href="sites.html">Sites</a>
+		</li>
+	</ul>
+</div>
+<div id="cse"></div>
+<div id="main">
+
+<p>
+---
+layout: post
+title: Some Php Questions
+category: tech
+---
+</p>
+
+<p>
+p.(date)
+</p>
+
+<p>
+h3. Some Php Questions
+</p>
+
+
+<p>
+1. zend framework request router 的实现；
+</p>
+
+<p>
+2. empty() 判断返回true值的变量的值：
+   "",0,"0",null,false,array(),var $var,没有任何属性的对象；
+</p>
+
+<p>
+3. error_reporting(E_ALL) 设置哪些错误、提示、警告，汇报出来；
+   ini_set('display_errors',1) 是否显示错误
+   ini_set('log_errors',1)     错误信息是否存入error.log
+   ini_set('error_log','error.log') 设置错误存放文件
+   set_error_handler() 设置自定义的错误处理方法
+</p>
+
+<p>
+4. json_decode($str,true); 第二个参数true 将返回的对象转换为数组
+</p>
+
+<p>
+5. memcache 内容如何更新：1）切换新的key（缺点耗资源）
+</p>
+
+<p>
+6. 生成静态文件时，同一目录下最多能放多少个文件或文件夹，而不会影响存取效率，如何解决？
+   同一路径下一级子目录最多有 31998 个，如果名字是数字，都除以10000得到的整数最为父目录；
+</p>
+
+<p>
+7. array 排序：
+   asort() 对数组按值排序，保持索引
+   sort()  对数组按值排序，不保持索引
+   ksort()按键值排序
+</p>
+
+<p>
+8. ajax 跨域请求
+   ajax 的刷新
+</p>
+
+<p>
+9. html5 video 标签的试用？
+</p>
+
+<p>
+10. 静态化解决方案：
+</p>
+<blockquote>
+db并发太高、表死锁频繁、php执行缓慢、积压负载 如何处理？
+db-&gt;应用之间缓存，db-&gt;静态化
+</blockquote>
+
+<p>
+11. 数据统计：
+</p>
+<blockquote>
+百万条数据、多表联合查询、数据去重 执行缓慢如何处理？
+去重有何方法？
+</blockquote>
+
+</div>
+<div id="footer">
+    <p>&copy; 2011 sesehai &nbsp;&nbsp;</p>
+</div>
+</div>
+<script src="jquery-1.4.2.min.js" type="text/javascript"></script>
+<script src="vimwiki.js" type="text/javascript"></script>
+</body>
+</html>

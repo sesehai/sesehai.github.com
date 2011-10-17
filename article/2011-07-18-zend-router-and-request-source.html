@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2011-07-18-zend-router-and-request-source</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="Stylesheet" type="text/css" href="../style.css" />
+<script>var root_path = '';</script>
+</head>
+<body>
+<div id="all">
+<div id="header">
+	<ul id="top-nav">
+		<li>
+			<a href="index.html">首页</a>
+		</li>
+		<li>
+			<a href="archive/">文档</a>
+		</li>
+		<li>
+			<a href="article/">文摘</a>
+		</li>
+		<li>
+			<a href="diary/diary.html">日记</a>
+		</li>
+		<li>
+			<a href="sites.html">Sites</a>
+		</li>
+	</ul>
+</div>
+<div id="cse"></div>
+<div id="main">
+
+<p>
+---
+layout: post
+title: Zend Fromwork Router And Request Source 
+category: tech
+---
+</p>
+
+<p>
+p(date). 2011-07-18
+</p>
+
+
+<p>
+h3.  Zend Fromwork Router And Request Source 
+</p>
+
+<p>
+h3.  class Zend_Controller_Router_Rewrite extends Zend_Controller_Router_Abstract
+</p>
+
+<p>
+{% highlight php %}
+</p>
+<blockquote>
+/**
+</blockquote>
+<ul>
+<li>
+Find a matching route to the current PATH_INFO and inject
+
+<li>
+returning values to the Request object.
+     *
+
+<li>
+@throws Zend_Controller_Router_Exception
+
+<li>
+@return Zend_Controller_Request_Abstract Request object
+     */
+    public function route(Zend_Controller_Request_Abstract $request)
+    {
+
+</ul>
+<blockquote>
+if (!$request instanceof Zend_Controller_Request_Http) {
+require_once 'Zend/Controller/Router/Exception.php';
+throw new Zend_Controller_Router_Exception('Zend_Controller_Router_Rewrite requires a Zend_Controller_Request_Http-based request object');
+}
+</blockquote>
+<blockquote>
+if ($this-&gt;_useDefaultRoutes) {
+$this-&gt;addDefaultRoutes();
+}
+</blockquote>
+<blockquote>
+/** Find the matching route */
+foreach (array_reverse($this-&gt;_routes) as $name =&gt; $route) {
+</blockquote>
+<blockquote>
+// <span class="todo">TODO:</span> Should be an interface method. Hack for 1.0 BC  
+if (!method_exists($route, 'getVersion') || $route-&gt;getVersion() == 1) {
+$match = $request-&gt;getPathInfo();
+} else {
+$match = $request;
+}
+</blockquote>
+<blockquote>
+if ($params = $route-&gt;match($match)) {
+$this-&gt;_setRequestParams($request, $params);
+$this-&gt;_currentRoute = $name;
+break;
+}
+}
+</blockquote>
+<blockquote>
+return $request;
+</blockquote>
+<blockquote>
+}
+</blockquote>
+<p>
+{% endhighlight php %}
+</p>
+
+
+<p>
+h3. class Zend_Controller_Router_Route_Module extends Zend_Controller_Router_Route_Abstract
+</p>
+
+<p>
+{% highlight php %}
+   /**
+</p>
+<ul>
+<li>
+Set request keys based on values in request object
+     *
+
+<li>
+@return void
+     */
+    protected function _setRequestKeys()
+    {
+        if (null !== $this-&gt;_request) {
+            $this-&gt;_moduleKey     = $this-&gt;_request-&gt;getModuleKey();
+            $this-&gt;_controllerKey = $this-&gt;_request-&gt;getControllerKey();
+            $this-&gt;_actionKey     = $this-&gt;_request-&gt;getActionKey();
+        }
+
+</ul>
+<blockquote>
+if (null !== $this-&gt;_dispatcher) {
+$this-&gt;_defaults += array(
+$this-&gt;_controllerKey =&gt; $this-&gt;_dispatcher-&gt;getDefaultControllerName(),
+$this-&gt;_actionKey     =&gt; $this-&gt;_dispatcher-&gt;getDefaultAction(),
+$this-&gt;_moduleKey     =&gt; $this-&gt;_dispatcher-&gt;getDefaultModule()
+);
+}
+</blockquote>
+<blockquote>
+$this-&gt;_keysSet = true;
+}
+</blockquote>
+<blockquote>
+/**
+</blockquote>
+<ul>
+<li>
+Matches a user submitted path. Assigns and returns an array of variables
+
+<li>
+on a successful match.
+     *
+
+<li>
+If a request object is registered, it uses its setModuleName(),
+
+<li>
+setControllerName(), and setActionName() accessors to set those values.
+
+<li>
+Always returns the values as an array.
+     *
+
+<li>
+@param string $path Path used to match against this routing map
+
+<li>
+@return array An array of assigned values or a false on a mismatch
+     */
+    public function match($path)
+    {
+        $this-&gt;_setRequestKeys();
+
+</ul>
+<blockquote>
+$values = array();
+$params = array();
+$path   = trim($path, self::URI_DELIMITER);
+</blockquote>
+<blockquote>
+if ($path != '') {
+</blockquote>
+<blockquote>
+$path = explode(self::URI_DELIMITER, $path);
+</blockquote>
+<blockquote>
+if ($this-&gt;_dispatcher &amp;&amp; $this-&gt;_dispatcher-&gt;isValidModule($path[0])) {
+$values[$this-&gt;_moduleKey] = array_shift($path);
+$this-&gt;_moduleValid = true;
+}
+</blockquote>
+<blockquote>
+if (count($path) &amp;&amp; !empty($path[0])) {
+$values[$this-&gt;_controllerKey] = array_shift($path);
+}
+</blockquote>
+<blockquote>
+if (count($path) &amp;&amp; !empty($path[0])) {
+$values[$this-&gt;_actionKey] = array_shift($path);
+}
+</blockquote>
+<blockquote>
+if ($numSegs = count($path)) {
+for ($i = 0; $i &lt; $numSegs; $i = $i + 2) {
+$key = urldecode($path[$i]);
+$val = isset($path[$i + 1]) ? urldecode($path[$i + 1]) : null;
+$params[$key] = (isset($params[$key]) ? (array_merge((array) $params[$key], array($val))): $val);
+}
+}
+}
+</blockquote>
+<blockquote>
+$this-&gt;_values = $values + $params;
+</blockquote>
+<blockquote>
+return $this-&gt;_values + $this-&gt;_defaults;
+}
+</blockquote>
+<p>
+{% endhighlight php%}
+</p>
+
+
+
+<p>
+h3. class Zend_Controller_Request_Http extends Zend_Controller_Request_Abstract
+</p>
+
+
+<p>
+{% highlight php %}
+</p>
+<blockquote>
+/**
+</blockquote>
+<ul>
+<li>
+Set the REQUEST_URI on which the instance operates
+     *
+
+<li>
+If no request URI is passed, uses the value in $_SERVER['REQUEST_URI'],
+
+<li>
+$_SERVER['HTTP_X_REWRITE_URL'], or $_SERVER['ORIG_PATH_INFO'] + $_SERVER['QUERY_STRING'].
+     *
+
+<li>
+@param string $requestUri
+
+<li>
+@return Zend_Controller_Request_Http
+     */
+    public function setRequestUri($requestUri = null)
+    {
+        if ($requestUri === null) {
+            if (isset($_SERVER['HTTP_X_REWRITE_URL'])) { // check this first so IIS will catch
+                $requestUri = $_SERVER['HTTP_X_REWRITE_URL'];
+            } elseif (isset($_SERVER['REQUEST_URI'])) {
+                $requestUri = $_SERVER['REQUEST_URI'];
+                if (isset($_SERVER['HTTP_HOST']) &amp;&amp; strstr($requestUri, $_SERVER['HTTP_HOST'])) {
+                    $requestUri = preg_replace('#<sup><small>[</small></sup>:]<strong>://[^/]</strong>/#', '/', $requestUri);
+                }
+            } elseif (isset($_SERVER['ORIG_PATH_INFO'])) { // IIS 5.0, PHP as CGI
+                $requestUri = $_SERVER['ORIG_PATH_INFO'];
+                if (!empty($_SERVER['QUERY_STRING'])) {
+                    $requestUri .= '?' . $_SERVER['QUERY_STRING'];
+                }
+            } else {
+                return $this;
+            }
+        } elseif (!is_string($requestUri)) {
+            return $this;
+        } else {
+            // Set GET items, if available
+            if (false !== ($pos = strpos($requestUri, '?'))) {
+                // Get key =&gt; value pairs and set $_GET
+                $query = substr($requestUri, $pos + 1);
+                parse_str($query, $vars);
+                $this-&gt;setQuery($vars);
+            }
+        }
+
+</ul>
+<blockquote>
+$this-&gt;_requestUri = $requestUri;
+return $this;
+}
+</blockquote>
+<blockquote>
+/**
+</blockquote>
+<ul>
+<li>
+Returns the REQUEST_URI taking into account
+
+<li>
+platform differences between Apache and IIS
+     *
+
+<li>
+@return string
+     */
+    public function getRequestUri()
+    {
+        if (empty($this-&gt;_requestUri)) {
+            $this-&gt;setRequestUri();
+        }
+
+</ul>
+<blockquote>
+return $this-&gt;_requestUri;
+}
+</blockquote>
+<blockquote>
+/**
+</blockquote>
+<ul>
+<li>
+Set the base URL of the request; i.e., the segment leading to the script name
+     *
+
+<li>
+E.g.:
+
+<li>
+- /admin
+
+<li>
+- /myapp
+
+<li>
+- /subdir/index.php
+     *
+
+<li>
+Do not use the full URI when providing the base. The following are
+
+<li>
+examples of what not to use:
+
+<li>
+- <a href="http://example.com/admin">http://example.com/admin</a> (should be just /admin)
+
+<li>
+- <a href="http://example.com/subdir/index.php">http://example.com/subdir/index.php</a> (should be just /subdir/index.php)
+     *
+
+<li>
+If no $baseUrl is provided, attempts to determine the base URL from the
+
+<li>
+environment, using SCRIPT_FILENAME, SCRIPT_NAME, PHP_SELF, and
+
+<li>
+ORIG_SCRIPT_NAME in its determination.
+     *
+
+<li>
+@param mixed $baseUrl
+
+<li>
+@return Zend_Controller_Request_Http
+     */
+    public function setBaseUrl($baseUrl = null)
+    {
+        if ((null !== $baseUrl) &amp;&amp; !is_string($baseUrl)) {
+            return $this;
+        }
+
+</ul>
+<blockquote>
+if ($baseUrl === null) {
+$filename = (isset($_SERVER['SCRIPT_FILENAME'])) ? basename($_SERVER['SCRIPT_FILENAME']) : '';
+</blockquote>
+<blockquote>
+if (isset($_SERVER['SCRIPT_NAME']) &amp;&amp; basename($_SERVER['SCRIPT_NAME']) === $filename) {
+$baseUrl = $_SERVER['SCRIPT_NAME'];
+} elseif (isset($_SERVER['PHP_SELF']) &amp;&amp; basename($_SERVER['PHP_SELF']) === $filename) {
+$baseUrl = $_SERVER['PHP_SELF'];
+} elseif (isset($_SERVER['ORIG_SCRIPT_NAME']) &amp;&amp; basename($_SERVER['ORIG_SCRIPT_NAME']) === $filename) {
+$baseUrl = $_SERVER['ORIG_SCRIPT_NAME']; // 1and1 shared hosting compatibility
+} else {
+// Backtrack up the script_filename to find the portion matching
+// php_self
+$path    = isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : '';
+$file    = isset($_SERVER['SCRIPT_FILENAME']) ? $_SERVER['SCRIPT_FILENAME'] : '';
+$segs    = explode('/', trim($file, '/'));
+$segs    = array_reverse($segs);
+$index   = 0;
+$last    = count($segs);
+$baseUrl = '';
+do {
+$seg     = $segs[$index];
+$baseUrl = '/' . $seg . $baseUrl;
+++$index;
+} while (($last &gt; $index) &amp;&amp; (false !== ($pos = strpos($path, $baseUrl))) &amp;&amp; (0 != $pos));
+}
+</blockquote>
+<blockquote>
+// Does the baseUrl have anything in common with the request_uri?
+$requestUri = $this-&gt;getRequestUri();
+</blockquote>
+<blockquote>
+if (0 === strpos($requestUri, $baseUrl)) {
+// full $baseUrl matches
+$this-&gt;_baseUrl = $baseUrl;
+return $this;
+}
+</blockquote>
+<blockquote>
+if (0 === strpos($requestUri, dirname($baseUrl))) {
+// directory portion of $baseUrl matches
+$this-&gt;_baseUrl = rtrim(dirname($baseUrl), '/');
+return $this;
+}
+</blockquote>
+<blockquote>
+if (!strpos($requestUri, basename($baseUrl))) {
+// no match whatsoever; set it blank
+$this-&gt;_baseUrl = '';
+return $this;
+}
+</blockquote>
+<blockquote>
+// If using mod_rewrite or ISAPI_Rewrite strip the script filename
+// out of baseUrl. $pos !== 0 makes sure it is not matching a value
+// from PATH_INFO or QUERY_STRING
+if ((strlen($requestUri) &gt;= strlen($baseUrl))
+&amp;&amp; ((false !== ($pos = strpos($requestUri, $baseUrl))) &amp;&amp; ($pos !== 0)))
+{
+$baseUrl = substr($requestUri, 0, $pos + strlen($baseUrl));
+}
+}
+</blockquote>
+<blockquote>
+$this-&gt;_baseUrl = rtrim($baseUrl, '/');
+return $this;
+}
+</blockquote>
+<blockquote>
+/**
+</blockquote>
+<ul>
+<li>
+Everything in REQUEST_URI before PATH_INFO
+
+<li>
+&lt;form action="&lt;?=$baseUrl?&gt;/news/submit" method="POST"/&gt;
+     *
+
+<li>
+@return string
+     */
+    public function getBaseUrl()
+    {
+        if (null === $this-&gt;_baseUrl) {
+            $this-&gt;setBaseUrl();
+        }
+
+</ul>
+<blockquote>
+return $this-&gt;_baseUrl;
+}
+</blockquote>
+<p>
+{% endhighlight php%}
+</p>
+
+
+
+<p>
+通过这几个文件程序 实现了 routor ：
+</p>
+
+<p>
+<a href="http://myhost.com/app/index.php?module=default&amp;controller=index&amp;action=index&amp;var1=val1&amp;var2=val2">http://myhost.com/app/index.php?module=default&amp;controller=index&amp;action=index&amp;var1=val1&amp;var2=val2</a>
+<a href="http://myhost.com/app/index.php/default/index/index/var1/val1/var2/val2">http://myhost.com/app/index.php/default/index/index/var1/val1/var2/val2</a>
+<a href="http://myhost.com/app/default/index/index/var1/val1/var2/val2">http://myhost.com/app/default/index/index/var1/val1/var2/val2</a>
+</p>
+
+</div>
+<div id="footer">
+    <p>&copy; 2011 sesehai &nbsp;&nbsp;</p>
+</div>
+</div>
+<script src="jquery-1.4.2.min.js" type="text/javascript"></script>
+<script src="vimwiki.js" type="text/javascript"></script>
+</body>
+</html>

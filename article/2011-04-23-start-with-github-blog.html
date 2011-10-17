@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2011-04-23-start-with-github-blog</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="Stylesheet" type="text/css" href="../style.css" />
+<script>var root_path = '';</script>
+</head>
+<body>
+<div id="all">
+<div id="header">
+	<ul id="top-nav">
+		<li>
+			<a href="index.html">首页</a>
+		</li>
+		<li>
+			<a href="archive/">文档</a>
+		</li>
+		<li>
+			<a href="article/">文摘</a>
+		</li>
+		<li>
+			<a href="diary/diary.html">日记</a>
+		</li>
+		<li>
+			<a href="sites.html">Sites</a>
+		</li>
+	</ul>
+</div>
+<div id="cse"></div>
+<div id="main">
+
+<p>
+---
+layout: post
+title: How to use github
+category: tech
+---
+p(date). 2011-05-05
+</p>
+
+<p>
+h3. Start with git
+</p>
+
+<p>
+{% highlight php %}
+git config --global user.name "Your Name"
+git config --global user.email sesehai@gmail.com
+</p>
+
+<p>
+mkdir sesehai.github.com
+cd sesehai.github.com 
+git init
+touch README
+git add README
+git commit -m 'first commit'
+git remote add origin git@github.com:sesehai/sesehai.github.com.git
+git push -u origin master
+{% endhighlight %}
+</p>
+
+
+<p>
+h3. github:help
+</p>
+<blockquote>
+Help:<a href="http://help.github.com/">http://help.github.com/</a>
+</blockquote>
+
+</div>
+<div id="footer">
+    <p>&copy; 2011 sesehai &nbsp;&nbsp;</p>
+</div>
+</div>
+<script src="jquery-1.4.2.min.js" type="text/javascript"></script>
+<script src="vimwiki.js" type="text/javascript"></script>
+</body>
+</html>
