@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>2011-08-31-mysql-Optimization-tutorials</title>
+<title>Mysql 优化教程</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="Stylesheet" type="text/css" href="../style.css" />
 <script>var root_path = '';</script>
@@ -30,22 +30,32 @@
 <div id="cse"></div>
 <div id="main">
 
+<div class="toc">
+<ul>
+<li><a href="#toc_0.1">Mysql 优化教程</a>
+<ul>
+<li><a href="#toc_0.1.1">Mysql Optimization Tutorials</a>
+<ul>
+<li><a href="#toc_0.1.1.1">实战范例 ： ip地址反查</a>
+<li><a href="#toc_0.1.1.2">实战范例：复合索引查询优化实战，同城异性列表</a>
+<li><a href="#toc_0.1.1.3">如何理解影响结果集</a>
+<ul>
+<li><a href="#toc_0.1.1.3.1">实战范例</a>
+<li><a href="#toc_0.1.1.3.2">影响结果集的常见误区</a>
+<li><a href="#toc_0.1.1.3.3">实战范例</a>
+</ul>
+<li><a href="#toc_0.1.1.4">总结：</a>
+</ul>
+</ul>
+</ul>
+</ul>
+</div>
+<h2 id="toc_0.1">Mysql 优化教程</h2>
 <p>
----
-layout: post
-title: Mysql Optimization Tutorials
-category: tech
----
+<em>2011-07-21</em>
 </p>
 
-<p>
-p(date). 2011-08-31
-</p>
-
-
-<p>
-h3.  Mysql Optimization Tutorials
-</p>
+<h3 id="toc_0.1.1" class="justcenter">Mysql Optimization Tutorials</h3>
 
 <p>
 认识数据索引为什么使用数据索引能提高效率
@@ -76,37 +86,49 @@ h3.  Mysql Optimization Tutorials
 在极端情况下（比如数据查询需求量非常大，而数据更新需求极少，实时性要求不高，数据规模有限），直接使用单一排序序列，折半查找速度最快。
 </p>
 
-<p>
-实战范例 ： ip地址反查
-</p>
+<h4 id="toc_0.1.1.1">实战范例 ： ip地址反查</h4>
 
-<p>
+<ul>
+<li>
 资源： Ip地址对应表，源数据格式为  startip, endip, area
-</p>
 
-<p>
+</ul>
+
+<ul>
+<li>
 源数据条数为 10万条左右，呈很大的分散性
-</p>
 
-<p>
+</ul>
+
+<ul>
+<li>
 目标：    需要通过任意ip查询该ip所属地区
-</p>
 
-<p>
+</ul>
+
+<ul>
+<li>
 性能要求达到每秒1000次以上的查询效率
-</p>
 
-<p>
+</ul>
+
+<ul>
+<li>
 挑战：    如使用 between … and 数据库操作，无法有效使用索引。
-</p>
 
-<p>
+</ul>
+
+<ul>
+<li>
 如果每次查询请求需要遍历10万条记录，根本不行。
-</p>
 
-<p>
+</ul>
+
+<ul>
+<li>
 方法：    一次性排序（只在数据准备中进行，数据可存储在内存序列）
-</p>
+
+</ul>
 <blockquote>
 折半查找（每次请求以折半查找方式进行）
 </blockquote>
@@ -115,17 +137,19 @@ h3.  Mysql Optimization Tutorials
 在进行索引分析和SQL优化时，可以将数据索引字段想象为单一有序序列，并以此作为分析的基础。
 </p>
 
-<p>
-实战范例：复合索引查询优化实战，同城异性列表
-</p>
+<h4 id="toc_0.1.1.2">实战范例：复合索引查询优化实战，同城异性列表</h4>
 
-<p>
+<ul>
+<li>
 资源： 用户表user，字段 sex性别；area 地区；lastlogin 最后登录时间；其他略
-</p>
 
-<p>
+</ul>
+
+<ul>
+<li>
 目标： 查找同一地区的异性，按照最后登录时间逆序
-</p>
+
+</ul>
 <blockquote>
 高访问量社区的高频查询，如何优化。
 </blockquote>
@@ -133,9 +157,11 @@ h3.  Mysql Optimization Tutorials
 查询SQL: select * from user where area=’$area’ and sex=’$sex’ order by lastlogin desc limit 0,30;
 </blockquote>
 
-<p>
+<ul>
+<li>
 挑战：    建立复合索引并不难， area+sex+lastlogin 三个字段的复合索引,如何理解？
-</p>
+
+</ul>
 <blockquote>
 首先，忘掉btree，将索引字段理解为一个排序序列。
 </blockquote>
@@ -163,46 +189,38 @@ Area+sex+lastlogin复合索引时（切记lastlogin在最后），该索引基�
 <blockquote>
 广州男
 </blockquote>
-
-<p>
-….
-</p>
 <blockquote>
 深圳女
 </blockquote>
 
-<p>
-….
-</p>
 
 <p>
 数据库很容易命中到 area+sex的边界，并且基于下边界向上追溯30条记录，搞定！在索引中迅速命中所有结果，无需二次遍历！
-如何理解影响结果集
+</p>
+
+<h4 id="toc_0.1.1.3">如何理解影响结果集</h4>
+
+<p>
+<strong>影响结果集是数据查询优化的一个重要中间数据</strong>
 </p>
 
 <p>
-影响结果集是数据查询优化的一个重要中间数据
+<strong>查询条件与索引的关系决定影响结果集</strong>
 </p>
 
 <p>
-查询条件与索引的关系决定影响结果集
+<strong>如上例所示，即便查询用到了索引，但是如果查询和排序目标不能直接在索引中命中，其可能带来较多的影响结果。而这会直接影响到查询效率</strong>
 </p>
 
 <p>
-如上例所示，即便查询用到了索引，但是如果查询和排序目标不能直接在索引中命中，其可能带来较多的影响结果。而这会直接影响到查询效率
+<strong>微秒级优化</strong>
 </p>
 
 <p>
-微秒级优化
+<strong>优化查询不能只看慢查询日志，常规来说，0.01秒以上的查询，都是不够优化的。</strong>
 </p>
 
-<p>
-优化查询不能只看慢查询日志，常规来说，0.01秒以上的查询，都是不够优化的。
-</p>
-
-<p>
-实战范例
-</p>
+<h5 id="toc_0.1.1.3.1">实战范例</h5>
 
 <p>
 和上案例类似，某游戏社区要显示用户动态，select * from userfeed where uid=$uid order by lastlogin desc limit 0,30;   初期默认以uid为索引字段， 查询为命中所有uid=$uid的结果按照lastlogin排序。 当用户行为非常频繁时，该SQL索引命中影响结果集有数百乃至数千条记录。查询效率超过0.01秒，并发较大时数据库压力较大。
@@ -212,17 +230,13 @@ Area+sex+lastlogin复合索引时（切记lastlogin在最后），该索引基�
 解决方案：将索引改为 uid+lastlogin 复合索引，索引直接命中影响结果集30条，查询效率提高了10倍，平均在0.001秒，数据库压力骤降。
 </p>
 
-<p>
-影响结果集的常见误区
-</p>
+<h5 id="toc_0.1.1.3.2">影响结果集的常见误区</h5>
 
 <p>
 影响结果集并不是说数据查询出来的结果数或操作影响的结果数，而是查询条件的索引所命中的结果数。
 </p>
 
-<p>
-实战范例
-</p>
+<h5 id="toc_0.1.1.3.3">实战范例</h5>
 
 <p>
 某游戏数据库使用了innodb，innodb是行级锁，理论上很少存在锁表情况。出现了一个SQL语句(delete from tabname where xid=…)，这个SQL非常用SQL，仅在特定情况下出现，每天出现频繁度不高（一天仅10次左右），数据表容量百万级，但是这个xid未建立索引，于是悲惨的事情发生了，当执行这条delete 的时候，真正删除的记录非常少，也许一到两条，也许一条都没有；但是！由于这个xid未建立索引，delete操作时遍历全表记录，全表被delete操作锁定，select操作全部被locked，由于百万条记录遍历时间较长，期间大量select被阻塞，数据库连接过多崩溃。
@@ -232,151 +246,163 @@ Area+sex+lastlogin复合索引时（切记lastlogin在最后），该索引基�
 这种非高发请求，操作目标很少的SQL，因未使用索引，连带导致整个数据库的查询阻塞，需要极大提高警觉。
 </p>
 
+<h4 id="toc_0.1.1.4">总结：</h4>
+
 <p>
-总结：
+<strong>影响结果集是搜索条件索引命中的结果集，而非输出和操作的结果集。</strong>
 </p>
 
 <p>
-影响结果集是搜索条件索引命中的结果集，而非输出和操作的结果集。
+<strong>影响结果集越趋近于实际输出或操作的目标结果集，索引效率越高。</strong>
 </p>
 
 <p>
-影响结果集越趋近于实际输出或操作的目标结果集，索引效率越高。
+<strong>请注意，我这里永远不会讲关于外键和join的优化，因为在我们的体系里，这是根本不允许的！ 架构优化部分会解释为什么。</strong>
 </p>
 
-<p>
-请注意，我这里永远不会讲关于外键和join的优化，因为在我们的体系里，这是根本不允许的！ 架构优化部分会解释为什么。
+<ol>
+<li>
 理解执行状态
+
+</ol>
+
+<ol>
+<li>
 常见分析手段
-</p>
 
-<p>
+</ol>
+
+<ol>
+<li>
 慢查询日志，关注重点如下
-</p>
 
-<p>
+</ol>
+
+<ul>
+<li>
 是否锁定，及锁定时间
-</p>
 
-<p>
+</ul>
+
+<ul>
+<li>
 如存在锁定，则该慢查询通常是因锁定因素导致，本身无需优化，需解决锁定问题。
-</p>
 
-<p>
+</ul>
+
+<ul>
+<li>
 影响结果集
-</p>
 
-<p>
+</ul>
+
+<ul>
+<li>
 如影响结果集较大，显然是索引项命中存在问题，需要认真对待。
-</p>
 
-<p>
+</ul>
+
+<ol>
+<li>
 Explain 操作
-</p>
 
-<p>
+</ol>
+
+<ul>
+<li>
 索引项使用
-</p>
 
-<p>
+</ul>
+<blockquote>
 不建议用using index做强制索引，如未如预期使用索引，建议重新斟酌表结构和索引设置。
-</p>
+</blockquote>
 
-<p>
+<ul>
+<li>
 影响结果集
-</p>
 
-<p>
+</ul>
+<blockquote>
 这里显示的数字不一定准确，结合之前提到对数据索引的理解来看，还记得嘛？就把索引当作有序序列来理解，反思SQL。
-</p>
+</blockquote>
 
-<p>
+<ol>
+<li>
 Set profiling , show profiles for query操作
-</p>
 
-<p>
+</ol>
+
+<ul>
+<li>
 执行开销
-</p>
 
-<p>
+</ul>
+<blockquote>
 注意，有问题的SQL如果重复执行，可能在缓存里，这时要注意避免缓存影响。通过这里可以看到。
-</p>
-
-<p>
+</blockquote>
+<blockquote>
 执行时间超过0.005秒的频繁操作SQL建议都分析一下。
-</p>
-
-<p>
+</blockquote>
+<blockquote>
 深入理解数据库执行的过程和开销的分布
-</p>
+</blockquote>
 
-<p>
+<ol>
+<li>
 Show processlist
-</p>
 
-<p>
+</ol>
+
+<ul>
+<li>
 状态清单
-</p>
 
-<p>
-Sleep 状态， 通常代表资源未释放，如果是通过连接池，sleep状态应该恒定在一定数量范围内
-</p>
-
-<p>
+</ul>
+<blockquote>
+<strong>Sleep 状态， 通常代表资源未释放，如果是通过连接池，sleep状态应该恒定在一定数量范围内</strong>
+</blockquote>
+<blockquote>
 实战范例： 因前端数据输出时（特别是输出到用户终端）未及时关闭数据库连接，导致因网络连接速度产生大量sleep连接，在网速出现异常时，数据库 too many connections 挂死。
-</p>
-
-<p>
+</blockquote>
+<blockquote>
 简单解读，数据查询和执行通常只需要不到0.01秒，而网络输出通常需要1秒左右甚至更长，原本数据连接在0.01秒即可释放，但是因为前端程序未执行close操作，直接输出结果，那么在结果未展现在用户桌面前，该数据库连接一直维持在sleep状态！
-</p>
-
-<p>
-Waiting for net, reading from net, writing to net
-</p>
-
-<p>
+</blockquote>
+<blockquote>
+<strong>Waiting for net, reading from net, writing to net</strong>
+</blockquote>
+<blockquote>
 偶尔出现无妨
-</p>
-
-<p>
+</blockquote>
+<blockquote>
 如大量出现，迅速检查数据库到前端的网络连接状态和流量
-</p>
-
-<p>
+</blockquote>
+<blockquote>
 案例: 因外挂程序，内网数据库大量读取，内网使用的百兆交换迅速爆满，导致大量连接阻塞在waiting for net，数据库连接过多崩溃
-</p>
-
-<p>
-Locked状态
-</p>
-
-<p>
+</blockquote>
+<blockquote>
+<strong>Locked状态</strong>
+</blockquote>
+<blockquote>
 有更新操作锁定
-</p>
-
-<p>
+</blockquote>
+<blockquote>
 通常使用innodb可以很好的减少locked状态的产生，但是切记，更新操作要正确使用索引，即便是低频次更新操作也不能疏忽。如上影响结果集范例所示。
-</p>
-
-<p>
+</blockquote>
+<blockquote>
 在myisam的时代，locked是很多高并发应用的噩梦。所以mysql官方也开始倾向于推荐innodb。
-</p>
-
-<p>
-Copy to tmp table
-</p>
-
-<p>
+</blockquote>
+<blockquote>
+<strong>Copy to tmp table</strong>
+</blockquote>
+<blockquote>
 索引及现有结构无法涵盖查询条件，才会建立一个临时表来满足查询要求，产生巨大的恐怖的i/o压力。
-</p>
-
-<p>
+</blockquote>
+<blockquote>
 很可怕的搜索语句会导致这样的情况，如果是数据分析，或者半夜的周期数据清理任务，偶尔出现，可以允许。频繁出现务必优化之。
-</p>
-
-<p>
+</blockquote>
+<blockquote>
 Copy to tmp table 通常与连表查询有关，建议逐渐习惯不使用连表查询。
-</p>
+</blockquote>
 
 <p>
 实战范例：
