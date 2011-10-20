@@ -47,45 +47,42 @@
 <h3 id="toc_0.1.1">Zend_Controller_Router_Rewrite</h3>
 
 <pre  class="brush:php">
-    /**
-         * Find a matching route to the current PATH_INFO and inject
-	      * returning values to the Request object.
-	           *
-		        * @throws Zend_Controller_Router_Exception
-			     * @return Zend_Controller_Request_Abstract Request object
-			          */
-				      public function route(Zend_Controller_Request_Abstract $request)
-				          {
+/**
+ * Find a matching route to the current PATH_INFO and inject
+ * returning values to the Request object.
+ *
+ * @throws Zend_Controller_Router_Exception
+ * @return Zend_Controller_Request_Abstract Request object
+ */
+public function route(Zend_Controller_Request_Abstract $request)
+{
 
-					          if (!$request instanceof Zend_Controller_Request_Http) {
-						              require_once 'Zend/Controller/Router/Exception.php';
-							                  throw new Zend_Controller_Router_Exception('Zend_Controller_Router_Rewrite requires a Zend_Controller_Request_Http-based request object');
-									          }
+	if (!$request instanceof Zend_Controller_Request_Http) {
+		require_once 'Zend/Controller/Router/Exception.php';
+		throw new Zend_Controller_Router_Exception('Zend_Controller_Router_Rewrite requires a Zend_Controller_Request_Http-based request object');
+	}
 
-										          if ($this-&gt;_useDefaultRoutes) {
-											              $this-&gt;addDefaultRoutes();
-												              }
+	if ($this-&gt;_useDefaultRoutes) {
+		$this-&gt;addDefaultRoutes();
+	}
 
-													              /** Find the matching route */
-														              foreach (array_reverse($this-&gt;_routes) as $name =&gt; $route) {
-															                  
-																	              // TODO: Should be an interface method. Hack for 1.0 BC  
-																		                  if (!method_exists($route, 'getVersion') || $route-&gt;getVersion() == 1) {
-																				                  $match = $request-&gt;getPathInfo();
-																						              } else {
-																							                      $match = $request;
-																									                  }
-																											                          
-																														              if ($params = $route-&gt;match($match)) {
-																															                      $this-&gt;_setRequestParams($request, $params);
-																																	                      $this-&gt;_currentRoute = $name;
-																																			                      break;
-																																					                  }
-																																							          }
+	/** Find the matching route */
+	foreach (array_reverse($this-&gt;_routes) as $name =&gt; $route) {
 
-																																								          return $request;
+		// TODO: Should be an interface method. Hack for 1.0 BC  
+		if (!method_exists($route, 'getVersion') || $route-&gt;getVersion() == 1) {
+			$match = $request-&gt;getPathInfo();
+		} else {
+			$match = $request;
+		}
 
-																																									      }
+		if ($params = $route-&gt;match($match)) {
+			$this-&gt;_setRequestParams($request, $params);
+			$this-&gt;_currentRoute = $name;
+			break;
+		}
+	}
+
 </pre>
 
 </div>
