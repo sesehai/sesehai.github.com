@@ -1,8 +1,8 @@
 html {
-    color: #000/*#cad3d6*/;
+    color: #000#cad3d6;
     min-height: 100%;
-    /*background: -webkit-gradient(linear , 0 100, 0 98%, from(#163346), to(#000309) );*/
-    background-color: #F5F5D5/*#123*/;
+    background: -webkit-gradient(linear , 0 100, 0 98%, from(#163346), to(#000309) );
+    background-color: #123;
     padding: 0;
     margin: 0;
 }
@@ -51,8 +51,8 @@ h1 {
 }
 h2 {
     font-size: 1.52em;
-    /*border-bottom: 1px solid #29362E;*/
-    /*border-bottom: 1px solid rgba(255,230,0,0.1);*/
+    border-bottom: 1px solid #29362E;
+    border-bottom: 1px solid rgba(255,230,0,0.1);
     color: #fd5;
     margin-top: 1em;
 
@@ -61,8 +61,8 @@ h3 {
     font-size: 1.22em;
     color: #df5;
     width: 80%;
-    /*border-bottom: 1px dashed #29362E;*/
-    /*border-bottom: 1px dashed  rgba(255,230,0,0.1);*/
+    border-bottom: 1px dashed #29362E;
+    border-bottom: 1px dashed  rgba(255,230,0,0.1);
     margin-top: 0.9em;
     margin-bottom: 0.4em;
 }
@@ -256,11 +256,11 @@ textarea {
     margin-right: auto;
 }
 
-/*#all {
+#all {
     -webkit-border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAEsCAYAAAAGpQnoAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGNJREFUeNpi%2Bs8QwPD%2F%2F38GEM3EgARGOaOcUc4oZ3BxGKFsRurroVjZYDaAnHCjoaU0lBmalg6IATS0Z1QZtZVRHFmjgTjoooReyoaMPfQq1omMxiFT6Q2yZsRgNoB6KQQgwADJCwjQbYXDDwAAAABJRU5ErkJggg%3D%3D) 0 1 0 1;
     -moz-border-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAEsCAYAAAAGpQnoAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAGNJREFUeNpi%2Bs8QwPD%2F%2F38GEM3EgARGOaOcUc4oZ3BxGKFsRurroVjZYDaAnHCjoaU0lBmalg6IATS0Z1QZtZVRHFmjgTjoooReyoaMPfQq1omMxiFT6Q2yZsRgNoB6KQQgwADJCwjQbYXDDwAAAABJRU5ErkJggg%3D%3D) 0 1 0 1;
     border-width: 0 12px;
-}*/
+}
 
 #main {
     padding: 10px 20px;
@@ -315,15 +315,15 @@ textarea {
 #footer {
     margin-top: 20px;
     text-align: center;
-    /*border: 5px solid #75143F;
+    border: 5px solid #75143F;
     border: 5px solid rgba(255,0,80,0.42);
     border-width: 5px 10px;
-    */
+    
 }
 
 #footer p{
-    background: #AAD2F0/*#341D36*/;
-    /*background: rgba(255,0,80,0.15);*/
+    background: #341D36;
+    background: rgba(255,0,80,0.15);
     padding: 1em;
     margin: 0;
 }
