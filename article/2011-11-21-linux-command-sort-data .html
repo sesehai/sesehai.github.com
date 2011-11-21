@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2011-11-21-linux-command-sort-data </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="Stylesheet" type="text/css" href="../style.css" />
+<script>var root_path = '';</script>
+</head>
+<body>
+<div id="all">
+<div id="header">
+	<ul id="top-nav">
+		<li>
+			<a href="../index.html">首页</a>
+		</li>
+		<li>
+			<a href="../archive/">文档</a>
+		</li>
+		<li>
+			<a href="../article/">文摘</a>
+		</li>
+		<li>
+			<a href="../diary/diary.html">日记</a>
+		</li>
+		<li>
+			<a href="../sites.html">Sites</a>
+		</li>
+	</ul>
+</div>
+<div id="cse"></div>
+<div id="main">
+
+<p>
+前几天碰到一个问题：现在有一万多条记录，其中包含重复的记录，每条记录占一行，问如何从这些记录中找到数量排名前10的记录？
+</p>
+
+<p>
+对于这个问题，可以编程实现。但是在Linux环境下，可以简单的通过一些命令的组合直接完成这项工作。这里先讲我使用的命令，再一一分析。
+</p>
+
+<p>
+可以使用以下命令完成这个任务，其中所有的记录以每条一行的形式存储在data文件中。
+</p>
+
+<h3 id="toc_0.0.1">Linux代码</h3>
+<pre>
+$ sort data | uniq -c | sort -k 1 -n -r | head 10 
+
+$ sort data | uniq -c | sort -k 1 -n -r | head 10
+</pre>
+
+<p>
+现在来一一分析这些命令组合的含义。
+</p>
+
+<h3 id="toc_0.0.2">1) sort data</h3>
+
+<p>
+表示对data文件中的内容进行排序。sort命令是对于每一行的内容根据字典序（ASCII码）进行排序，这样可以保证重复的记录时相邻的。
+</p>
+
+<h3 id="toc_0.0.3">2) sort data | uniq -c</h3>
+
+<p>
+这里，通过管道（|）将左边部分的命令的输出作为右边部分的输入。uniq -c 表示合并相邻的重复记录，并统计重复数。因为uniq -c 只会合并相邻的记录，所以在使用该命令之前需要先排序。
+</p>
+
+<h3 id="toc_0.0.4">3) sort data | uniq -c | sort -k 1 -n -r</h3>
+
+<p>
+经过uniq -c 处理之后的数据格式形如"2 data"，第一个字段是数字，表示重复的记录数；www.linuxidc.com第二个字段为记录的内容。我们将对此内容进行排序。sort -k 1表示对于每行的第一个字段进行排序，这里即指代表重复记录数的那个字段。因为sort命令的默认排序是按照ASCII，这就会导致按从大到小进行排序时，数值2会排在数值11的前面，所以需要使用-n 参数指定sort命令按照数值大小进行排序。-r 表示逆序，即按照从大到小的顺序进行排序。
+</p>
+
+<h3 id="toc_0.0.5">4) sort data | uniq -c | sort -k 1 -n -r | head 10</h3>
+
+<p>
+head 命令表示选取文本的前x行。通过head 10 就可以得到排序结果中前十行的内容。
+</p>
+
+<p>
+总结：通过这个例子，可以深刻的体会到Linux的命令工具集的强大之处，通过几个命令的组合便可以完成这样一件常见但又不简单的任务，体现了Linux简洁而优美的特点。
+</p>
+
+</div>
+<div id="footer">
+    <p>&copy; 2011 sesehai &nbsp;&nbsp;</p>
+</div>
+</div>
+<script src="../jquery-1.4.2.min.js" type="text/javascript"></script>
+<script src="../vimwiki.js" type="text/javascript"></script>
+</body>
+</html>
