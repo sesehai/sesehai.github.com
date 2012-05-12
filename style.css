@@ -169,7 +169,7 @@ textarea {
 .tocWrap {
     display: none;
     position: fixed;
-    right: 15%;
+    right: 6%;
     top: 25%;
     width: 200px;
     z-index: 100;
@@ -226,7 +226,7 @@ textarea {
     
 }
 #main {
-    padding: 10px 20px;
+    padding: 10px 47px;
     position: relative;
 }
 #header {
