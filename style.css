@@ -261,7 +261,7 @@ textarea {
     color: #ff0000;
 }
 #footer {
-    border-top: 1px dashed #ccc;
+    border-top: 1px solid #ccc;
     margin-top: 20px;
     text-align: center;
 }
