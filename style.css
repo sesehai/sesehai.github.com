@@ -410,3 +410,8 @@ div.gsc-clear-button {
     background-position: 5px 50%;
     background-repeat: no-repeat;
 }
+
+#pinglun {
+    padding: 10px 47px;
+    position: relative;
+}
