@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>用 vimwiki 搭建你自己的维基世界 - 丘迟的维基世界</title>
+<title>用 vimwiki 搭建你自己的维基世界 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="Stylesheet" type="text/css" href="../style.css" />
 <link type="image/ico" rel="shortcut icon" href="favicon.ico"/>
@@ -70,7 +70,14 @@
 </ul>
 </ul>
 </div>
-Vim 里有个 <a href="http://code.google.com/p/vimwiki/">vimwiki</a> 插件，正在使用 Vim 的同学一定有所耳闻。有了vimwiki， 搭配Vim本身强大的编辑功能，你就拥有了一个快速、轻巧、功能强大的个人笔记本。通过 vimwiki 输出HTML页面，你还能方便地和别人分享自己的知识积累。您现在看到的这个<a href="http://wiki.ktmud.com">丘迟的维基世界</a>即是通过 vimwiki
+</p>
+
+<p>
+【转自：<a href="http://wiki.ktmud.com">丘迟的维基世界</a>】，并作补充。
+</p>
+
+<p>
+Vim 里有个 <a href="http://code.google.com/p/vimwiki/">vimwiki</a> 插件，正在使用 Vim 的同学一定有所耳闻。有了vimwiki， 搭配Vim本身强大的编辑功能，你就拥有了一个快速、轻巧、功能强大的个人笔记本。通过 vimwiki 输出HTML页面，你还能方便地和别人分享自己的知识积累。这个维基即是通过 vimwiki
 搭建。为什么要叫做“维基世界”？因为只要你懂一点前端知识，它可以不仅仅是一个简单的知识管理系统，还能成为一个 playground ，任你自由发挥。
 </p>
 
@@ -238,7 +245,7 @@ map &lt;F4&gt; :Vimwiki2HTML&lt;cr&gt;
 使用 <kbd>Tab</kbd> 键，可以跳到下一个维基词条或链接，使用 <kbd>Shift-Tab</kbd> 跳到上一个
 
 <li>
-插入模式下使用Shift-Enter，插入 <code>\&lt;br\&gt;</code> 并换行
+插入模式下使用Shift-Enter，插入 <code><br></code> 并换行
 
 </ol>
 
@@ -387,7 +394,7 @@ call map(lines, 'substitute(v:val, "%root_path%", "'.
 vimwiki 有一个 g:vimwiki_valid_html_tags 值，可以指定允许写在 wiki 中的HTML标签。 g:vimwiki_valid_html_tags 的默认值是 <code>'b,i,s,u,sub,sup,kbd,br,hr'</code> ，也就是说，当你在 wiki 中输入：
 </p>
 <blockquote>
-\&lt;b\&gt;Hello\&lt;/b\&gt; &lt;strong&gt;Hello&lt;/stong&gt;
+<b>Hello</b> &lt;strong&gt;Hello&lt;/stong&gt;
 </blockquote>
 
 <p>
@@ -428,11 +435,10 @@ let g:vimwiki_valid_html_tags='b,i,s,u,sub,sup,kbd,br,hr,div,del,code'
 在前面添加一个函数：
 </p>
 <pre>
+"支持HTML
 function s:parse_tag_keeper(line)
-  let line = substitute(a:line,'\\&amp;lt;',
-        \'\&amp;lt;', 'g')
-  let line = substitute(line,'\\&amp;gt;',
-        \'\&amp;gt;', 'g')
+  let line = substitute(a:line, '\\&amp;lt;', '<', 'g')
+  let line = substitute(line, '\\&amp;gt;', '>', 'g')
   return line
 endfunction
 
@@ -451,44 +457,11 @@ endfunction
 
 
 <p>
-这样如果我们用 \&lt;tag\&gt; 的形式输入 valid_html_tags 包括的标签，输出的HTML就会把它们当成文本处理了。
+这样如果我们用 <tag> 的形式输入 valid_html_tags 包括的标签，输出的HTML就会把它们当成文本处理了。
 </p>
 
 <p>
-在写本文时，我需要输出 <code>\{\{\{ \}\}\}</code> ，而这对标记被作为了 wiki 里 <code>pre</code> 区块的 pattern 。于是就还要再写一个函数：
-</p>
-<pre>
-function s:parse_pre_keeper(line)
-  let line = substitute(a:line,'\\{\\{\\{',
-        \'\{\{\{', 'g')
-  let line = substitute(line,'\\}\\}\\}',
-        \'\}\}\}', 'g')
-  return line
-endfunction
-</pre>
-
-<p>
-就把它定义在 <code>s:parse_tag_keeper</code> 之后吧。但调用的时候怎么办呢？肯定要放在 <strong>vimwiki_html.vim</strong> 处理了 pre 区块之后。思来想去，只能放在刚好要输出HTML文件的时候。但是 vim 的 <code>writefile</code> 函数，接受的参数是一个 list （相当于数组），而不是字串。既然如此，我们就把输出结果给合并了再替换，然后再包装成 list 。
-</p>
-
-<p>
-找到这句：
-</p>
-<blockquote>
-call writefile(ldest, path.wwFileNameOnly.'.html')
-</blockquote>
-
-<p>
-稍微修改一下：
-</p>
-<pre>
-let output = join(ldest, "\n\r")
-let output = s:parse_pre_keeper(output)
-let outputlist = split(output, "\n\r")
-call writefile(outputlist, path.wwFileNameOnly.'.html')
-</pre>
-<p>
-之所以还要再split，是因为writefile写入的 NL 是无法用字符模拟的。这样当然会造成性能问题，如果有知道更好解决方案的，请留言告诉我。
+在写本文时，我需要用 <code>{{{ }}}</code> 把内容括起来就可以了。
 </p>
 
 </div>
