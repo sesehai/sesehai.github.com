@@ -32,7 +32,7 @@ input:focus, a:focus, button:focus {
     box-shadow: 0 0 3px #CCBB00;
 }
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Microsoft Yahei",sans-serif;
+    font-family: inherit;
     margin: 0;
     padding: 0.15em 0;
 }
