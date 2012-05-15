@@ -234,11 +234,11 @@ textarea {
 }
 #top-nav {
     background: #222;
-    height: 47px;
+    height: 41px;
     margin: 0 auto;
     overflow: hidden;
     position: relative;
-	padding:3px 40px;
+	padding:8px 40px;
 }
 #top-nav li {
     float: left;
@@ -246,9 +246,7 @@ textarea {
     margin-right: 10px;
 }
 #top-nav a {
-    border: 1px solid #ccc;
-	background: none repeat scroll 0 0 #FFFFFF;
-    color: #333333;
+    color: #fff;
     display: block;
     font-size: 1.0em;
     padding: 3px 10px;
