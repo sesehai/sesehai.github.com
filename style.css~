@@ -109,11 +109,20 @@ blockquote {
     border: 1px solid rgba(230, 0, 20, 0.2);
 }
 blockquote:hover, pre:hover {
-    background: none repeat scroll 0 0 rgba(198, 195, 193, 0.25);
-    color: #000000;
+    background: none repeat scroll 0 0 #222;
+    color: #fff;
 }
 pre {
-    border-left: 1px solid #CC2266;
+    background-color: #F5F5F5;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px 4px 4px 4px;
+    display: block;
+    font-size: 12.025px;
+    line-height: 18px;
+    margin: 0 0 9px;
+    padding: 8.5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
     margin-left: 1em;
     padding: 0.4em 0.8em;
 }
