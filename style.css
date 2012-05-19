@@ -113,7 +113,16 @@ blockquote:hover, pre:hover {
     color: #000000;
 }
 pre {
-    border-left: 1px solid #CC2266;
+    background-color: #F5F5F5;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px 4px 4px 4px;
+    display: block;
+    font-size: 12.025px;
+    line-height: 18px;
+    margin: 0 0 9px;
+    padding: 8.5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
     margin-left: 1em;
     padding: 0.4em 0.8em;
 }
