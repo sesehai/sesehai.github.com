@@ -113,7 +113,7 @@ blockquote:hover, pre:hover {
     color: #fff;
 }
 pre {
-    background-color: #F5F5F5;
+    background-color: #ddd;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 4px 4px 4px 4px;
     display: block;

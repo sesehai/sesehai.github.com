@@ -109,15 +109,15 @@ blockquote {
     border: 1px solid rgba(230, 0, 20, 0.2);
 }
 blockquote:hover, pre:hover {
-    background: none repeat scroll 0 0 #222;
-    color: #fff;
+    background: none repeat scroll 0 0 #ddd;
+    color: #000;
 }
 pre {
     background-color: #ddd;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 4px 4px 4px 4px;
     display: block;
-    font-size: 12.025px;
+    font-size: 1.2em;
     line-height: 18px;
     margin: 0 0 9px;
     padding: 8.5px;
