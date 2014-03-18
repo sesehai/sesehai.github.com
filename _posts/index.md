@@ -1,7 +1,13 @@
-%toc
-%title 海的心情|思考、记录生活变得更丰富！
+---
+layout: post
+category : lessons
+tagline: "Supporting tagline"
+tags : [intro, beginner, jekyll, tutorial]
+title :  海的心情|思考、记录生活变得更丰富！
+---
+{% include JB/setup %}
 
-== Github上的项目 ==
+== Github上的项目 
 # [http://github.com/sesehai 我的github]
 # [http://sesehai.github.com sesehai.gihub.com]
 # [https://github.com/sesehai/EasyFramework EasyFramework]
@@ -10,19 +16,19 @@
 # [https://github.com/MyWordpress/ MyWordpress 定制版]
 # [https://github.com/myproject/ 如何使用PEAR]
 
-== 程序设计 ==
+== 程序设计 
 # [ PHP]
 # [ Bash]
 # [ Javascript]
 # [ css]
 
-== 数据库 ==
+== 数据库 
 # [ mysql]
 # [ Memcache]
 # [ Redis]
 # [ MongoDb]
 
-== 服务器 ==
+== 服务器
 # [ Linux]
 # [ Nginx]
 # [ Apache]
