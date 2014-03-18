@@ -1,11 +1,9 @@
 ---
 layout: post
-category : lessons
+category : 教程
 tagline: "Supporting tagline"
-tags : [intro, beginner, jekyll, tutorial]
-title :  海的心情|思考、记录生活变得更丰富！
+tags : [Github_blog, 初学者, jekyll]
 ---
-{% include JB/setup %}
 
 == Start with git ==
 _2011-05-05_
