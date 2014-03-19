@@ -1,35 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
- <title>Jekyll Bootstrap</title>
- <link href="http://username.github.io/" rel="self"/>
- <link href="http://username.github.io"/>
- <updated>2014-03-19T03:25:00+01:00</updated>
- <id>http://username.github.io</id>
+ <title>Record</title>
+ <link href="http://sesehai.github.io/" rel="self"/>
+ <link href="http://sesehai.github.io"/>
+ <updated>2014-03-19T07:02:29+01:00</updated>
+ <id>http://sesehai.github.io</id>
  <author>
-   <name>Name Lastname</name>
-   <email>blah@email.test</email>
+   <name>SSH</name>
+   <email></email>
  </author>
 
  
  <entry>
-   <title>Start With Github Blog</title>
-   <link href="http://username.github.io/%E6%95%99%E7%A8%8B/2011/04/23/start-with-github-blog"/>
+   <title>China Rock Roll Music</title>
+   <link href="http://sesehai.github.io/%E9%9F%B3%E4%B9%90/2011/08/15/china-rock-roll-music"/>
+   <updated>2011-08-15T00:00:00+02:00</updated>
+   <id>http://sesehai.github.io/%E9%9F%B3%E4%B9%90/2011/08/15/china-rock-roll-music</id>
+   <content type="html">&lt;h5 id=&quot;&quot;&gt;中国摇滚乐&lt;/h5&gt;
+
+&lt;p&gt;1、&amp;lt;一无所有&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_376766/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　按照毛的话，由此上溯到一千八百年，我们看我们的同志。&lt;/p&gt;
+
+&lt;p&gt;有人说《一无所有》不属于摇滚，只属于流行。我们一定记得当我们还背着军用书包上学的时候，路边收录机里传来的“我曾经问个不休”这样吵哑、歇期底里、震撼的声音，那是一种全新的感觉，那是一座碑，或是一座牌坊。当老崔扎着一块红布穿着黄军装出现在公众面前的时候，人们还不知道发生了什么事情，但一曲完毕，一个时代诞生了。 　　　　《一无所有》里面所表达出来的感情，如果现在让我们再去仔细听一听，想一想，你会发现，许多年前属于他、属于你的东西，现在依然存在。我们不能忘记，更应该感激，那迷失年代里面穿过的领袖的声音。&lt;/p&gt;
+&lt;!--break--&gt;
+&lt;p&gt;2、&amp;lt;新长征路上的摇滚&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_376766/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　 这首歌提供给我们的意识是深不可测的,老崔就是老崔,在今天,这首歌仍有相当积极的意义,深邃的人文思想加上纯正流畅的器乐,这是伟大的结合。&lt;/p&gt;
+
+&lt;p&gt;3、&amp;lt;无地自容&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_385904/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　这首歌的流行基准使得他迅速火遍神州,他首先征服的是还不适应摇滚的国人的发软的耳朵,由于是与香港人的签约合作,香港菜农们的造星与创收意识造就了这支乐队,但歌本身全无香港乐坛的浮华与奢靡之气,硬气十足.在今天看来,这不是一首异常成熟的作品,但这首歌使得更多人接受并深入了摇滚,相信今天无数手操响器的弟兄们听到这首歌时都会感到异常亲切,虽然其意义来自另一个不很积极的角度,但伟大的作品就是伟大的作品。&lt;/p&gt;
+
+&lt;p&gt;4、&amp;lt;梦回唐朝&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_387726/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　中国最出众的重金属,唐朝创立的不仅仅是一杆重金属大旗,还有他们浪漫的新古典主义,中国陈旧的艺术诗歌与京剧唱腔被其赋予了全新的意义,这是中国唯一一支伟大而纯粹的乐队,而这首歌带来的负面影响则是以后的”民族主义摇滚”“中国特色的摇滚”,这种论调与一直被鼓吹的”走中国特色的社会主义道路”的自欺欺人有异曲同工之妙,但唐朝不应对此负任何责任。&lt;/p&gt;
+
+&lt;p&gt;5、&amp;lt;花房姑娘&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_376771/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　我们曾经把这个形象当作一个时代的象征，曾经给予其特殊的读解，这也没有错，但当人们都把崔健说成斗士的时候，别忘了，斗士首先是情人。愤怒的方向，是爱，斗争的方向，是爱。“我想要回到老地方,我想要走在老路上, 我明知我已离不开你!噢…姑娘!” 崔健完成了柔情到沙哑的过渡，并且开始鄙视流行，也开始治疗中国人的便秘。&lt;/p&gt;
+
+&lt;p&gt;6、&amp;lt;我的秋天&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_63694/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　这首歌没有在中国大面积地流行是件让人困惑而又欣慰的事情,第一次听到就流泪了，但是不敢多听，也许它只适合每年的秋天，静静的缩在角落或漫无目的在街上徘徊时拿出来聆听，体验那种苍凉落寞的孤寂。这首歌首先枪毙的是中国一些号称民谣的东西,民谣摇滚既出,民谣就可以收拾收拾去世了,这首歌让我们认识到民谣首先来自的是心灵而非大街小巷。爱情,这首歌的爱情让所有香港的那捆爱情骗子显得更像是琼瑶妈妈桑的干儿子女儿之类的。&lt;/p&gt;
+
+&lt;p&gt;7、&amp;lt;祖先的阴影&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_1770792272/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　这首歌带来的是复古主义和黑色重金属,超载更多带给我们的是他们标准的金属乐队和乐手形象,高旗的唱腔令人匪夷所思。与唐朝相比,他们在台上更具活力,五个人一起精准地甩动长发的情景总让人热血沸腾,但这往往掩盖了他们意义深刻的思想。&lt;/p&gt;
+
+&lt;p&gt;8、&amp;lt;姑娘,漂亮&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_2089861/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　何勇带给我们的是他比崔健更具体更直接的愤怒,因此,他的歌带有鲜明的朋克色彩, 说他是中国最早的朋克也不为过,当这首歌在中国大地呼啸而过时,愤怒的颓废意识令人热血沸腾，不过这也忽略了其巨大的内涵。但令人痛快的是他给了绵软贫血的香港乐坛一记响亮干脆的耳光,何勇的毫不容忍使得香港音乐人在他面前显得那么猥琐而有气无力,这才是朋克.&lt;/p&gt;
+
+&lt;p&gt;9、&amp;lt;姐姐&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_386262/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　这也许是中国最具人文意识和思想的作品,带着一个孩子的迷茫和天真的拷问。但遗憾的是,这首歌中所蕴含的愤怒和绝望没有几个人能听得清,更多的人仅仅是通过这首歌认识了张楚而已,而在张楚带给我们更多他的作品和传奇故事之后,我们仍能发现这首歌的意识涵盖力是中国首屈一指的.&lt;/p&gt;
+
+&lt;p&gt;10、&amp;lt;孤独的人是可耻的&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_377800/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　它在名字上就宣判了自由主义在道德感上的挫败，一盘散沙的孤独正是自由主义的伤口。所以，我们完全可以将在荒唐年代出生的西北小农民张楚视为一个音乐政治学的紧要人物，他的流行，也可以当成民族主义与社群主义的操作策略：它们更容易打动那些“工人、农民，小资产阶级……无所事事的人”，以及“想像鲜花一样美丽”的孤独的人——这所发生的一切，已近中年的张楚并不知情，就如我在写完这些很快就会遗忘的文字后，只会记住他依然还是那个“西出阳关”的流浪的孩子，在那段落满灰尘的岁月里衣衫破旧，眼神迷惘。&lt;/p&gt;
+
+&lt;p&gt;11、&amp;lt;一块红布&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_8239/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　提到中国摇滚，没有人可以避开这个领头人（另一种说法叫教父）。人们印象中的崔健多是卷着裤脚抱着电吉他唱《一无所有》的样子，而后来老崔的音乐终于逐渐抛弃了曲子，诗化的歌词，在众多的鼓点和听不清的歌词中总有一种热烈的感觉在眼中涌动，莫名的怅茫和难以释怀的沉重感,”我不能走我也不能哭,因为我身体已经干枯,我要永远这样陪伴着你,因为我最知道你的痛苦…”&lt;/p&gt;
+
+&lt;p&gt;12、&amp;lt;假行僧&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_8231/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　那个女孩在我转身不经意时刻轻轻唱，“如果你已经爱上我，就请你吻我的嘴”。这首歌收录在《一无所有》这张专辑，粉碎现有的道德，令那个时代瞠目结舌的词语。在20世纪80年代末、90年代初期，崔健用他那特有的方式和敏锐的感觉，把属于那个时代的一切性征都写了出来、唱了出来，《假行僧》更成为这张唱片之中的经典作品。&lt;/p&gt;
+
+&lt;p&gt;13、&amp;lt;累&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_386267/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　红色部队这个名字除了当年北京摇滚圈子里面的人知晓之外，在其它地方几乎找不到他们的踪迹。大概这支乐队存在的时间并不长罢，据说是因为歌曲所反映的东西太过现实太过直白太过颓废而遭来了乐队本身的杀身之祸。这首出现于《中国火1》里面的单曲，第一句话就让你目瞪口呆，“太阳在天上放着光辉，我的眼前一片漆黑”，让你立刻进入颓废和消极之中。给当时刚接触摇滚的青少年的影响也颇为深远。&lt;/p&gt;
+
+&lt;p&gt;14、&amp;lt;国际歌&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_387736/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　这首歌初出之时,被无数无产阶级卫道士骂的一无是处,可在大多数人听过这首歌之后,却认清了那类人的伪善嘴脸.记得当初不少初出茅庐的乐队在开始自己的演唱会时,都不约而同的选择了这首歌作为结束曲,唐朝可不仅是把这首歌配上五和弦三连音那么轻松,而是真正告诉了未来的摇滚人摇滚的意义何在,但遗憾的是,仍有一部分人在听过这首歌之后,有了一种”找到组织了!”的感觉,从而出现了一批摇滚人中的流氓无产者和投机分子,以及一批狗尾续貂的翻唱跟风之作。&lt;/p&gt;
+
+&lt;p&gt;15、&amp;lt;快让我在这雪地上撒点野&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_8237/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　即便是以15年后的标准，这首歌的作曲、编曲、节奏、歌词都是非常杰出的，而且现在仍然没有哪个乐队能达到这样的高度。以前，我们的病是因为“志如钢意如铁”而没有感觉，是对人性的压抑；今天的病是因为麻木而没有感觉，不同的是，过去还有人意识到通过撒野来治病，现在人们都觉得没病了。这支歌随着一段铿锵有力的古筝前奏序曲，渐渐的进入了高潮，全部的电声乐器也相继的在不同的音符下奏鸣，一种可以让人在雪地里狂奔的感觉，从你的脚底由然而升。古典乐和摇滚的融合堪称完美，也许是一种伟大的结合。&lt;/p&gt;
+
+&lt;p&gt;16、上苍保佑吃饱饭的人民&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_377795/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;17、太阳&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_387727/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;18、&amp;lt;钟鼓楼&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_374403/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　《钟鼓楼》实际上把何勇忧伤的一面透露出来了，在三弦琴和吉他的伴奏中，如老北京评弹的行云流水中，何勇细数曾经的美好和现在的流失，单车、落叶、路灯、西山，这些景物告诉了我们乌托邦的样子，而且这些曾经存在过，但当这幅画被渐渐发展的城市撕碎的时候你心里怎么想？何勇对废墟的眷恋让我们心生感触，他只能绝望地问，是谁出的题这么的难，到处全都是正确答案？&lt;/p&gt;
+
+&lt;p&gt;19、&amp;lt;黑色梦中&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_381451/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　在现实中做不到的，就让梦去完成。减少了浪漫欢愉的感受，加强了对生活品质的呈现！窦唯的&amp;lt;黑色梦中&amp;gt;无不流露一种黑色的弥幻色彩，来自深夜的无用的呐喊和挣扎，建议深夜用耳机聆听，不用太用心，同样可以感觉自己的身体慢慢的悬浮起来，一股血往上涌出窍的失重。&lt;/p&gt;
+
+&lt;p&gt;20、&amp;lt;晚安，北京&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_385472/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　汪峰一直在强调“摇滚可以是很优美的”，在他自己的作品中他一直在这样做，在坚持。《晚安北京》那份深沉那份感伤完善的让我们无话可说，而音乐中荡气回肠的键盘以及牵肠挂肚的吉它SOLO，更是许多音乐人所梦想的。&lt;/p&gt;
+
+&lt;p&gt;21、&amp;lt;赤裸裸&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_78053/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　郑钧的音乐绝对可以算是中国摇滚史上抹不去的记忆。《赤裸裸》这支曲子也曾经作为流行音乐存在于全国的大街小巷，被年轻人当作口头禅极其苍白的传唱着，虽然最大的悲哀就是他们不能理解却唱来唱去，虽然只是那么一句，“我的爱，赤裸裸，我的爱，赤裸裸”。 　　或许有人对郑钧的反响不是太好，但是个人认为还是比较好的，因为人总是在进步的，他的年龄、思想，还有思维。不断的进行自我反省也是作为一个摇滚人出色的条件。&lt;/p&gt;
+
+&lt;p&gt;22、&amp;lt;低下头是人间&amp;gt;&lt;/p&gt;
+&lt;embed height='33' src='http://www.xiami.com/widget/5443058_177189/singlePlayer.swf' width='257' wmode='transparent' type='application/x-shockwave-flash' /&gt;
+&lt;p&gt;　　这首歌更像是一部摇滚史诗，里面的元素特别多特别丰富。那种繁杂、精巧的音乐编曲和效果，可以说创新了很多东西，高旗把深刻的精神、纯粹的感受都沉淀在里面。悲壮的氛围，跌宕起伏的想象表现在每个音符上面，一气呵成，非常痛快。&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Some Useful Commands</title>
+   <link href="http://sesehai.github.io/%E6%95%99%E7%A8%8B/2011/05/05/some-useful-commands"/>
+   <updated>2011-05-05T00:00:00+02:00</updated>
+   <id>http://sesehai.github.io/%E6%95%99%E7%A8%8B/2011/05/05/some-useful-commands</id>
+   <content type="html">&lt;h5 id=&quot;wget&quot;&gt;wget请求播放地址&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;wget -b -i url.txt 
+http://sesehai.github.com/tech/2011-05-05-some-usefull-commands.html
+取得地址：
+wget -r [url]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;&quot;&gt;拷贝数据&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;scp * root@113.11.111.123:/path/&lt;/code&gt;&lt;/pre&gt;
+&lt;!--break--&gt;
+&lt;h5 id=&quot;find_&quot;&gt;find 命令&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;find . -name .svn -type d -exec rm -rf {} \;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;_2&quot;&gt;进程控制&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;fork,exec
+http://learn.akae.cn/media/ch30s03.html
+僵尸进程是不能用kill命令清除掉的，因为kill命令只是用来终止进程的，而僵尸进程已经终止了。
+思考一下，用什么办法可以清除掉僵尸进程？&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;shell&quot;&gt;shell&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+echo `date` &amp;gt;&amp;gt;/data/stat.log
+cat /data/web.log | grep found &amp;gt;&amp;gt; data/stat_csv.log
+tail  /data/stat_csv.log&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;php_cgi&quot;&gt;php cgi&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;Usage: php-cgi [-q] [-h] [-s] [-v] [-i] [-f &amp;lt;file&amp;gt;]
+       php-cgi &amp;lt;file&amp;gt; [args...]
+  -a               Run interactively
+  -b &amp;lt;address:port&amp;gt;|&amp;lt;port&amp;gt; Bind Path for external FASTCGI Server mode
+  -C               Do not chdir to the script's directory
+  -c &amp;lt;path&amp;gt;|&amp;lt;file&amp;gt; Look for php.ini file in this directory
+  -n               No php.ini file will be used
+  -d foo[=bar]     Define INI entry foo with value 'bar'
+  -e               Generate extended information for debugger/profiler
+  -f &amp;lt;file&amp;gt;        Parse &amp;lt;file&amp;gt;.  Implies `-q'
+  -h               This help
+  -i               PHP information
+  -l               Syntax check only (lint)
+  -m               Show compiled in modules
+  -q               Quiet-mode.  Suppress HTTP Header output.
+  -s               Display colour syntax highlighted source.
+  -v               Version number
+  -w               Display source with stripped comments and whitespace.
+  -z &amp;lt;file&amp;gt;        Load Zend extension &amp;lt;file&amp;gt;.
+  -T &amp;lt;count&amp;gt;       Measure execution time of script repeated &amp;lt;count&amp;gt; times.&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;_3&quot;&gt;查看系统状态&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;vmstat 1 100 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;mysql_&quot;&gt;mysql 进程管理&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;mysqladmin -u name -ppwd processlist
+mysqladmin -u name -ppwd kill 
+
+ show full processlist;
+
+ netstat -ntp | grep 60691&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;chrome__agent_&quot;&gt;Chrome 模拟 Agent 信息&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;chrome.exe --user-agent=&amp;quot;Mozilla/5.0 (iPad; U; CPU OS 3_2_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B500 Safari/531.21.10&amp;quot;
+
+chrome.exe --user-agent=&amp;quot;Mozilla/5.0 (Linux; U; Android 2.2; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1&amp;quot;
+
+chrome.exe --user-agent=&amp;quot;Mozilla/5.0 (iPhone; U; CPU OS 3_2_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B500 Safari/531.21.10&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;nginx_&quot;&gt;nginx 管理命令&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;/usr/sbin/nginx -c /etc/nginx/nginx.conf
+/usr/sbin/nginx -t
+kill -HUP `cat /data/nginx/logs/nginx.pid`
+kill -HUP 977&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h5 id=&quot;nginx_ssi&quot;&gt;nginx 开启ssi模块&lt;/h5&gt;
+
+&lt;pre&gt;&lt;code&gt;ssi on;
+ssi_silent_errors on;
+ssi_types text/shtml;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;关闭在LINUX终端下的按键警报声&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;setterm -bleng 0&lt;/code&gt;&lt;/pre&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>开始使用git</title>
+   <link href="http://sesehai.github.io/%E6%95%99%E7%A8%8B/2011/04/23/use-github-write-blog"/>
    <updated>2011-04-23T00:00:00+02:00</updated>
-   <id>http://username.github.io/%E6%95%99%E7%A8%8B/2011/04/23/start-with-github-blog</id>
-   <content type="html">&lt;h4 id=&quot;start_with_git&quot;&gt;Start with git&lt;/h4&gt;
+   <id>http://sesehai.github.io/%E6%95%99%E7%A8%8B/2011/04/23/use-github-write-blog</id>
+   <content type="html">&lt;h5 id=&quot;git&quot;&gt;开始使用git&lt;/h5&gt;
 
-&lt;h5 id=&quot;1git&quot;&gt;（1）初始化git&lt;/h5&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;初始化git&lt;/p&gt;
 
-&lt;p&gt;git init git pull git@github.com:sesehai/vimwiki.git&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git init
+git pull git@github.com:sesehai/vimwiki.git&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;!--break--&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;提交数据&lt;/p&gt;
 
-&lt;h5 id=&quot;2_&quot;&gt;(2) 提交数据&lt;/h5&gt;
+&lt;pre&gt;&lt;code&gt;git add .
+git commit -a
+git push git@github.com:sesehai/vimwiki.git&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
 
-&lt;p&gt;git add . git commit -a git push git@github.com:sesehai/vimwiki.git&lt;/p&gt;
+&lt;li&gt;
+&lt;p&gt;另一种初始化方法&lt;/p&gt;
 
-&lt;h5 id=&quot;3&quot;&gt;(3)另一种初始化方法&lt;/h5&gt;
-
-&lt;p&gt;git config –global user.name “Your Name” git config –global user.email sesehai@gmail.com mkdir sesehai.github.com cd sesehai.github.com git init touch README git add README git commit -m ‘first commit’ git remote add origin git@github.com:sesehai/sesehai.github.com.git git push -u origin master&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git config --global user.name &amp;quot;Your Name&amp;quot;
+git config --global user.email sesehai@gmail.com
+mkdir sesehai.github.com
+cd sesehai.github.com 
+git init
+touch README
+git add README
+git commit -m 'first commit'
+git remote add origin git@github.com:sesehai/sesehai.github.com.git
+git push -u origin master&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;h5 id=&quot;githubhelp&quot;&gt;github:help&lt;/h5&gt;
 

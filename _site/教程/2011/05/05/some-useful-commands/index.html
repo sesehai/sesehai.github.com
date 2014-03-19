@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Some Useful Commands</title>
+    
+    <meta name="author" content="SSH">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.2.2.2.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-narrow">
+          <a class="brand" href="/">Record</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories.html">Categories</a></li>
+      	
+      
+    
+  
+    
+  
+    
+      
+      	
+      	<li><a href="/pages.html">Pages</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-narrow">
+
+      <div class="content">
+        
+<div class="page-header">
+  <h1>Some Useful Commands <small></small></h1>
+</div>
+
+<div class="row-fluid post-full">
+  <div class="span12">
+    <div class="date">
+      <span>05 May 2011</span>
+    </div>
+    <div class="content">
+      <h5 id="wget">wget请求播放地址</h5>
+
+<pre><code>wget -b -i url.txt 
+http://sesehai.github.com/tech/2011-05-05-some-usefull-commands.html
+取得地址：
+wget -r [url]</code></pre>
+
+<h5 id="">拷贝数据</h5>
+
+<pre><code>scp * root@113.11.111.123:/path/</code></pre>
+<!--break-->
+<h5 id="find_">find 命令</h5>
+
+<pre><code>find . -name .svn -type d -exec rm -rf {} \;</code></pre>
+
+<h5 id="_2">进程控制</h5>
+
+<pre><code>fork,exec
+http://learn.akae.cn/media/ch30s03.html
+僵尸进程是不能用kill命令清除掉的，因为kill命令只是用来终止进程的，而僵尸进程已经终止了。
+思考一下，用什么办法可以清除掉僵尸进程？</code></pre>
+
+<h5 id="shell">shell</h5>
+
+<pre><code>#!/bin/bash
+echo `date` &gt;&gt;/data/stat.log
+cat /data/web.log | grep found &gt;&gt; data/stat_csv.log
+tail  /data/stat_csv.log</code></pre>
+
+<h5 id="php_cgi">php cgi</h5>
+
+<pre><code>Usage: php-cgi [-q] [-h] [-s] [-v] [-i] [-f &lt;file&gt;]
+       php-cgi &lt;file&gt; [args...]
+  -a               Run interactively
+  -b &lt;address:port&gt;|&lt;port&gt; Bind Path for external FASTCGI Server mode
+  -C               Do not chdir to the script's directory
+  -c &lt;path&gt;|&lt;file&gt; Look for php.ini file in this directory
+  -n               No php.ini file will be used
+  -d foo[=bar]     Define INI entry foo with value 'bar'
+  -e               Generate extended information for debugger/profiler
+  -f &lt;file&gt;        Parse &lt;file&gt;.  Implies `-q'
+  -h               This help
+  -i               PHP information
+  -l               Syntax check only (lint)
+  -m               Show compiled in modules
+  -q               Quiet-mode.  Suppress HTTP Header output.
+  -s               Display colour syntax highlighted source.
+  -v               Version number
+  -w               Display source with stripped comments and whitespace.
+  -z &lt;file&gt;        Load Zend extension &lt;file&gt;.
+  -T &lt;count&gt;       Measure execution time of script repeated &lt;count&gt; times.</code></pre>
+
+<h5 id="_3">查看系统状态</h5>
+
+<pre><code>vmstat 1 100 </code></pre>
+
+<h5 id="mysql_">mysql 进程管理</h5>
+
+<pre><code>mysqladmin -u name -ppwd processlist
+mysqladmin -u name -ppwd kill 
+
+ show full processlist;
+
+ netstat -ntp | grep 60691</code></pre>
+
+<h5 id="chrome__agent_">Chrome 模拟 Agent 信息</h5>
+
+<pre><code>chrome.exe --user-agent=&quot;Mozilla/5.0 (iPad; U; CPU OS 3_2_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B500 Safari/531.21.10&quot;
+
+chrome.exe --user-agent=&quot;Mozilla/5.0 (Linux; U; Android 2.2; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1&quot;
+
+chrome.exe --user-agent=&quot;Mozilla/5.0 (iPhone; U; CPU OS 3_2_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B500 Safari/531.21.10&quot;</code></pre>
+
+<h5 id="nginx_">nginx 管理命令</h5>
+
+<pre><code>/usr/sbin/nginx -c /etc/nginx/nginx.conf
+/usr/sbin/nginx -t
+kill -HUP `cat /data/nginx/logs/nginx.pid`
+kill -HUP 977</code></pre>
+
+<h5 id="nginx_ssi">nginx 开启ssi模块</h5>
+
+<pre><code>ssi on;
+ssi_silent_errors on;
+ssi_types text/shtml;</code></pre>
+
+<p>关闭在LINUX终端下的按键警报声</p>
+
+<pre><code>setterm -bleng 0</code></pre>
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="icon-folder-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#教程-ref">
+    		教程 <span>2</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="icon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#linux-ref">linux <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#shell-ref">shell <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#nginx-ref">nginx <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#php-ref">php <span>1</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+
+    <hr>
+    <div class="pagination">
+      <ul>
+      
+        <li class="prev"><a href="/%E6%95%99%E7%A8%8B/2011/04/23/use-github-write-blog" title="开始使用git">&larr; Previous</a></li>
+      
+        <li><a href="/archive.html">Archive</a></li>
+      
+        <li class="next"><a href="/%E9%9F%B3%E4%B9%90/2011/08/15/china-rock-roll-music" title="China Rock Roll Music">Next &rarr;</a></li>
+      
+      </ul>
+    </div>
+    <hr>
+    
+  </div>
+</div>
+
+
+      </div>
+      <hr>
+      <footer>
+        <p>&copy; 2014 SSH
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
+        </p>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
+
