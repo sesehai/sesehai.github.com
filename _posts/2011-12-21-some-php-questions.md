@@ -17,7 +17,7 @@ author: SSH
    ini_set('log_errors',1)     错误信息是否存入error.log
    ini_set('error_log','error.log') 设置错误存放文件
    set_error_handler() 设置自定义的错误处理方法
-
+<!--break-->
 - json_decode($str,true); 第二个参数true 将返回的对象转换为数组
 
 - memcache 内容如何更新：1）切换新的key（缺点耗资源）
