@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>Jekyll Bootstrap</title>
+ <link href="http://username.github.io/" rel="self"/>
+ <link href="http://username.github.io"/>
+ <updated>2014-03-19T03:25:00+01:00</updated>
+ <id>http://username.github.io</id>
+ <author>
+   <name>Name Lastname</name>
+   <email>blah@email.test</email>
+ </author>
+
+ 
+ <entry>
+   <title>Start With Github Blog</title>
+   <link href="http://username.github.io/%E6%95%99%E7%A8%8B/2011/04/23/start-with-github-blog"/>
+   <updated>2011-04-23T00:00:00+02:00</updated>
+   <id>http://username.github.io/%E6%95%99%E7%A8%8B/2011/04/23/start-with-github-blog</id>
+   <content type="html">&lt;h4 id=&quot;start_with_git&quot;&gt;Start with git&lt;/h4&gt;
+
+&lt;h5 id=&quot;1git&quot;&gt;（1）初始化git&lt;/h5&gt;
+
+&lt;p&gt;git init git pull git@github.com:sesehai/vimwiki.git&lt;/p&gt;
+
+&lt;h5 id=&quot;2_&quot;&gt;(2) 提交数据&lt;/h5&gt;
+
+&lt;p&gt;git add . git commit -a git push git@github.com:sesehai/vimwiki.git&lt;/p&gt;
+
+&lt;h5 id=&quot;3&quot;&gt;(3)另一种初始化方法&lt;/h5&gt;
+
+&lt;p&gt;git config –global user.name “Your Name” git config –global user.email sesehai@gmail.com mkdir sesehai.github.com cd sesehai.github.com git init touch README git add README git commit -m ‘first commit’ git remote add origin git@github.com:sesehai/sesehai.github.com.git git push -u origin master&lt;/p&gt;
+
+&lt;h5 id=&quot;githubhelp&quot;&gt;github:help&lt;/h5&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://help.github.com/&quot;&gt;github帮助&lt;/a&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ 
+</feed>

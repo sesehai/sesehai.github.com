@@ -5,24 +5,23 @@ tagline: "Supporting tagline"
 tags : [Github_blog, 初学者, jekyll]
 ---
 
-== Start with git ==
-_2011-05-05_
-=== （1）初始化git ===
-{% highlight php %}
+#### Start with git
+
+#####（1）初始化git
+
 git init
 git pull git@github.com:sesehai/vimwiki.git
-{% endhighlight %}
-=== (2) 提交数据 ===
-{% highlight php %}
+
+##### (2) 提交数据
+
 git add .
 git commit -a
 git push git@github.com:sesehai/vimwiki.git
-{% endhighlight %}
-=== (3)另一种初始化方法 ===
-{% highlight php %}
+
+##### (3)另一种初始化方法
+
 git config --global user.name "Your Name"
 git config --global user.email sesehai@gmail.com
-
 mkdir sesehai.github.com
 cd sesehai.github.com 
 git init
@@ -31,10 +30,9 @@ git add README
 git commit -m 'first commit'
 git remote add origin git@github.com:sesehai/sesehai.github.com.git
 git push -u origin master
-{% endhighlight %}
 
 
-=== github:help ===
+##### github:help
 
-[http://help.github.com/ github帮助]
+[github帮助](http://help.github.com/)
 

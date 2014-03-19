@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+        <title>Jekyll Bootstrap</title>
+        <description>Jekyll Bootstrap - Name Lastname</description>
+        <link>http://username.github.io</link>
+        <link>http://username.github.io</link>
+        <lastBuildDate>2014-03-19T03:25:00+01:00</lastBuildDate>
+        <pubDate>2014-03-19T03:25:00+01:00</pubDate>
+        <ttl>1800</ttl>
+
+
+        <item>
+                <title>Start With Github Blog</title>
+                <description>&lt;h4 id=&quot;start_with_git&quot;&gt;Start with git&lt;/h4&gt;
+
+&lt;h5 id=&quot;1git&quot;&gt;（1）初始化git&lt;/h5&gt;
+
+&lt;p&gt;git init git pull git@github.com:sesehai/vimwiki.git&lt;/p&gt;
+
+&lt;h5 id=&quot;2_&quot;&gt;(2) 提交数据&lt;/h5&gt;
+
+&lt;p&gt;git add . git commit -a git push git@github.com:sesehai/vimwiki.git&lt;/p&gt;
+
+&lt;h5 id=&quot;3&quot;&gt;(3)另一种初始化方法&lt;/h5&gt;
+
+&lt;p&gt;git config –global user.name “Your Name” git config –global user.email sesehai@gmail.com mkdir sesehai.github.com cd sesehai.github.com git init touch README git add README git commit -m ‘first commit’ git remote add origin git@github.com:sesehai/sesehai.github.com.git git push -u origin master&lt;/p&gt;
+
+&lt;h5 id=&quot;githubhelp&quot;&gt;github:help&lt;/h5&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://help.github.com/&quot;&gt;github帮助&lt;/a&gt;&lt;/p&gt;</description>
+                <link>http://username.github.io/%E6%95%99%E7%A8%8B/2011/04/23/start-with-github-blog</link>
+                <guid>http://username.github.io/%E6%95%99%E7%A8%8B/2011/04/23/start-with-github-blog</guid>
+                <pubDate>2011-04-23T00:00:00+02:00</pubDate>
+        </item>
+
+
+</channel>
+</rss>

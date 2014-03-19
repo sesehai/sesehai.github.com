@@ -1,0 +1,11 @@
+
+http://username.github.io/archive.html
+http://username.github.io/atom.xml
+http://username.github.io/categories.html
+http://username.github.io/index.html
+http://username.github.io/pages.html
+http://username.github.io/rss.xml
+http://username.github.io/sitemap.txt
+http://username.github.io/tags.html
+
+http://username.github.io/%E6%95%99%E7%A8%8B/2011/04/23/start-with-github-blog
