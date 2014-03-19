@@ -5,25 +5,19 @@ layout: page
 {% for post in site.posts %}
 <div class="post">
 	<div class="post-right">
-		<h3 id="post-title">
-			<!-- 文章的大标题显示 -->
+		<h4 id="post-title">
 			<a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
-		</h3>
-		<!--获取文章的“日”，格式为 date: "%d" -->
+		</h4>
 		{{ post.date | date: "%d" }}
-		<!--获取文章的“月 年”，格式为 date: "%b %Y" 其中%b表示缩写月份，大写月份为%B -->
 		<span>{{ post.date | date: "%b %Y" }}</span>
-		<!-- 文章作者 -->
 		By {{ post.author }}
 		<div class="the-content">
-			<!-- 文章缩图显示 -->
 			<div class="post-overview-left">
 
 			</div>
-			<!-- 文章摘要显示 -->
 			<div class="post-overview-right">
 				<p>
-					{{ post.content  | | split:'<!--break-->' | first }}
+					
 				</p>
 			</div>
 		</div>
