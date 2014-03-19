@@ -11,13 +11,13 @@ _2011-05-05_
 {% highlight php %}
 git init
 git pull git@github.com:sesehai/vimwiki.git
-{% endhighlight php %}
+{% endhighlight %}
 === (2) 提交数据 ===
 {% highlight php %}
 git add .
 git commit -a
 git push git@github.com:sesehai/vimwiki.git
-{% endhighlight php %}
+{% endhighlight %}
 === (3)另一种初始化方法 ===
 {% highlight php %}
 git config --global user.name "Your Name"
@@ -31,7 +31,7 @@ git add README
 git commit -m 'first commit'
 git remote add origin git@github.com:sesehai/sesehai.github.com.git
 git push -u origin master
-{% endhighlight php %}
+{% endhighlight %}
 
 
 === github:help ===
