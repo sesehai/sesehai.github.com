@@ -5,10 +5,10 @@ layout: page
 {% for post in site.posts %}
 <div class="post">
 	<div class="post-right">
-		<h2 id="post-title">
+		<h3 id="post-title">
 			<!-- 文章的大标题显示 -->
 			<a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
-		</h2>
+		</h3>
 		<!--获取文章的“日”，格式为 date: "%d" -->
 		{{ post.date | date: "%d" }}
 		<!--获取文章的“月 年”，格式为 date: "%b %Y" 其中%b表示缩写月份，大写月份为%B -->
