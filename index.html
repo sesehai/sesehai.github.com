@@ -1,5 +1,6 @@
 ---
 layout: page
+title: 涩涩海网络日志
 ---
 <!-- 使用jekyll语法，作用是获取文章数，自动地展示文章-->
 <h3>日志列表</h3>
@@ -8,25 +9,5 @@ layout: page
 	<ul class="posts">
 	    <li><span>{{ post.date | date: "%d %b %Y" }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
 	</ul>
-
-<!-- 	<div class="post-right">
-		<h4 id="post-title">
-			<a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
-		</h4>
-		{{ post.date | date: "%d" }}
-		<span>{{ post.date | date: "%b %Y" }}</span>
-		By {{ post.author }}
-		<div class="the-content">
-			<div class="post-overview-left">
-
-			</div>
-			<div class="post-overview-right">
-				<p>
-					
-				</p>
-			</div>
-		</div>
-
-	</div> -->
 </div>
 {% endfor %}
