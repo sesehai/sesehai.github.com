@@ -8,10 +8,10 @@ pygments: true
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : Record
+title : 涩涩海网络日志
 tagline: ""
 author : 
-  name :  SSH
+  name :  涩涩海
   # email : blah@email.test
   # github : username
   # twitter : username
