@@ -26,14 +26,13 @@ Sublime Text 2安装的插件和所有预置的插件全部在Packages文件下�
 
 Sublime Text 2安装插件有两种方法：
 	** 离线安装 **
-
 		先下载好安装包，解压之后放到Packages文件夹下，重启Sublime即可。
-	** 在线安装**
 
+	** 在线安装**
 	在线安装之前，需要安装”Packages Control“这个包管理插件，安装方法是：
 	选择”View“—>”Show Console“，然后在下面弹出的框中输入：
 
-			import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())
+		import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())
 
 　　然后回车确认，安装完毕之后重启sublime，如果发现在Perferences中看到package control这一项，则安装成功。
 	插件使用方法：Ctrl+Shift+P 调用命令面板，我们就会找到一些以“Package Control:”开头的命令，我们常用到的就是几个 Install Package (安装扩展)、List Packages (列出全部扩展)、Remove Package (移除扩展)、Upgrade Package (升级扩展)
@@ -42,11 +41,11 @@ Sublime Text 2安装插件有两种方法：
 
 通过“preferences”->"Package Settings"->"Package Control"->"Settings - User"打开 “Package Control.sublime-settings” 文件，再打开的文件上点击鼠标右键选择“Open Containing Folder...” 打开目录；在该目录下创建文件“PHP.sublime-build”，内容如下：
 
-		{
-		"cmd": ["D:\\Program Files\\xampp\\php\\php.exe", "$file"],
-		"file_regex": "^(...*?):([0-9]*):?([0-9]*)",
-		"selector": "source.php"
-		}
+	{
+	"cmd": ["D:\\Program Files\\xampp\\php\\php.exe", "$file"],
+	"file_regex": "^(...*?):([0-9]*):?([0-9]*)",
+	"selector": "source.php"
+	}
 
 其中 "D:\\Program Files\\xampp\\php\\php.exe" 是我本机的php路径
 
