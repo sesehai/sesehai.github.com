@@ -1,3 +1,8 @@
+/* 修改页面字体大小 */
+body{
+  font-size:16px;line-height:30px;
+}
+
 /* Custom container */
 .container-narrow {
   margin: 0 auto;
