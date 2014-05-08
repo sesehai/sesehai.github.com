@@ -24,18 +24,19 @@ author: SSH
 
 Sublime Text 2安装的插件和所有预置的插件全部在Packages文件下，可以直接通过”preferences“—>”Browse Pakcages“来访问。
 
-Sublime Text 2安装插件有两种方法：
-	** 离线安装 **
-		先下载好安装包，解压之后放到Packages文件夹下，重启Sublime即可。
+###### Sublime Text 2安装插件有两种方法：
 
-	** 在线安装**
-	在线安装之前，需要安装”Packages Control“这个包管理插件，安装方法是：
-	选择”View“—>”Show Console“，然后在下面弹出的框中输入：
+** 离线安装 **
+	先下载好安装包，解压之后放到Packages文件夹下，重启Sublime即可。
 
-		import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())
+** 在线安装**
+在线安装之前，需要安装”Packages Control“这个包管理插件，安装方法是：
+选择”View“—>”Show Console“，然后在下面弹出的框中输入：
+
+	import urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp) if not os.path.exists(ipp) else None;open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())
 
 　　然后回车确认，安装完毕之后重启sublime，如果发现在Perferences中看到package control这一项，则安装成功。
-	插件使用方法：Ctrl+Shift+P 调用命令面板，我们就会找到一些以“Package Control:”开头的命令，我们常用到的就是几个 Install Package (安装扩展)、List Packages (列出全部扩展)、Remove Package (移除扩展)、Upgrade Package (升级扩展)
+插件使用方法：Ctrl+Shift+P 调用命令面板，我们就会找到一些以“Package Control:”开头的命令，我们常用到的就是几个 Install Package (安装扩展)、List Packages (列出全部扩展)、Remove Package (移除扩展)、Upgrade Package (升级扩展)
 
 ##### 3. Build System的配置（php为例）
 
