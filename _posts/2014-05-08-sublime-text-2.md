@@ -15,7 +15,9 @@ author: SSH
 ##### 1. 安装Sublime Text 2
 
 下载Sublime Text 2，[http://www.sublimetext.com/](http://www.sublimetext.com/)
+
 备注：如无法访问，需要翻墙；
+
 安装下载的文件
 
 ##### 2. Sublime Text 2插件安装
@@ -26,7 +28,7 @@ Sublime Text 2安装插件有两种方法：
 	** 离线安装 **
 
 		先下载好安装包，解压之后放到Packages文件夹下，重启Sublime即可。
-	* 在线安装**
+	** 在线安装**
 
 	在线安装之前，需要安装”Packages Control“这个包管理插件，安装方法是：
 	选择”View“—>”Show Console“，然后在下面弹出的框中输入：
