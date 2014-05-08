@@ -4,7 +4,12 @@ layout: page
 <!-- 使用jekyll语法，作用是获取文章数，自动地展示文章-->
 {% for post in site.posts %}
 <div class="post">
-	<div class="post-right">
+	<h1>Blog Posts</h1>
+	<ul class="posts">
+	    <li><span>{{ post.date | date: "%d %b %Y" }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+	</ul>
+	
+<!-- 	<div class="post-right">
 		<h4 id="post-title">
 			<a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
 		</h4>
@@ -22,6 +27,6 @@ layout: page
 			</div>
 		</div>
 
-	</div>
+	</div> -->
 </div>
 {% endfor %}
