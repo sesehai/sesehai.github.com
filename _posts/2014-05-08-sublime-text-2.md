@@ -27,9 +27,11 @@ Sublime Text 2安装的插件和所有预置的插件全部在Packages文件下�
 ###### Sublime Text 2安装插件有两种方法：
 
 ** 离线安装 **
+
 	先下载好安装包，解压之后放到Packages文件夹下，重启Sublime即可。
 
-** 在线安装**
+** 在线安装 **
+
 在线安装之前，需要安装”Packages Control“这个包管理插件，安装方法是：
 选择”View“—>”Show Console“，然后在下面弹出的框中输入：
 
