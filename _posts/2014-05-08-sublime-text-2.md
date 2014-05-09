@@ -8,6 +8,7 @@ author: SSH
 ---
 
 程序开发，开发语言（html,javascript,php,python,go）,要选择一个轻便、快捷的编辑器，那么Sublime Text 2是个不错的选择；
+
 <!--break-->
 
 #### 使用Sublime Text 2（windows系统为例）
