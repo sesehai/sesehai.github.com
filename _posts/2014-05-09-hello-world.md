@@ -1,3 +1,8 @@
+---
+layout: default
+title: 我的Blog
+---
+
 3. 配置说明
 
     3.1 清缓存的任务状态
