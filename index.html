@@ -1,0 +1,12 @@
+---
+layout: page
+title: 幻觉网络日志
+---
+<h3>日志列表</h3>
+{% for post in site.posts %}
+<div class="post">
+	<ul class="posts">
+	    <li><span>{{ post.date | date: "%d %b %Y" }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+	</ul>
+</div>
+{% endfor %}
