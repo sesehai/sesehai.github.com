@@ -1,9 +1,9 @@
 ---
 layout: post
-category : 技术
+category : 教程
 tagline: ""
-tags : [nginx,log,rotation]
-title : [transfer]Log rotation directly within Nginx configuration file
+tags : [stackedit.io]
+title : 开始使用stackedit.io
 author: SSH
 ---
 
