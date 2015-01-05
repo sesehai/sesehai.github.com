@@ -1,6 +1,6 @@
 ---
 layout: post
-category : 教程
+category : 技术
 tagline: ""
 tags : [stackedit.io]
 title : 开始使用stackedit.io
