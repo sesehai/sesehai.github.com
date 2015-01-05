@@ -3,12 +3,10 @@ layout: post
 category : 技术
 tagline: ""
 tags : [nginx log rotation ]
-title : Log rotation directly within Nginx configuration file
+title : [transfer]Log rotation directly within Nginx configuration file
 author: SSH
 ---
 
-[transfer]Log rotation directly within Nginx configuration file
------------------------------------------------------
 
 Ever since I discovered PostgreSQL allowed to embed variables in log_filename allowing to split logs without using logrotate or cronolog, I’ve been wanting to do the same with Nginx.
 
