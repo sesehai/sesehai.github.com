@@ -7,7 +7,6 @@ title : [transfer]Log rotation directly within Nginx configuration file
 author: SSH
 ---
 
-
 Ever since I discovered PostgreSQL allowed to embed variables in log_filename allowing to split logs without using logrotate or cronolog, I’ve been wanting to do the same with Nginx.
 
 As it turns out, it’s not only possible but also pretty easy to achieve, since **Nginx** introduced the possibility to use **variables in access_log** directives (added in 0.7.4), and the **$time_iso8601** variable providing time in ISO 8601 format (added in 0.9.6).
