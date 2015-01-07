@@ -16,3 +16,5 @@ But for Android TV to gain real market penetration, it would need some help. Tha
 As is usual with these things, Android TV takes some pressure off device makers, since they won’t need to create their own operating systems for smart connected devices. That’s why companies like TCL, Hisense, Haier and Best Buy’s Insignia brand are developing devices based on Roku’s operating system.
 
 This isn’t the first time Google has announced partners for a TV operating system. After all, it’s been working on this type of thing for the last four or five years.
+
+[source >>](http://techcrunch.com/2015/01/06/android-tv-ces/)
