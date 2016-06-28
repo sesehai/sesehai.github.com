@@ -131,3 +131,6 @@ JB :
   # pages_list :
   #   provider : "custom"
   
+paginate: 5
+paginate_path: "page:num"
+
