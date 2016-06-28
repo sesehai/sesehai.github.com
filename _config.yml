@@ -130,7 +130,4 @@ JB :
   # where [HELPER] is the name of the helper you are overriding.
   # pages_list :
   #   provider : "custom"
-  
-paginate: 5
-paginate_path: "page:num"
 
