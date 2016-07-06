@@ -1,0 +1,520 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <meta name="baidu_union_verify" content="d1952c66cf48912e21c18c7c581f382a">
+  <meta name="360-site-verification" content="67fbcc5a67f4c65c057315b28fa0b2c8" />
+<meta name="google-site-verification" content="2GzxQ0VtXwTSUdmGm6DzcmhTzM_I9QmzCb_pzpMzD88" />
+  
+    <title>【翻译】Nginx使用配置文件实现日志切割 | 紫郢</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="紫郢">
+    
+    <meta name="description" content="自从我发现，PostgreSQL 切割日志不再需要使用 logrotate 或者 cronolog，而是可以在log_filename 中使用变量来实现日志切割，就很希望nginx也能支持。
+事实证明，nginx不仅可以并且很容易实现，从Nginx引进了在access_log中使用变量的指令(0.7">
+    
+    
+    
+    
+    <link rel="alternate" href="atom.xml" title="紫郢" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            var _bdId ='391982416296a0d54221f59fe35250d4';
+             hm.src = "//hm.baidu.com/hm.js?" + _bdId;
+             var s = document.getElementsByTagName("script")[0]; 
+             s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+     
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="紫郢">紫郢</a></h1>
+				<a class="blog-motto"></a>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+					
+                                            <form class="search" action=http://zhannei.baidu.com/cse/search target="_blank">
+                                            <label>Search</label>
+                                        <input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="Search"><br>
+					
+					</li>
+				</ul>
+                            </nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/07/06/2015-01-05-[翻译]Nginx使用配置文件实现日志切割/" title="【翻译】Nginx使用配置文件实现日志切割" itemprop="url">【翻译】Nginx使用配置文件实现日志切割</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://sesehai.github.io" title="紫郢">紫郢</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2016-07-06T06:10:25.000Z" itemprop="datePublished">2016-07-06</time>
+    Updated:<time datetime="2016-07-06T06:10:25.000Z" itemprop="dateModified">2016-07-06</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>自从我发现，PostgreSQL 切割日志不再需要使用 logrotate 或者 cronolog，而是可以在log_filename 中使用变量来实现日志切割，就很希望nginx也能支持。</p>
+<p>事实证明，nginx不仅可以并且很容易实现，从Nginx引进了在access_log中使用变量的指令(0.7.4版本添加)，和<strong>$time_iso8601</strong> 变量提供了ISO 8601格式的时间（0.9.6版本添加）</p>
+<p>请注意，不能在<strong>error_log</strong>中使用变量，因为，当文件不可写时任何隐含的错误将不能被写入；</p>
+<p>这里是$time_iso8601格式的实例：</p>
+<pre><code>2014-05-04T18:12:02+02:00
+</code></pre><p>可以使用“if”语句用正则表达式，取得需要的时间，设置到变量中使用。</p>
+<p>按天分割日志，可以在服务上使用下面的语句片段：</p>
+<pre><code>if ($time_iso8601 ~ &quot;^(\d{4})-(\d{2})-(\d{2})&quot;) {
+    set $year $1;
+    set $month $2;
+    set $day $3;
+}
+
+access_log /var/log/nginx/$year-$month-$day-access.log;
+</code></pre><p>另外，我们也可以使用Perl兼容的正则表达式格式实现：</p>
+<pre><code>if ($time_iso8601 ~ &quot;^(?&lt;year&gt;\d{4})-(?&lt;month&gt;\d{2})-(?&lt;day&gt;\d{2})&quot;) {}
+
+access_log /var/log/nginx/$year-$month-$day-access.log;
+</code></pre><p>要使用到时、分、秒，我们可以使用下面的片段：</p>
+<pre><code>if ($time_iso8601 ~ &quot;^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})&quot;)
+{
+    set $year $1;
+    set $month $2;
+    set $day $3;
+    set $hour $4;
+    set $minutes $5;
+    set $seconds $6;
+}
+</code></pre><p>最后，再次强调，请确保Nginx进程拥有log目录的写权限。</p>
+<p>目前这个方法已经应用到了生产环境中将近一个月了，nginx 访问量很大且运行的很正常。唯一的缺点是当access_log包含变量时缓存写入无法工作，所以在运行的时候不能把log打成压缩包。</p>
+<p><a href="http://www.cambus.net/log-rotation-directly-within-nginx-configuration-file/" target="_blank" rel="external">来源 &gt;&gt;</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/nginx/">nginx</a><a href="/tags/log/">log</a><a href="/tags/rotation/">rotation</a><a href="/tags/翻译/">翻译</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/技术/">技术</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://sesehai.github.io/2016/07/06/2015-01-05-[翻译]Nginx使用配置文件实现日志切割/" data-title="【翻译】Nginx使用配置文件实现日志切割 | 紫郢" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/07/06/2014-12-12-StackEdit/" title="开始使用stackedit.io">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  开始使用stackedit.io</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/07/06/2015-01-05-log-rotation-directly-within-nginx-configuration-file/"  title="【transfer】Log rotation directly within Nginx configuration file">
+ <strong>NEXT:</strong><br/> 
+ <span>【transfer】Log rotation directly within Nginx configuration file
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	
+	<div class="ds-thread" data-title="【翻译】Nginx使用配置文件实现日志切割" data-thread-key="2015-01-05-[翻译]Nginx使用配置文件实现日志切割" data-author-key="SSH" data-url="http://sesehai.github.io/post/2015-01-05-[翻译]Nginx使用配置文件实现日志切割"></div>
+	
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+<div id="authorInfo">
+	
+		<div class="author-logo"></div>		
+	
+	<div class="social-list" class="clearfix">
+		
+		
+		
+		
+		
+	</div>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/Art/" title="Art">Art<sup>1</sup></a></li>
+		
+			<li><a href="/categories/News/" title="News">News<sup>26</sup></a></li>
+		
+			<li><a href="/categories/技术/" title="技术">技术<sup>4</sup></a></li>
+		
+			<li><a href="/categories/教程/" title="教程">教程<sup>8</sup></a></li>
+		
+			<li><a href="/categories/音乐/" title="音乐">音乐<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Amazon/" title="Amazon">Amazon<sup>3</sup></a></li>
+		
+			<li><a href="/tags/Amazon-WorkMail/" title="Amazon WorkMail">Amazon WorkMail<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Android-TV/" title="Android TV">Android TV<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Apple/" title="Apple">Apple<sup>3</sup></a></li>
+		
+			<li><a href="/tags/Apple-Google-s-smartwatch/" title="Apple Google&#39;s smartwatch">Apple Google&#39;s smartwatch<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Apple-TV-service/" title="Apple TV service">Apple TV service<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Apple-Watch/" title="Apple Watch">Apple Watch<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Art/" title="Art">Art<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Banksy/" title="Banksy">Banksy<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Barack-Obama/" title="Barack Obama">Barack Obama<sup>1</sup></a></li>
+		
+			<li><a href="/tags/CES/" title="CES">CES<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Charlie-Hebdo/" title="Charlie Hebdo">Charlie Hebdo<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Coinbase/" title="Coinbase">Coinbase<sup>1</sup></a></li>
+		
+			<li><a href="/tags/College/" title="College">College<sup>1</sup></a></li>
+		
+			<li><a href="/tags/David-Byttow-Secret/" title="David Byttow Secret">David Byttow Secret<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Education/" title="Education">Education<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Facebook/" title="Facebook">Facebook<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Gigaom/" title="Gigaom">Gigaom<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Git-Linus-Torvalds/" title="Git Linus Torvalds">Git Linus Torvalds<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Github-blog/" title="Github_blog">Github_blog<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+      <li><a href="http://gengbiao.me" target="_blank" title="coney">coney's Blog</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">Tag Cloud</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/Amazon/" style="font-size: 20px;">Amazon</a> <a href="/tags/Amazon-WorkMail/" style="font-size: 10px;">Amazon WorkMail</a> <a href="/tags/Android-TV/" style="font-size: 10px;">Android TV</a> <a href="/tags/Apple/" style="font-size: 20px;">Apple</a> <a href="/tags/Apple-Google-s-smartwatch/" style="font-size: 10px;">Apple Google's smartwatch</a> <a href="/tags/Apple-TV-service/" style="font-size: 10px;">Apple TV service</a> <a href="/tags/Apple-Watch/" style="font-size: 10px;">Apple Watch</a> <a href="/tags/Art/" style="font-size: 10px;">Art</a> <a href="/tags/Banksy/" style="font-size: 10px;">Banksy</a> <a href="/tags/Barack-Obama/" style="font-size: 10px;">Barack Obama</a> <a href="/tags/CES/" style="font-size: 15px;">CES</a> <a href="/tags/Charlie-Hebdo/" style="font-size: 15px;">Charlie Hebdo</a> <a href="/tags/Coinbase/" style="font-size: 10px;">Coinbase</a> <a href="/tags/College/" style="font-size: 10px;">College</a> <a href="/tags/David-Byttow-Secret/" style="font-size: 10px;">David Byttow Secret</a> <a href="/tags/Education/" style="font-size: 10px;">Education</a> <a href="/tags/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tags/Gigaom/" style="font-size: 10px;">Gigaom</a> <a href="/tags/Git-Linus-Torvalds/" style="font-size: 10px;">Git Linus Torvalds</a> <a href="/tags/Github-blog/" style="font-size: 10px;">Github_blog</a> <a href="/tags/Google/" style="font-size: 20px;">Google</a> <a href="/tags/Instagram/" style="font-size: 10px;">Instagram</a> <a href="/tags/Kingsoft/" style="font-size: 10px;">Kingsoft</a> <a href="/tags/Klutch/" style="font-size: 10px;">Klutch</a> <a href="/tags/Microsoft-Windows-10/" style="font-size: 10px;">Microsoft Windows 10</a> <a href="/tags/Pinterest-equity/" style="font-size: 10px;">Pinterest equity</a> <a href="/tags/Qualcomm/" style="font-size: 10px;">Qualcomm</a> <a href="/tags/Reuters/" style="font-size: 10px;">Reuters</a> <a href="/tags/Senior-military-official/" style="font-size: 10px;">Senior military official</a> <a href="/tags/Sublime-Text-2/" style="font-size: 10px;">Sublime Text 2</a> <a href="/tags/Twitter/" style="font-size: 10px;">Twitter</a> <a href="/tags/VirtualBox/" style="font-size: 10px;">VirtualBox</a> <a href="/tags/Xiaomi/" style="font-size: 15px;">Xiaomi</a> <a href="/tags/back/" style="font-size: 10px;">back</a> <a href="/tags/earnings-call/" style="font-size: 10px;">earnings call</a> <a href="/tags/fingerprint/" style="font-size: 10px;">fingerprint</a> <a href="/tags/investor/" style="font-size: 10px;">investor</a> <a href="/tags/ip地址/" style="font-size: 10px;">ip地址</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/jekyll-bootstrap/" style="font-size: 10px;">jekyll-bootstrap</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/log/" style="font-size: 15px;">log</a> <a href="/tags/monetary-policy/" style="font-size: 10px;">monetary policy</a> <a href="/tags/nginx/" style="font-size: 20px;">nginx</a> <a href="/tags/php/" style="font-size: 15px;">php</a> <a href="/tags/rotation/" style="font-size: 15px;">rotation</a> <a href="/tags/shell/" style="font-size: 10px;">shell</a> <a href="/tags/stackedit-io/" style="font-size: 10px;">stackedit.io</a> <a href="/tags/techcrunch/" style="font-size: 15px;">techcrunch</a> <a href="/tags/vagrant/" style="font-size: 10px;">vagrant</a> <a href="/tags/valedo/" style="font-size: 10px;">valedo</a> <a href="/tags/摇滚/" style="font-size: 10px;">摇滚</a> <a href="/tags/翻译/" style="font-size: 10px;">翻译</a> <a href="/tags/软件设计师/" style="font-size: 10px;">软件设计师</a> <a href="/tags/音乐/" style="font-size: 10px;">音乐</a>
+    </div>
+  </div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+    
+            <p class="copyright"> © 2016 
+		
+		<a href="http://sesehai.github.io" target="_blank" title="紫郢">紫郢</a>
+		
+            && Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> && Theme by <a href="http://gengbiao.me" target="_blank" title="coney">coney</a>
+            </div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+<script>
+    
+        var _bdImg = '4';
+    
+    window._bd_share_config={
+        "common":{
+            "bdSnsKey":{
+
+            },
+            "bdText":"",
+            "bdMini":"2",
+            "bdMiniList":[
+                "qzone",
+                "tsina",
+                "weixin",
+                "renren",
+                "tqq",
+                "tieba",
+                "douban",
+                "sqq",
+                "diandian",
+                "huaban",
+                "youdao",
+                "mail",
+                "ty",
+                "fbook",
+                "twi",
+                "linkedin",
+                "copy",
+                "print"
+            ],
+            "bdPic":"",
+            "bdStyle":"0",
+            "bdSize":"16"
+        },
+        "slide":{
+            "type":"slide",
+            "bdImg":_bdImg,
+            "bdPos":"right",
+            "bdTop":"350"
+        },
+        "image":{
+            "viewList":[
+                "weixin",
+                "qzone",
+                "tsina",
+                "renren",
+                "douban",
+                "tqq"
+            ],
+            "viewText":"分享：",
+            "viewSize":"16"
+        },
+        "selectShare":{
+            "bdContainerClass":null,
+            "bdSelectMiniList":[
+                "weixin",
+                "qzone",
+                "tsina",
+                "renren",
+                "douban",
+                "tqq"
+            ]
+        }
+    };
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'null', 'null');  
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>
+
