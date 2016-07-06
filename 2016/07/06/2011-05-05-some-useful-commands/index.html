@@ -1,0 +1,420 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>紫郢</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="紫郢">
+    
+    <meta name="description" content="wget请求播放地址wget -b -i url.txt 
+http://sesehai.github.com/tech/2011-05-05-some-usefull-commands.html
+取得地址：
+wget -r [url]
+拷贝数据scp * root@113.11.111.123:/">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="紫郢" title="紫郢"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="紫郢">紫郢</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:sesehai.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/07/06/2011-05-05-some-useful-commands/" title="" itemprop="url"></a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://sesehai.github.io" title="紫郢">紫郢</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2016-07-06T06:10:25.000Z" itemprop="datePublished">2016-07-06</time>
+    Updated:<time datetime="2016-07-06T06:10:25.000Z" itemprop="dateModified">2016-07-06</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#wget请求播放地址"><span class="toc-number">1.</span> <span class="toc-text">wget请求播放地址</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#拷贝数据"><span class="toc-number">2.</span> <span class="toc-text">拷贝数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#find-命令"><span class="toc-number">3.</span> <span class="toc-text">find 命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#进程控制"><span class="toc-number">4.</span> <span class="toc-text">进程控制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#shell"><span class="toc-number">5.</span> <span class="toc-text">shell</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#php-cgi"><span class="toc-number">6.</span> <span class="toc-text">php cgi</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#查看系统状态"><span class="toc-number">7.</span> <span class="toc-text">查看系统状态</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#mysql-进程管理"><span class="toc-number">8.</span> <span class="toc-text">mysql 进程管理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Chrome-模拟-Agent-信息"><span class="toc-number">9.</span> <span class="toc-text">Chrome 模拟 Agent 信息</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#nginx-管理命令"><span class="toc-number">10.</span> <span class="toc-text">nginx 管理命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#nginx-开启ssi模块"><span class="toc-number">11.</span> <span class="toc-text">nginx 开启ssi模块</span></a></li></ol>
+		</div>
+		
+		<h5 id="wget请求播放地址"><a href="#wget请求播放地址" class="headerlink" title="wget请求播放地址"></a>wget请求播放地址</h5><pre><code>wget -b -i url.txt 
+http://sesehai.github.com/tech/2011-05-05-some-usefull-commands.html
+取得地址：
+wget -r [url]
+</code></pre><h5 id="拷贝数据"><a href="#拷贝数据" class="headerlink" title="拷贝数据"></a>拷贝数据</h5><pre><code>scp * root@113.11.111.123:/path/
+</code></pre><!--break-->
+<h5 id="find-命令"><a href="#find-命令" class="headerlink" title="find 命令"></a>find 命令</h5><pre><code>find . -name .svn -type d -exec rm -rf {} \;
+</code></pre><h5 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h5><pre><code>fork,exec
+http://learn.akae.cn/media/ch30s03.html
+僵尸进程是不能用kill命令清除掉的，因为kill命令只是用来终止进程的，而僵尸进程已经终止了。
+思考一下，用什么办法可以清除掉僵尸进程？
+</code></pre><h5 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h5><pre><code>#!/bin/bash
+echo `date` &gt;&gt;/data/stat.log
+cat /data/web.log | grep found &gt;&gt; data/stat_csv.log
+tail  /data/stat_csv.log
+</code></pre><h5 id="php-cgi"><a href="#php-cgi" class="headerlink" title="php cgi"></a>php cgi</h5><pre><code>Usage: php-cgi [-q] [-h] [-s] [-v] [-i] [-f &lt;file&gt;]
+       php-cgi &lt;file&gt; [args...]
+  -a               Run interactively
+  -b &lt;address:port&gt;|&lt;port&gt; Bind Path for external FASTCGI Server mode
+  -C               Do not chdir to the script&apos;s directory
+  -c &lt;path&gt;|&lt;file&gt; Look for php.ini file in this directory
+  -n               No php.ini file will be used
+  -d foo[=bar]     Define INI entry foo with value &apos;bar&apos;
+  -e               Generate extended information for debugger/profiler
+  -f &lt;file&gt;        Parse &lt;file&gt;.  Implies `-q&apos;
+  -h               This help
+  -i               PHP information
+  -l               Syntax check only (lint)
+  -m               Show compiled in modules
+  -q               Quiet-mode.  Suppress HTTP Header output.
+  -s               Display colour syntax highlighted source.
+  -v               Version number
+  -w               Display source with stripped comments and whitespace.
+  -z &lt;file&gt;        Load Zend extension &lt;file&gt;.
+  -T &lt;count&gt;       Measure execution time of script repeated &lt;count&gt; times.
+</code></pre><h5 id="查看系统状态"><a href="#查看系统状态" class="headerlink" title="查看系统状态"></a>查看系统状态</h5><pre><code>vmstat 1 100 
+</code></pre><h5 id="mysql-进程管理"><a href="#mysql-进程管理" class="headerlink" title="mysql 进程管理"></a>mysql 进程管理</h5><pre><code>mysqladmin -u name -ppwd processlist
+mysqladmin -u name -ppwd kill 
+
+ show full processlist;
+
+ netstat -ntp | grep 60691
+</code></pre><h5 id="Chrome-模拟-Agent-信息"><a href="#Chrome-模拟-Agent-信息" class="headerlink" title="Chrome 模拟 Agent 信息"></a>Chrome 模拟 Agent 信息</h5><pre><code>chrome.exe --user-agent=&quot;Mozilla/5.0 (iPad; U; CPU OS 3_2_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B500 Safari/531.21.10&quot;
+
+chrome.exe --user-agent=&quot;Mozilla/5.0 (Linux; U; Android 2.2; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1&quot;
+
+chrome.exe --user-agent=&quot;Mozilla/5.0 (iPhone; U; CPU OS 3_2_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B500 Safari/531.21.10&quot;
+</code></pre><h5 id="nginx-管理命令"><a href="#nginx-管理命令" class="headerlink" title="nginx 管理命令"></a>nginx 管理命令</h5><pre><code>/usr/sbin/nginx -c /etc/nginx/nginx.conf
+/usr/sbin/nginx -t
+kill -HUP `cat /data/nginx/logs/nginx.pid`
+kill -HUP 977
+</code></pre><h5 id="nginx-开启ssi模块"><a href="#nginx-开启ssi模块" class="headerlink" title="nginx 开启ssi模块"></a>nginx 开启ssi模块</h5><pre><code>ssi on;
+ssi_silent_errors on;
+ssi_types text/shtml;
+</code></pre><p>关闭在LINUX终端下的按键警报声</p>
+<pre><code>setterm -bleng 0
+</code></pre>  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/linux/">linux</a><a href="/tags/shell/">shell</a><a href="/tags/nginx/">nginx</a><a href="/tags/php/">php</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/教程/">教程</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://sesehai.github.io/2016/07/06/2011-05-05-some-useful-commands/" data-title="紫郢" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/07/06/2015-03-25-secret-may-be-pivoting-to-a-startup-incubator/" title="【transfer】After pocketing millions and buying a Ferrari, Secret founder David Byttow may be pivoting his year-old startup yet again">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  【transfer】After pocketing millions and buying a Ferrari, Secret founder David Byttow may be pivoting his year-old startup yet again</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/07/06/2015-03-26-why-apple-bought-foundationdb/"  title="【transfer】A lot of people are mad that Apple bought this tiny company and shut it down">
+ <strong>NEXT:</strong><br/> 
+ <span>【transfer】A lot of people are mad that Apple bought this tiny company and shut it down
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#wget请求播放地址"><span class="toc-number">1.</span> <span class="toc-text">wget请求播放地址</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#拷贝数据"><span class="toc-number">2.</span> <span class="toc-text">拷贝数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#find-命令"><span class="toc-number">3.</span> <span class="toc-text">find 命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#进程控制"><span class="toc-number">4.</span> <span class="toc-text">进程控制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#shell"><span class="toc-number">5.</span> <span class="toc-text">shell</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#php-cgi"><span class="toc-number">6.</span> <span class="toc-text">php cgi</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#查看系统状态"><span class="toc-number">7.</span> <span class="toc-text">查看系统状态</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#mysql-进程管理"><span class="toc-number">8.</span> <span class="toc-text">mysql 进程管理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Chrome-模拟-Agent-信息"><span class="toc-number">9.</span> <span class="toc-text">Chrome 模拟 Agent 信息</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#nginx-管理命令"><span class="toc-number">10.</span> <span class="toc-text">nginx 管理命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#nginx-开启ssi模块"><span class="toc-number">11.</span> <span class="toc-text">nginx 开启ssi模块</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/Art/" title="Art">Art<sup>1</sup></a></li>
+		
+			<li><a href="/categories/News/" title="News">News<sup>26</sup></a></li>
+		
+			<li><a href="/categories/技术/" title="技术">技术<sup>4</sup></a></li>
+		
+			<li><a href="/categories/教程/" title="教程">教程<sup>8</sup></a></li>
+		
+			<li><a href="/categories/音乐/" title="音乐">音乐<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Amazon/" title="Amazon">Amazon<sup>3</sup></a></li>
+		
+			<li><a href="/tags/Amazon-WorkMail/" title="Amazon WorkMail">Amazon WorkMail<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Android-TV/" title="Android TV">Android TV<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Apple/" title="Apple">Apple<sup>3</sup></a></li>
+		
+			<li><a href="/tags/Apple-Google-s-smartwatch/" title="Apple Google&#39;s smartwatch">Apple Google&#39;s smartwatch<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Apple-TV-service/" title="Apple TV service">Apple TV service<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Apple-Watch/" title="Apple Watch">Apple Watch<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Art/" title="Art">Art<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Banksy/" title="Banksy">Banksy<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Barack-Obama/" title="Barack Obama">Barack Obama<sup>1</sup></a></li>
+		
+			<li><a href="/tags/CES/" title="CES">CES<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Charlie-Hebdo/" title="Charlie Hebdo">Charlie Hebdo<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Coinbase/" title="Coinbase">Coinbase<sup>1</sup></a></li>
+		
+			<li><a href="/tags/College/" title="College">College<sup>1</sup></a></li>
+		
+			<li><a href="/tags/David-Byttow-Secret/" title="David Byttow Secret">David Byttow Secret<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Education/" title="Education">Education<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Facebook/" title="Facebook">Facebook<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Gigaom/" title="Gigaom">Gigaom<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Git-Linus-Torvalds/" title="Git Linus Torvalds">Git Linus Torvalds<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Github-blog/" title="Github_blog">Github_blog<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://sesehai.github.io" target="_blank" title="紫郢">紫郢</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
