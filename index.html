@@ -182,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -192,7 +192,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -248,7 +248,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-06T14:14:20+08:00" content="2016-07-06">
               2016-07-06
             </time>
@@ -260,7 +260,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/News/" itemprop="url" rel="index">
@@ -305,44 +305,14 @@
       
         
           
-            <p>Ten years ago this week, the Linux kernel community faced a daunting challenge: They could no longer use their revision control system BitKeeper and no other Source Control Management (SCMs) met their needs for a distributed system. Linus Torvalds, the creator of Linux, took the challenge into his own hands and disappeared over the weekend to emerge the following week with Git. Today Git is used for thousands of projects and has ushered in a new level of social coding among programmers.</p>
-<p>To celebrate this milestone, we asked Linus to share the behind-the-scenes story of Git and tell us what he thinks of the project and its impact on software development. You’ll find his comments in the story below. We’ll follow this Q&amp;A with a week of Git in which we profile a different project each day that is using the revision control system. Look for the stories behind KVM, Qt, Drupal, Puppet and Wine, among others. </p>
-<p>Why did you create Git?</p>
-<p>Torvalds: I really never wanted to do source control management at all and felt that it was just about the least interesting thing in the computing world (with the possible exception of databases ;^), and I hated all SCM’s with a passion. But then BitKeeper came along and really changed the way I viewed source control. BK got most things right and having a local copy of the repository and distributed merging was a big deal. The big thing about distributed source control is that it makes one of the main issues with SCM’s go away - the politics around “who can make changes.” BK showed that you can avoid that by just giving everybody their own source repository. But BK had its own problems, too; there were a few technical choices that caused problems (renames were painful), but the biggest downside was the fact that since it wasn’t open source, there was a lot of people who didn’t want to use it. So while we ended up having several core maintainers use BK - it was free to use for open source projects - it never got ubiquitous. So it helped kernel development, but there were still pain points.</p>
-<p>That then came to a head when Tridge (Andrew Tridgell) started reverse-engineering the (fairly simply) BK protocol, which was against the usage rules for BK. I spent a few weeks (months? It felt that way) trying to mediate between Tridge and Larry McVoy, but in the end it clearly wasn’t working. So at some point I decided that I can’t continue using BK, but that I really didn’t want to go back to the bad old pre-BK days. Sadly, at the time, while there were some other SCM’s that kind of tried to get the whole distributed thing, none of them did it remotely well.  I had performance requirements that were not even remotely satisfied by what was available, and I also worried about integrity of the code and the whole workflow, so I ended up just deciding to write my own.</p>
-<p>How did you approach it? Did you stay up all weekend to write it or was it just during regular hours?</p>
-<p>Torvalds: Heh. You can actually see how it all took shape in the git source code repository, except for the very first day or so. It took about a day to get to be “self-hosting” so that I could start committing things into git using git itself, so the first day or so is hidden, but everything else is there. The work was clearly mostly during the day, but there’s a few midnight entries and a couple of 2 a.m. ones. The most interesting part is how quickly it took shape ; the very first commit in the git tree is not a lot of code, but it already did the basics - enough to commit itself. The trick wasn’t really so much the coding but coming up with how it organizes the data.</p>
-<p>So I’d like to stress that while it really came together in just about ten days or so (at which point I did my first <em>kernel</em> commit using git), it wasn’t like it was some kind of mad dash of coding. The actual amount of that early code is actually fairly small, it all depended on getting the basic ideas right. And that I had been mulling over for a while before the whole project started. I’d seen the problems others had. I’d seen what I wanted to avoid doing. </p>
-<p>Has it lived up to your expectations? How is it working today in your estimation? Are there any limitations?</p>
-<p>Torvalds: I’m very happy with git. It works remarkably well for the kernel and is still meeting all my expectations. What I find interesting is how it took over so many other projects, too. Surprisingly quickly, in the end. There is a lot of inertia in switching source control systems;  just look at how long CVS and even RCS have stayed around, but at some point git just took over.</p>
-<p>Why do you think it’s been so widely adopted?</p>
-<p>Torvalds: I think that many others had been frustrated by all the same issues that made me hate SCM’s, and while there have been many projects that tried to fix one or two small corner cases that drove people wild, there really hadn’t been anything like git that really ended up taking on the big problems head on. Even when people don’t realize how important that “distributed” part was (and a lot of people were fighting it), once they figure out that it allows those easy and reliable backups, and allows people to make their own private test repositories without having to worry about the politics of having write access to some central repository, they’ll never go back.</p>
-<p>Does Git last forever, or do you foresee another revision control system in another 10 years? Will you be the one to write it? </p>
-<p>Torvalds: I’m not going to be the one writing it, no. And maybe we’ll see something new in ten years, but I guarantee that it will be pretty “git-like.” It’s not like git got everything right, but it got all the really basic issues right in a way that no other SCM had ever done before.</p>
-<p>No false modesty ;)</p>
-<p>Why does Git work so well for Linux?</p>
-<p>Torvalds: Well, it was obviously designed for our workflow, so that is part of it. I’ve already mentioned the whole “distributed” part many times, but it bears repeating. But it was also designed to be efficient enough for a biggish project like Linux, and it was designed to do things that people considered “hard” before git - because those are the things <em>I</em> do every day.</p>
-<p>Just to pick an example: the concept of “merging” was generally considered to be something really quite painful and hard in most SCM’s. You’d plan your merges, because they were big deals. That’s not acceptable to me, since I commonly do tens of merges a day when in the merge window, and even then, the biggest overhead shouldn’t be the merge itself, it should be testing the result. The “git” part of the merge is just a couple of seconds, it should take me much longer just to write the merge explanation message.</p>
-<p>So git was basically designed and written for my requirements, and it shows.</p>
-<p>People have said that Git is only for super smart people. Even Andrew Morton said Git is “expressly designed to make you feel less intelligent than you thought you were.” What’s your response to this?</p>
-<p>Torvalds: So I think it used to be true but isn’t any more. There is a few reasons people feel that way, but I think only one of them remains. The one that remains is fairly simple: “you can do things so many ways.”</p>
-<p>You can do a lot of things with git, and many of the rules of what you <em>should</em> do are not so much technical limitations but are about what works well when working together with other people. So git is a very powerful set of tools, and that can not only be overwhelming at first, it also means that you can often do the same (or similar) things different ways, and they all “work.” Generally, the best way to learn git is probably to first only do very basic things and not even look at some of the things you can do until you are familiar and confident about the basics.</p>
-<p>There’s a few historical reasons for why git was considered complicated. One of them is that it was complicated. The people who started using git very early on in order to work on the kernel really had to learn a very rough set of scripts to make everything work. All the effort had been on making the core technology work and very little on making it easy or obvious. So git (deservedly) had a reputation for requiring you to know exactly what you did early on. But that was mainly true for the first 6 months or a year.</p>
-<p>The other big reason people thought git was hard is that git is very different. There are people who used things like CVS for a decade or two, and git is not CVS. Not even close. The concepts are different. The commands are different. Git never even really tried to look like CVS, quite the reverse. And if you’ve used a CVS-like system for a long time, that makes git appear complicated and needlessly different. People were put off by the odd revision numbers. Why is a git revision not “1.3.1” with nice incrementing numbers like it was in CVS? Why is it that odd scary 40-character HEX number?</p>
-<p>But git wasn’t “needlessly different.” The differences are required. It’s just that it made some people really think it was more complicated than it is, because they came from a very different background. The “CVS background” thing is going away. By now there are probably lots of programmers out there who have never used CVS in their lives and would find the CVS way of doing things very confusing, because they learned git first.</p>
-<p>Do you think the rate of Linux kernel development would have been able to grow at its current rate without Git? Why or why not?</p>
-<p>Torvalds: Well, “without git,” sure. But it would have required that somebody else wrote something git-equivalent: a distributed SCM that is as efficient as git is. We definitely needed something <em>like</em> git.</p>
-<p>What’s your latest opinion of GitHub?</p>
-<p>Torvalds: Github is an excellent hosting service; I have nothing against it at all. Now, the complaints I’ve had is that GitHub as a development platform - making commits, pull requests, keeping track of issues etc - doesn’t work very well at all. It’s not even close, not for something like the kernel. It’s much too limited.</p>
-<p>That’s partly because of how the kernel is developed, but part of it was that the GitHub interfaces were actively encouraging bad behavior. Commits done on GitHub had bad commit messages etc, because the web interfaces at GitHub were actively encouraging bad behavior. They did fix some of that, so it probably works better, but it will never be appropriate for something like the Linux kernel.</p>
-<p>What is the most interesting use you’ve seen for Git and/or GitHub?</p>
-<p>Torvalds: I’m just happy that it made it so easy to start a new project. Project hosting used to be painful, and with git and GitHub it’s just so trivial to do a random small project. It doesn’t matter what the project is; what matters is that you can do it.</p>
-<p>Do you have side projects up your sleeve today? Any more brilliant software projects that will dominate software development for years to come?</p>
-<p>Torvalds: Nothing planned. But I’ll let you know if that changes.</p>
-<hr>
-<p><a href="http://www.linux.com/news/featured-blogs/185-jennifer-cloer/821541-10-years-of-git-an-interview-with-git-creator-linus-torvalds" target="_blank" rel="external">source &gt;&gt;</a></p>
+          Ten years ago this week, the Linux kernel community faced a daunting challenge: They could no longer use their revision control system BitKeeper and n
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/06/2015-04-09-years-of-git-an-interview-with-git-creator-linus-torvalds/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -403,7 +373,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-06T14:13:47+08:00" content="2016-07-06">
               2016-07-06
             </time>
@@ -415,7 +385,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/News/" itemprop="url" rel="index">
@@ -460,19 +430,14 @@
       
         
           
-            <p>Russian-hired hackers breached an unclassified White House system and pilfered information about President Obama’s daily schedule and communications, CNN reports.</p>
-<p>The hackers gained “access to sensitive information such as real-time non-public details of the president’s schedule.”</p>
-<p>A phishing-style attack allowed Russian hackers to access a State Department computer network, which in turn allowed access to the White House’s system.</p>
-<p>The hackers were working for the Russian government but did not succeed in accessing any classified networks, according to CNN.</p>
-<p>Even so, nonclassified networks can contain sensitive information that the White House might not want in the hands of a rival government. And it’s a sign that even high-level US government systems are far from impervious to outside attacks.Cyber securityREUTERS/Rick Wilking<br>2Lt William Liggett works at the Air Force Space Command Network Operations &amp; Security Center at Peterson Air Force Base in Colorado Springs, Colorado.</p>
-<p>The attack stemmed from a nearly year-long breach of the US State Department’s computer systems that investigators described as the “worst ever” against a US federal agency target, according to a CNN report in March. Those ongoing problems with the computer networks has apparently now affected the White House as well.</p>
-<p>On CNN, White House deputy national security adviser Ben Rhodes explained that federal staffers have previously been encouraged to guard even nonclassified information being passed through government systems because of hacking concerns.Ben Rhodes Martha’s VineyardKevin Lamarque/Reuters<br>U.S. Deputy National Security Advisor Ben Rhodes</p>
-<p>“If you’re going to do something that is classified you have to do it on one email system and on phone system, and act as if information could be compromised if it’s not on the classified system,” he said. Rhodes said the hackers did not access classified information, even though the government views unclassified information as “sensitive.”</p>
-<p>Rhodes wouldn’t confirm or deny that Russian hackers were responsible for the reported White House breach.</p>
-<p>“It’s fair to say … Russia has been active in the cyber space and in the espionage space,” Rhodes told CNN.</p>
-<p><a href="http://www.businessinsider.com/report-russia-hacked-the-white-house-2015-4" target="_blank" rel="external">source &gt;&gt;</a></p>
+          Russian-hired hackers breached an unclassified White House system and pilfered information about President Obama’s daily schedule and communications, 
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/06/2015-04-08-report-russia-hacked-the-white-house/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -533,7 +498,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-06T14:13:14+08:00" content="2016-07-06">
               2016-07-06
             </time>
@@ -545,7 +510,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/News/" itemprop="url" rel="index">
@@ -590,22 +555,15 @@
       
         
           
-            <p>There are more questions than answers right now regarding a German passenger plane crash in southern France that killed 150 people.</p>
-<p>A senior military official involved in investigation, citing evidence from a cockpit voice recorder, told The New York Times that one the pilots was locked out of the cockpit and could not get back in before the plane smashed into the alps on Tuesday.</p>
-<p>“The guy outside is knocking lightly on the door and there is no answer,” the investigator told the Times. “And then he hits the door stronger and no answer. There is never an answer. … You can hear he is trying to smash the door down.”</p>
-<p>The plane dropped from 38,000 feet to under 6,000 feet in about 8 minutes.</p>
-<p>“Contact between the airplane and French radar and French flight controllers was lost at 10:53 a.m. at an altitude of about 6,000 feet. The plane then crashed,” Lufthansa unit Germanwings’ managing director, Thomas Winkelmann, said on Tuesday.</p>
-<p>During the rescue effort, investigators found one of two black boxes, and were reportedly analyzing the contents.</p>
-<p>recorder germanwingsBureau d’Enquêtes et d’AnalysesThe voice recorder retrieved from the crash</p>
-<p>The senior military official — the Times does specify which country the person is from — noted the conversations between pilots were  “very smooth, very cool” during the early portion of the Barcelona-to-Düsseldorf flight.</p>
-<p>france crashREUTERS</p>
-<p>One of the pilots of the plane had 10 years of experience of flying for Lufthansa, German officials said at a press conference on Tuesday. Officials said the plane had been last checked by technicians on Monday.</p>
-<p>Overall, the Airbus A320 has a solid safety record, with only 23 fatal crashes in its service lift — not including Tuesday’s incident — according to Aviation Safety Net.</p>
-<p>Weather conditions were reportedly good at the time of the crash.</p>
-<p> “We don’t know yet the reason why one of the guys went out,” the senior military official told the Times. “But what is sure is that at the very end of the flight, the other pilot is alone and does not open the door.”</p>
-<p><a href="http://www.businessinsider.com/a-pilot-on-the-germanwings-flight-was-locked-out-of-the-cockpit-before-the-crash-2015-3" target="_blank" rel="external">source &gt;&gt;</a></p>
+          There are more questions than answers right now regarding a German passenger plane crash in southern France that killed 150 people.
+A senior military 
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/06/2015-03-26-a-pilot-on-the-germanwings-flight-was-locked-out-of-the-cockpit-before-the-crash/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -666,7 +624,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-06T14:12:34+08:00" content="2016-07-06">
               2016-07-06
             </time>
@@ -678,7 +636,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/News/" itemprop="url" rel="index">
@@ -723,16 +681,14 @@
       
         
           
-            <p>The past six months haven’t been kind of some of the earliest tech blogs. Last November, ReadWrite was sold off by SAY Media who threw in the towel on its content properties. Now, multiple staffers have confirmed on Twitter that Gigaom will shut down.</p>
-<p>Why? According to senior writer Mathew Ingram, it simply ran out of cash.</p>
-<p>The company was founded in 2006 by former Forbes journalist Om Malik to cover technology with a focus on startups. Since then, the company has raised $22.3 million in venture capital. Its most recent round came in February of 2014, raising an $8 million Series F in February of 2014 from True Ventures, Alloy Ventures, Shea Ventures, and Reed Elsevier Ventures. That same month, Malik stepped away from journalism to become a full-time partner at True Ventures.</p>
-<p>To its credit, Gigaom’s reporting and analysis often went beyond the press release, particularly in its excellent coverage of the cleantech industry. But I stopped reading Gigaom last October when it published a piece of sponsored content bought and paid for by the National Security Agency. (That page is still live, but the story appears to be missing). It was a fairly innocuous post; essentially a job listing. But the fact that a journalistic organization — particularly one that covers technology — would choose arguably the most anti-journalist organization on the planet as a publishing partner, was not only a massive conflict of interest. It was also a slap in the face of any journalist who was ever targeted for surveillance or smearing by the US defense apparatus.</p>
-<p>“It violated everything that you should be thinking about as a publisher,” Sam Slaughter, VP of Content at the native advertising firm Contently, told me. “In terms of what you put in front of your readers, what you cover, whether your readership should trust you, all of these things. My jaw hit the floor.”</p>
-<p>Unfortunately for Gigaom, cashing checks from the NSA just wasn’t enough to save it.</p>
-<p>When ReadWrite was sold last November, the Awl’s Choire Sicha tweeted, “THIS IS WHEN THE GREAT CONTENT SHAKEOUT BEGAN, REMEMBER THIS DAY.” At the time, I was skeptical that the ReadWrite news was a harbinger of things to come. But after today’s news? Hot venture funded tech companies, you are on watch.</p>
-<p><a href="http://pando.com/2015/03/09/content-shakeout-alert-gigaom-runs-out-of-money-will-shut-down/" target="_blank" rel="external">source &gt;&gt;</a></p>
+          The past six months haven’t been kind of some of the earliest tech blogs. Last November, ReadWrite was sold off by SAY Media who threw in the towel on
+          ...
 
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/06/2015-03-09-content-shakeout-alert-gigaom-runs-out-of-money-will-shut-down/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -780,8 +736,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/06/2015-01-26-with-coinbase-exchange-bitcoin-gets-a-fully-licensed-insured-and-domestic-trading-option/" itemprop="url">
-                  【transfer】With Coinbase Exchange, US Bitcoin users get a fully-licensed, insured, and domestic trading option
+                <a class="post-title-link" href="/2016/07/06/2015-01-25-three-roles-that-every-investor-should-play/" itemprop="url">
+                  【transfer】NYPD guards Gawker, BuzzFeed, and Daily Beast offices after republishing Charlie Hebdo cartoons
                 </a>
               
             
@@ -793,7 +749,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-06T14:10:25+08:00" content="2016-07-06">
               2016-07-06
             </time>
@@ -805,7 +761,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/News/" itemprop="url" rel="index">
@@ -824,8 +780,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/06/2015-01-26-with-coinbase-exchange-bitcoin-gets-a-fully-licensed-insured-and-domestic-trading-option/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/2015-01-26-with-coinbase-exchange-bitcoin-gets-a-fully-licensed-insured-and-domestic-trading-option/" itemprop="commentsCount"></span>
+                <a href="/2016/07/06/2015-01-25-three-roles-that-every-investor-should-play/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/2015-01-25-three-roles-that-every-investor-should-play/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -850,422 +806,14 @@
       
         
           
-            <p>As first reported late last night, Coinbase has launched the first regulated, US-based bitcoin exchange. The company crossed this milestone in part through a new partnership, and accompanying investment, from the New York Stock Exchange.</p>
-<p>In the hours since the WSJ first reported news of Coinbase’s latest bitcoin venture, the company has revealed additional details of how the exchange will operate and why, it believes, it offers “a better way to trade.”</p>
-<p>We now know that the Coinbase exchange offers its customers insurance against “employee theft and hacking in an amount that exceeds the average value of online bitcoin it holds at any given time.” The company goes on to explain that this is the same A+-rated insurance that it has held on its wallet accounts since November 2013, and that the coverage is limited in the event that a user’s login credentials are compromised due to their own actions.</p>
-<p>Coinbase also reiterates its significant security measures, including storing 97 percent of all customer funds offline, in so-called “cold storage,” using redundant, encrypted, and geographically distributed data storage. The company also requires two-factor authentication upon account login, and commits to undergoing regular IT security and financial audits. Where Coinbase differs from other exchanges making similar promises, is that the company has obtained relevant regulatory clearance to operate in 24 US states, including the finance and technology epicenters of New York and California. No other exchange company can claim the same.</p>
-<p>But, despite the above protections, trading any security retains some risk. The company warns new users upon their first use of the exchange:</p>
-<p>There is a risk of loss when you trade bitcoin. All trades are final. Please carefully consider whether trading bitcoin is suitable for you in light of your financial condition. Coinbase does not provide you with investment advice. [Bolding original]</p>
-<p>Coinbase will charge a commission of 0.25 percent on all trades made on its exchange, however the company will offer a no-fee trading promotion through March 30 of this year.</p>
-<p>The price of bitcoin has been in flux in recent weeks, falling to a 12-month low of $177 on January 9th, following a string of negative news events – including the BitStamp hack and the Silk Road trial – and subsequently rebounding to a high of $272 yesterday preceding to Coinbase exchange announcement, in part due to last week’s news of the Winklevoss twins’ planned Gemeni exchange and the Coinbase funding announcement. Prices shot up another 5 percent shortly after the WSJ report, reaching a high of $287 overnight, but have since settled again in the vicinity of $272.</p>
-<p>With Coinbase now offering both its legacy wallet and brokerage service and its newly launched exchange, it’s possible to observe in market behavior on the two platforms. For example, while the price of purchasing a new bitcoin on the wallet platform at 7:55am PST was currently $273.08, the last trade on the exchange at the same time was $269.32. This spread is not altogether unexpected, and may represent a difference in the demographics and psychographics of the customers for each Coinbase platform, but it should not be overlooked as a window into the real-time psyche and shifts thereto of the market as a whole.</p>
-<p>Coinbase Exchange is just a few hours old, but the company already has plans for expanding this platform across the remaining US states and eventually to serve the global market. Coinbase’s wallet platform currently operates in 18 countries and has set a goal of increasing that number to 30 by the end of 2015.</p>
-<p>This big prize for Coinbase and its US exchange competitors like the forthcoming Gemeni and SecondMarket offerings is to see who can become the exchange of choice for the billions in institutional capital which has long been sitting on the sidelines waiting for an opportunity to enter this market. Some companies, like Gemeni, have aimed their offering squarely at attracting this capital, seemingly at the expense of winning retail traders. Coinbase has not gone to this extreme. It’s not yet clear whether the market will bifurcate itself into institutional and retail, or will follow the pattern of Wall Street where the major exchange serve both classes of demand.</p>
-<p>As I said last night, “for those who view bitcoin as the ‘internet for money,’ and expect the technology to have a similarly transformative impact, [the arrival of a regulated domestic exchange marks] a big day indeed.” The animated “Lunar” rocket ship that was cruising across Coinbase’s website has reached its destination. Whether the company has delivered bitcoin to the promised land will become clearer in the coming months and years.</p>
-<p>Coinbase<br>Making Bitcoin accessible to consumers, merchants, and developers.<br>Payments · San Francisco<br>Follow on AngelList<br>Coinbase is a bitcoin wallet and platform where merchants and consumers can transact with the new digital currency bitcoin.</p>
-<p>Bitcoin is the world’s most widely used alternative currency with a total market cap of approximately $7.0 billion. The bitcoin network is made up of thousands of computers run by individuals all over the world.</p>
-<p>Brian Armstrong<br>Founder<br>Fred Ehrsam<br>Founder<br>Alexis Ohanian<br>Past Investor<br>Coinbase is hiring:<br>Software Engineer<br>Business Development<br>Product Designer</p>
-<hr>
-<p>Michael Carney<br>Michael Carney is a West Coast Editor at PandoDaily, covering venture capital, financial technologies, ecommerce, on-demand services, and the future of television, among other subjects. He has spent his career exploring the world of early stage technology as an entrepreneur and early-stage investor, working in multiple countries within North and South America and Asia. He is an enthusiast of all things shiny and electronic and is inspired by those who build businesses and regularly tackle difficult problems. You can follow Michael on Twitter @mcarney.</p>
-<p><a href="http://pando.com/2015/01/26/with-coinbase-exchange-bitcoin-gets-a-fully-licensed-insured-and-domestic-trading-option/" target="_blank" rel="external">source &gt;&gt;</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/06/2011-08-15-china-rock-roll-music/" itemprop="url">
-                  Unbenannt
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-07-06T14:10:25+08:00" content="2016-07-06">
-              2016-07-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">in</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/音乐/" itemprop="url" rel="index">
-                    <span itemprop="name">音乐</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/06/2011-08-15-china-rock-roll-music/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/2011-08-15-china-rock-roll-music/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h5 id="中国摇滚乐"><a href="#中国摇滚乐" class="headerlink" title="中国摇滚乐"></a>中国摇滚乐</h5><p>1、&lt;一无所有&gt;</p>
-<embed src="http://www.xiami.com/widget/5443058_376766/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>　　按照毛的话，由此上溯到一千八百年，我们看我们的同志。</p>
-<p>有人说《一无所有》不属于摇滚，只属于流行。我们一定记得当我们还背着军用书包上学的时候，路边收录机里传来的“我曾经问个不休”这样吵哑、歇期底里、震撼的声音，那是一种全新的感觉，那是一座碑，或是一座牌坊。当老崔扎着一块红布穿着黄军装出现在公众面前的时候，人们还不知道发生了什么事情，但一曲完毕，一个时代诞生了。<br>　　　　《一无所有》里面所表达出来的感情，如果现在让我们再去仔细听一听，想一想，你会发现，许多年前属于他、属于你的东西，现在依然存在。我们不能忘记，更应该感激，那迷失年代里面穿过的领袖的声音。</p>
-<!--break-->
-<p>2、&lt;新长征路上的摇滚&gt;</p>
-<embed src="http://www.xiami.com/widget/5443058_376766/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>　　 这首歌提供给我们的意识是深不可测的,老崔就是老崔,在今天,这首歌仍有相当积极的意义,深邃的人文思想加上纯正流畅的器乐,这是伟大的结合。</p>
-<p>3、&lt;无地自容&gt;</p>
-<embed src="http://www.xiami.com/widget/5443058_385904/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-
-<p>　　这首歌的流行基准使得他迅速火遍神州,他首先征服的是还不适应摇滚的国人的发软的耳朵,由于是与香港人的签约合作,香港菜农们的造星与创收意识造就了这支乐队,但歌本身全无香港乐坛的浮华与奢靡之气,硬气十足.在今天看来,这不是一首异常成熟的作品,但这首歌使得更多人接受并深入了摇滚,相信今天无数手操响器的弟兄们听到这首歌时都会感到异常亲切,虽然其意义来自另一个不很积极的角度,但伟大的作品就是伟大的作品。</p>
-<p>4、&lt;梦回唐朝&gt;</p>
-<embed src="http://www.xiami.com/widget/5443058_387726/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-
-<p>　　中国最出众的重金属,唐朝创立的不仅仅是一杆重金属大旗,还有他们浪漫的新古典主义,中国陈旧的艺术诗歌与京剧唱腔被其赋予了全新的意义,这是中国唯一一支伟大而纯粹的乐队,而这首歌带来的负面影响则是以后的”民族主义摇滚””中国特色的摇滚”,这种论调与一直被鼓吹的”走中国特色的社会主义道路”的自欺欺人有异曲同工之妙,但唐朝不应对此负任何责任。</p>
-<p>5、&lt;花房姑娘&gt;</p>
-<embed src="http://www.xiami.com/widget/5443058_376771/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>　　我们曾经把这个形象当作一个时代的象征，曾经给予其特殊的读解，这也没有错，但当人们都把崔健说成斗士的时候，别忘了，斗士首先是情人。愤怒的方向，是爱，斗争的方向，是爱。“我想要回到老地方,我想要走在老路上, 我明知我已离不开你!噢…姑娘!” 崔健完成了柔情到沙哑的过渡，并且开始鄙视流行，也开始治疗中国人的便秘。</p>
-<p>6、&lt;我的秋天&gt;</p>
-<embed src="http://www.xiami.com/widget/5443058_63694/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>　　这首歌没有在中国大面积地流行是件让人困惑而又欣慰的事情,第一次听到就流泪了，但是不敢多听，也许它只适合每年的秋天，静静的缩在角落或漫无目的在街上徘徊时拿出来聆听，体验那种苍凉落寞的孤寂。这首歌首先枪毙的是中国一些号称民谣的东西,民谣摇滚既出,民谣就可以收拾收拾去世了,这首歌让我们认识到民谣首先来自的是心灵而非大街小巷。爱情,这首歌的爱情让所有香港的那捆爱情骗子显得更像是琼瑶妈妈桑的干儿子女儿之类的。</p>
-<p>7、&lt;祖先的阴影&gt;</p>
-<embed src="http://www.xiami.com/widget/5443058_1770792272/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>　　这首歌带来的是复古主义和黑色重金属,超载更多带给我们的是他们标准的金属乐队和乐手形象,高旗的唱腔令人匪夷所思。与唐朝相比,他们在台上更具活力,五个人一起精准地甩动长发的情景总让人热血沸腾,但这往往掩盖了他们意义深刻的思想。</p>
-<p>8、&lt;姑娘,漂亮&gt;</p>
-<embed src="http://www.xiami.com/widget/5443058_2089861/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>　　何勇带给我们的是他比崔健更具体更直接的愤怒,因此,他的歌带有鲜明的朋克色彩, 说他是中国最早的朋克也不为过,当这首歌在中国大地呼啸而过时,愤怒的颓废意识令人热血沸腾，不过这也忽略了其巨大的内涵。但令人痛快的是他给了绵软贫血的香港乐坛一记响亮干脆的耳光,何勇的毫不容忍使得香港音乐人在他面前显得那么猥琐而有气无力,这才是朋克.</p>
-<p>9、&lt;姐姐&gt;</p>
-<embed src="http://www.xiami.com/widget/5443058_386262/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>　　这也许是中国最具人文意识和思想的作品,带着一个孩子的迷茫和天真的拷问。但遗憾的是,这首歌中所蕴含的愤怒和绝望没有几个人能听得清,更多的人仅仅是通过这首歌认识了张楚而已,而在张楚带给我们更多他的作品和传奇故事之后,我们仍能发现这首歌的意识涵盖力是中国首屈一指的.</p>
-<p>10、&lt;孤独的人是可耻的&gt;</p>
-<embed src="http://www.xiami.com/widget/5443058_377800/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>　　它在名字上就宣判了自由主义在道德感上的挫败，一盘散沙的孤独正是自由主义的伤口。所以，我们完全可以将在荒唐年代出生的西北小农民张楚视为一个音乐政治学的紧要人物，他的流行，也可以当成民族主义与社群主义的操作策略：它们更容易打动那些“工人、农民，小资产阶级……无所事事的人”，以及“想像鲜花一样美丽”的孤独的人——这所发生的一切，已近中年的张楚并不知情，就如我在写完这些很快就会遗忘的文字后，只会记住他依然还是那个“西出阳关”的流浪的孩子，在那段落满灰尘的岁月里衣衫破旧，眼神迷惘。</p>
-<p>11、&lt;一块红布&gt;</p>
-<embed src="http://www.xiami.com/widget/5443058_8239/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>　　提到中国摇滚，没有人可以避开这个领头人（另一种说法叫教父）。人们印象中的崔健多是卷着裤脚抱着电吉他唱《一无所有》的样子，而后来老崔的音乐终于逐渐抛弃了曲子，诗化的歌词，在众多的鼓点和听不清的歌词中总有一种热烈的感觉在眼中涌动，莫名的怅茫和难以释怀的沉重感,”我不能走我也不能哭,因为我身体已经干枯,我要永远这样陪伴着你,因为我最知道你的痛苦…”</p>
-<p>12、&lt;假行僧&gt;</p>
-<embed src="http://www.xiami.com/widget/5443058_8231/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>　　那个女孩在我转身不经意时刻轻轻唱，“如果你已经爱上我，就请你吻我的嘴”。这首歌收录在《一无所有》这张专辑，粉碎现有的道德，令那个时代瞠目结舌的词语。在20世纪80年代末、90年代初期，崔健用他那特有的方式和敏锐的感觉，把属于那个时代的一切性征都写了出来、唱了出来，《假行僧》更成为这张唱片之中的经典作品。</p>
-<p>13、&lt;累&gt; </p>
-<embed src="http://www.xiami.com/widget/5443058_386267/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>　　红色部队这个名字除了当年北京摇滚圈子里面的人知晓之外，在其它地方几乎找不到他们的踪迹。大概这支乐队存在的时间并不长罢，据说是因为歌曲所反映的东西太过现实太过直白太过颓废而遭来了乐队本身的杀身之祸。这首出现于《中国火1》里面的单曲，第一句话就让你目瞪口呆，“太阳在天上放着光辉，我的眼前一片漆黑”，让你立刻进入颓废和消极之中。给当时刚接触摇滚的青少年的影响也颇为深远。</p>
-<p>14、&lt;国际歌&gt;</p>
-<embed src="http://www.xiami.com/widget/5443058_387736/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>　　这首歌初出之时,被无数无产阶级卫道士骂的一无是处,可在大多数人听过这首歌之后,却认清了那类人的伪善嘴脸.记得当初不少初出茅庐的乐队在开始自己的演唱会时,都不约而同的选择了这首歌作为结束曲,唐朝可不仅是把这首歌配上五和弦三连音那么轻松,而是真正告诉了未来的摇滚人摇滚的意义何在,但遗憾的是,仍有一部分人在听过这首歌之后,有了一种”找到组织了!”的感觉,从而出现了一批摇滚人中的流氓无产者和投机分子,以及一批狗尾续貂的翻唱跟风之作。</p>
-<p>15、&lt;快让我在这雪地上撒点野&gt;</p>
-<embed src="http://www.xiami.com/widget/5443058_8237/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>　　即便是以15年后的标准，这首歌的作曲、编曲、节奏、歌词都是非常杰出的，而且现在仍然没有哪个乐队能达到这样的高度。以前，我们的病是因为“志如钢意如铁”而没有感觉，是对人性的压抑；今天的病是因为麻木而没有感觉，不同的是，过去还有人意识到通过撒野来治病，现在人们都觉得没病了。这支歌随着一段铿锵有力的古筝前奏序曲，渐渐的进入了高潮，全部的电声乐器也相继的在不同的音符下奏鸣，一种可以让人在雪地里狂奔的感觉，从你的脚底由然而升。古典乐和摇滚的融合堪称完美，也许是一种伟大的结合。</p>
-<p>16、上苍保佑吃饱饭的人民</p>
-<embed src="http://www.xiami.com/widget/5443058_377795/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>17、太阳</p>
-<embed src="http://www.xiami.com/widget/5443058_387727/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>18、&lt;钟鼓楼&gt;</p>
-<embed src="http://www.xiami.com/widget/5443058_374403/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>　　《钟鼓楼》实际上把何勇忧伤的一面透露出来了，在三弦琴和吉他的伴奏中，如老北京评弹的行云流水中，何勇细数曾经的美好和现在的流失，单车、落叶、路灯、西山，这些景物告诉了我们乌托邦的样子，而且这些曾经存在过，但当这幅画被渐渐发展的城市撕碎的时候你心里怎么想？何勇对废墟的眷恋让我们心生感触，他只能绝望地问，是谁出的题这么的难，到处全都是正确答案？</p>
-<p>19、&lt;黑色梦中&gt;</p>
-<embed src="http://www.xiami.com/widget/5443058_381451/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>　　在现实中做不到的，就让梦去完成。减少了浪漫欢愉的感受，加强了对生活品质的呈现！窦唯的&lt;黑色梦中&gt;无不流露一种黑色的弥幻色彩，来自深夜的无用的呐喊和挣扎，建议深夜用耳机聆听，不用太用心，同样可以感觉自己的身体慢慢的悬浮起来，一股血往上涌出窍的失重。</p>
-<p>20、&lt;晚安，北京&gt;</p>
-<embed src="http://www.xiami.com/widget/5443058_385472/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>　　汪峰一直在强调“摇滚可以是很优美的”，在他自己的作品中他一直在这样做，在坚持。《晚安北京》那份深沉那份感伤完善的让我们无话可说，而音乐中荡气回肠的键盘以及牵肠挂肚的吉它SOLO，更是许多音乐人所梦想的。</p>
-<p>21、&lt;赤裸裸&gt;</p>
-<embed src="http://www.xiami.com/widget/5443058_78053/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>　　郑钧的音乐绝对可以算是中国摇滚史上抹不去的记忆。《赤裸裸》这支曲子也曾经作为流行音乐存在于全国的大街小巷，被年轻人当作口头禅极其苍白的传唱着，虽然最大的悲哀就是他们不能理解却唱来唱去，虽然只是那么一句，“我的爱，赤裸裸，我的爱，赤裸裸”。<br>　　或许有人对郑钧的反响不是太好，但是个人认为还是比较好的，因为人总是在进步的，他的年龄、思想，还有思维。不断的进行自我反省也是作为一个摇滚人出色的条件。</p>
-<p>22、&lt;低下头是人间&gt;</p>
-<embed src="http://www.xiami.com/widget/5443058_177189/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-
-<p>　　这首歌更像是一部摇滚史诗，里面的元素特别多特别丰富。那种繁杂、精巧的音乐编曲和效果，可以说创新了很多东西，高旗把深刻的精神、纯粹的感受都沉淀在里面。悲壮的氛围，跌宕起伏的想象表现在每个音符上面，一气呵成，非常痛快。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/06/2014-06-09-ip/" itemprop="url">
-                  ip地址
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-07-06T14:10:25+08:00" content="2016-07-06">
-              2016-07-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">in</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/教程/" itemprop="url" rel="index">
-                    <span itemprop="name">教程</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/06/2014-06-09-ip/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/2014-06-09-ip/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>互联网协议地址（英语：Internet Protocol Address，又译为网际协议地址），缩写为IP地址（IP Address）。IP地址是IP协议提供的一种统一的地址格式，它为互联网上的每一个网络和每一台主机分配一个逻辑地址，以此来屏蔽物理地址的差异。<br><!--break--></p>
-<h4 id="IP类型"><a href="#IP类型" class="headerlink" title="IP类型"></a>IP类型</h4><p>IP地址（英语：Internet Protocol Address）是一种在Internet上的给主机编址的方式，也称为网际协议地址。常见的IP地址，分为IPv4与IPv6两大类。</p>
-<h4 id="构成-（IPv4）"><a href="#构成-（IPv4）" class="headerlink" title="构成 （IPv4）"></a>构成 （IPv4）</h4><p>IP地址是一个32位的二进制数，通常被分割为4个“8位二进制数”（也就是4个字节）。IP地址通常用“点分十进制”表示成（a.b.c.d）的形式，其中，a,b,c,d都是0~255之间的十进制整数。例：点分十进IP地址（100.4.5.6），实际上是32位二进制数（01100100.00000100.00000101.00000110）。</p>
-<p>将IP地址分成了网络号（网络地址）和主机号（主机地址）两部分。<br>设计者就必须决定每部分包含多少位。网络号的位数直接决定了可以分配的网络数（计算方法2^网络号位数-2）；主机号的位数则决定了网络中最大的主机数（计算方法2^主机号位数-2）。然而，由于整个互联网所包含的网络规模可能比较大，也可能比较小，设计者最后聪明的选择了一种灵活的方案：将IP地址空间划分成不同的类别，每一类具有不同的网络号位数和主机号位数。</p>
-<h4 id="子网掩码"><a href="#子网掩码" class="headerlink" title="子网掩码"></a>子网掩码</h4><p>子网掩码(subnet mask)又叫网络掩码、地址掩码、子网络遮罩，它是一种用来指明一个IP地址的哪些位标识的是主机所在的子网以及哪些位标识的是主机的位掩码。子网掩码不能单独存在，它必须结合IP地址一起使用。子网掩码只有一个作用，就是将某个IP地址划分成网络地址和主机地址两部分。</p>
-<ul>
-<li>规则<br>子网掩码的设定必须遵循一定的规则。与二进制IP地址相同，子网掩码由1和0组成，且1和0分别连续。子网掩码的长度也是32位，左边是网络位，用二进制数字“1”表示，1的数目等于网络位的长度；右边是主机位，用二进制数字“0”表示，0的数目等于主机位的长度。这样做的目的是为了让掩码与ip地址做按位与运算时用0遮住原主机数，而不改变原网络段数字，而且很容易通过0的位数确定子网的主机数（2的主机位数次方-2，因为主机号全为1时表示该网络广播地址，全为0时表示该网络的网络号，这是两个特殊地址）。只有通过子网掩码，才能表明一台主机所在的子网与其他子网的关系，使网络正常工作。</li>
-</ul>
-<h4 id="IP地址分类"><a href="#IP地址分类" class="headerlink" title="IP地址分类"></a>IP地址分类</h4><p>IP地址分为A、B、C、D、E5类，它们适用的类型分别为：大型网络；中型网络；小型网络；多目地址；备用。常用的是B和C两类。</p>
-<h4 id="分配"><a href="#分配" class="headerlink" title="分配"></a>分配</h4><p>TCP/IP协议需要针对不同的网络进行不同的设置，且每个节点一般需要一个“IP地址”、一个“子网掩码”、一个“默认网关”。不过，可以通过动态主机配置协议（DHCP），给客户端自动分配一个IP地址，避免了出错，也简化了TCP/IP协议的设置。<br>那么，互域网怎么分配IP地址呢？互联网上的IP地址统一由一个叫“ICANN”（Internet Corporation for Assigned Names and Numbers，互联网赋名和编号公司）的组织来管理。</p>
-<ul>
-<li>A类IP地址</li>
-</ul>
-<p>一个A类IP地址是指， 在IP地址的四段号码中，第一段号码为网络号码，剩下的三段号码为本地计算机的号码。如果用二进制表示IP地址的话，A类IP地址就由1字节的网络地址和3字节主机地址组成，网络地址的最高位必须是“0”。A类IP地址中网络的标识长度为8位，主机标识的长度为24位，A类网络地址数量较少，可以用于主机数达1600多万台的大型网络。<br>A类IP地址 地址范围1.0.0.0到126.255.255.255[1]（二进制表示为：00000001 0000000000000000 00000000 - 01111110 11111111 11111111 11111111）。最后一个是广播地址。<br>A类IP地址的子网掩码为255.0.0.0，每个网络支持的最大主机数为256的3次方-2=16777214台。</p>
-<ul>
-<li>B类IP地址</li>
-</ul>
-<p>一个B类IP地址是指，在IP地址的四段号码中，前两段号码为网络号码。如果用二进制表示IP地址的话，B类IP地址就由2字节的网络地址和2字节主机地址组成，网络地址的最高位必须是“10”。B类IP地址中网络的标识长度为16位，主机标识的长度为16位，B类网络地址适用于中等规模的网络，每个网络所能容纳的计算机数为6万多台。<br>B类IP地址地址范围128.0.0.0-191.255.255.255[3]（二进制表示为：10000000 00000000 00000000 00000000—-10111111 11111111 11111111 11111111）。 最后一个是广播地址。<br>B类IP地址的子网掩码为255.255.0.0，每个网络支持的最大主机数为256的2次方-2=65534台</p>
-<ul>
-<li>C类IP地址</li>
-</ul>
-<p>一个C类IP地址是指，在IP地址的四段号码中，前三段号码为网络号码，剩下的一段号码为本地计算机的号码。如果用二进制表示IP地址的话，C类IP地址就由3字节的网络地址和1字节主机地址组成，网络地址的最高位必须是“110”。C类IP地址中网络的标识长度为24位，主机标识的长度为8位，C类网络地址数量较多，适用于小规模的局域网络，每个网络最多只能包含254台计算机。<br>C类IP地址范围192.0.0.0-223.255.255.255[3]（二进制表示为: 11000000 00000000 00000000 00000000 - 11011111 11111111 11111111 11111111）。<br>C类IP地址的子网掩码为255.255.255.0，每个网络支持的最大主机数为256-2=254台</p>
-<ul>
-<li>D类IP地址</li>
-</ul>
-<p>D类IP地址在历史上被叫做多播地址(multicast address)，即组播地址。在以太网中，多播地址命名了一组应该在这个网络中应用接收到一个分组的站点。多播地址的最高位必须是“1110”，范围从224.0.0.0到239.255.255.255。</p>
-<ul>
-<li>特殊的网址</li>
-</ul>
-<p>每一个字节都为0的地址（“0.0.0.0”）对应于当前主机；<br>IP地址中的每一个字节都为1的IP地址（“255．255．255．255”）是当前子网的广播地址；<br>IP地址中凡是以“11110”开头的E类IP地址都保留用于将来和实验使用。<br>IP地址中不能以十进制“127”作为开头，该类地址中数字127．0．0．1到127．255．255．255用于回路测试，如：127.0.0.1可以代表本机IP地址，用“<a href="http://127.0.0.1”就可以测试本机中配置的Web服务器。" target="_blank" rel="external">http://127.0.0.1”就可以测试本机中配置的Web服务器。</a><br>网络ID的第一个8位组也不能全置为“0”，全“0”表示本地网络。</p>
-<ul>
-<li>私有地址：</li>
-</ul>
-<p>10.0.0.0-10.255.255.255（一个A类地址）<br>172.16.0.0－172.31.255.255（16个B类地址）<br>192.168.0.0－192.168.255.255（256个C类地址）</p>
-<h4 id="局域网中的IP"><a href="#局域网中的IP" class="headerlink" title="局域网中的IP"></a>局域网中的IP</h4><p>在一个局域网中，有两个IP地址比较特殊，一个是网络号，一个是广播地址。网络号是用于三层寻址的地址，它代表了整个网络本身；另一个是广播地址，它代表了网络全部的主机。网络号是网段中的第一个地址，广播地址是网段中的最后一个地址，这两个地址是不能配置在计算机主机上的。<br>例如在192.168.0.0，255.255.255.0这样的网段中，网络号是192.168.0.0，广播地址是192.168.0.255。因此，在一个局域网中，能配置在计算机中的地址比网段内的地址要少两个（网络号、广播地址），这些地址称之为主机地址。在上面的例子中，主机地址就只有192.168.0.1至192.168.0.254可以配置在计算机上了。</p>
-<h4 id="子网划分实例"><a href="#子网划分实例" class="headerlink" title="子网划分实例"></a>子网划分实例</h4><h5 id="原本的-C-类地址"><a href="#原本的-C-类地址" class="headerlink" title="原本的 C 类地址:"></a>原本的 C 类地址:</h5><blockquote>
-<p>11000000.10101000.00000000.00000000</p>
-<p>11000000.10101000.00000000.11111111</p>
-<p>|———-Net_ID———|-host–|</p>
-</blockquote>
-<h6 id="切成两个子网"><a href="#切成两个子网" class="headerlink" title="切成两个子网"></a>切成两个子网</h6><ul>
-<li>子网一</li>
-</ul>
-<blockquote>
-<p>11000000.10101000.00000000.00000000  &lt;==</p>
-<p>11000000.10101000.00000000.01111111  &lt;==Broadcast</p>
-<p>|———-Net_ID———-|-host-|</p>
-<p>11111111.11111111.11111111.10000000 &lt;==Netmask 二进制</p>
-<p>  255   .  255   .  255   .  128  &lt;==Netmask 十进制</p>
-<p>所有 IP 与网域表示式：</p>
-<p>192.168.0.0 ~ 192.168.0.127</p>
-<p>192.168.0.0/25 或 192.168.0.0/255.255.255.128 </p>
-<ul>
-<li>子网二：</li>
-</ul>
-<p>11000000.10101000.00000000.10000000  &lt;==Network</p>
-<p>11000000.10101000.00000000.11111111  &lt;==Broadcast</p>
-<p>|———-Net_ID———-|-host-|</p>
-<p>11111111.11111111.11111111.10000000  &lt;==Netmask 二进制</p>
-<p>  255   .  255   .  255   .  128  &lt;==Netmask 十进制 </p>
-<p>所有 IP 与网域表示式：</p>
-<p>192.168.0.128 ~ 192.168.0.255</p>
-<p>192.168.0.128/25 或 192.168.0.128/255.255.255.128</p>
-</blockquote>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="http://baike.baidu.com/link?url=QCzAcEatScGTASZehCMuNy6u89PFRm0bxBYpZPwK9afYz02vEIUQD6EqZf00lXd-" target="_blank" rel="external">IP地址</a></p>
-<p><a href="http://baike.baidu.com/view/547482.htm" target="_blank" rel="external">主机地址</a></p>
-<p><a href="http://baike.baidu.com/view/547482.htm" target="_blank" rel="external">子网掩码</a></p>
-<p><a href="http://vbird.dic.ksu.edu.tw/linux_server/linux_redhat9/0110network_basic.php#IP" target="_blank" rel="external">简易网络基础架构</a></p>
-
-          
+          (Editor’s note: This is a guest post by Boriz Wertz, founder of Version One Ventures. The post went through PandoDaily’s usual editorial process. Mr. 
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/06/2015-01-25-three-roles-that-every-investor-should-play/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1326,7 +874,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-06T14:10:25+08:00" content="2016-07-06">
               2016-07-06
             </time>
@@ -1338,7 +886,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/教程/" itemprop="url" rel="index">
@@ -1383,427 +931,18 @@
       
         
           
-            <h5 id="2012年软件设计师-考试大纲分析"><a href="#2012年软件设计师-考试大纲分析" class="headerlink" title="2012年软件设计师 考试大纲分析"></a>2012年软件设计师 考试大纲分析</h5><p>1 考试说明分析 </p>
-<pre><code>1.1 软件设计师考试的总体要求 
+          2012年软件设计师 考试大纲分析1 考试说明分析 
+1.1 软件设计师考试的总体要求 
     软件设计师主要完成三项工作 (1)编写文档 (2)组织指导程序员开展工作 (3)软件优化
 和集成测试,开发高质量软件。本工作要求具有工程师的实际工作能力和业务水平。 
-　　具体讲就是,通过本考试的合格人员,能根据软件开发项目管理和软件工程的要求,按照
-系统总体设计规格说明书进行软件设计,编写程序设计规格说明书等相应的文档,组织和指导
-程序员编写、调试程序,并对软件进行优化和集成测试开发出符合系统总体设计要求的高质
-量软件。  
-</code></pre><!--break-->
-<pre><code>1.2 考试内容要求 
-　　知识点的掌握程度从深到浅可分五个层次。分别要求为熟练掌握、掌握、理解、熟悉和
-了解。其中包括2个熟练掌握常用数据结构和常用算法、软件设计的方法和技术、8个掌
-握、2个熟悉，1个正确理解
-具体体现在以下12个方面  
-　　(1) 掌握数据表示、算术和逻辑运算  
-　　(2) 掌握相关的应用数学、离散数学的基础知识  
-　　(3) 掌握计算机体系结构以及各主要部件的性能和基本工作原理  
-　　(4) 掌握操作系统、程序设计语言的基础知识了解编译程序的基本知识  
-　　(5) 熟练掌握常用数据结构和常用算法  
-　　(6) 熟悉数据库、网络和多媒体的基础知识  
-　　(7) 掌握C程序设计语言，以及C++、Java、Visual Basic、Visual C++中的一种程序
-设计语言  
-　　(8) 熟悉软件工程、软件过程改进和软件开发项目管理的基础知识  
-　　(9) 熟练掌握软件设计的方法和技术  
-　　(10) 掌握常用信息技术标准、安全性以及有关法律、法规的基本知识  
-　　(11) 了解信息化、计算机应用的基础知识  
-　　(12) 正确阅读和理解计算机领域的英文资料。 
-</code></pre><p>2 考试范围 </p>
-<pre><code>2.1 考试科目1：计算机与软件工程知识 本部分包含以下内容 
-        （1）计算机科学基础 
-        （2）计算机系统知识 
-        （3）系统开发和运行知识 
-        （4）安全性知识
-        （5）标准化知识 
-        （6）信息化基础知识 
-        （7）计算机专业英语
+　　具体讲就是,通过本考试的合格人
+          ...
 
-    2.1.1 计算机科学基础 
-        2.1.1.1 数制及其转换 
-            *二进制、十进制和十六进制等常用制数制及其相互转换  
-        2.1.1.2 数据的表示 
-            * 原码、反码、补码、移码表示，整数和实数的机内表示，精度和溢出 
-            * 非数值表示，字符和汉字表示、声音表示、图像表示 
-            * 校验方法和校验码，奇偶校验码、海明校验码、循环冗余校验码  
-        2.1.1.3 算术运算和逻辑运算 
-            * 计算机中的二进制数运算方法 
-            * 逻辑代数的基本运算和逻辑表达式的化简  
-        2.1.1.4 【分析2.1.1.1 / 2.1.1.2 / 2.1.1.3】 
-        　　本部分要求与程序员考试大纲基本一致 
-        　　重点数的表示、校验码 
-        　　难点数的四种编码原码、反码、补码、移码及相互之间的变换方法。浮点数的表示
-        以及其规格化。 
-        　　考试题型一般分布在数制表示、数据表示、校验码的长度、逻辑表达式公式、等效
-        变换，明确&quot;与&quot;、&quot;非&quot;、&quot;异或&quot;的运算规则。 
-        　　考试出现频率较高的内容浮点数规格化、进制转换、求反补码。  
-        2.1.1.5 数学基础知识 
-        * 命题逻辑、谓词逻辑、形式逻辑的基础知识 
-        * 常用数值计算误差、矩阵和行列式、近似求解方程、插值、数值积分 
-        * 排列组合、概率论应用、应用统计数据的统计分析 
-        * 运算基本方法预测与决策、线性规划、网络图、模拟  
-        2.1.1.6 【分析2.1.1.5】 
-        　　考纲要求掌握相关的应用数学、离散数学的基础知识，本部分内容作为背景知识，虽不
-        专门考察，但在其他题目中尤其是程序设计中出现。  
-        2.1.1.7 常用数据结构 
-        * 数组（静态数组、动态数组）、线性表、链表（单向链表、双向链表、循环链表）、队列、
-        栈、树（二叉树、查找树、平衡树、线索树、线索树、堆）、图等的定义、存储和操作 
-        * Hash（存储地址计算，冲突处理）
-        2.1.1.8 常用算法 
-        * 排序算法、查找算法、数值计算方法、字符串处理方法、数据压缩算法、递归算法、图的
-        相关算法
-        * 算法与数据结构的关系、算法效率、算法设计、算法描述流程图、伪代码、决策表、
-        算法的复杂性  
-        2.1.1.9 【分析2.1.1.7 / 2.1.1.8】 
-        　　因为数据结构是程序设计的基础，算法与数据结构密切相关，因此本部分为考试重点内
-        容，要求熟练掌握。 
-        　　重点顺序存储结构和链式存储结构的特点、链表中的头结点、栈的运算与溢出、循环
-        队列的基本操作 
-        　　数组元素的存储位置、特殊矩阵的压缩存储、广义表的表头和表尾求法 
-        　　二叉树存储方法、由遍历序列确定二叉树、二叉树的计数问题 图的遍历算法、最小生成
-        树算法、拓朴排序和关键路径、最短路径算法 平均查找长度、折半查找判定树、平衡二叉树
-        的最少结点数、插入运算及平衡化处理、哈希表的构造和查找。
-        　　排序的稳定问题、快速排序的分析及改进、内部排序的时间下界、算法时间复杂度分析 
-        　　难点二叉树节点与深度的关系、图的存储（矩阵、邻接表）与操作、遍历、 
-        　　考试出现频率较高的内容 树的遍历、数据元素存储方式、查找树、平衡树 
-        　　考试题型一般分布在数据元素存储方式、队和栈的性质及其对比、链表操作、二叉树
-        的定义及其性质、二叉树的遍历/节点计算、树的遍历、查找树、平衡树等，图的概念及其性
-        质。 
-        　　常见的排序算法、查找算法、递归算法、算法的基本特点、常用算法思想、算法效率的
-        比较时间、空间复杂度、算法描述、算法复杂性比较。 
-
-    2.1.2 计算机系统知识 
-        2.1.2.1 硬件知识 
-        2.1.2.1.1 计算机系统的组成、体系结构分类及特性 
-        　　* CPU和存储器的组成、性能和基本工作原理 
-        　　* 常用I/O设备、通信设备的性能以及基本工作原理 
-        　　* I/O接口的功能、类型和特性 
-        *    中断系统、DMA、I/O处理机方式
-        　　* CISC/RISC，流水线操作，多处理机，并行处理  
-        2.1.2.1.2 存储系统 
-        　　* 主存-Cache存储系统的工作原理 
-        　　* 虚拟存储器基本工作原理多级存储体系的性能价格 
-        　　* RAID类型和特性  
-        2.1.2.1.3 【分析2.1.2.1.1 / 2.1.2.1.2】 分析
-        　　磁盘存储器的容量计算、地址映射、流水线、系统结构分类 
-        　　重点   Cache替换算法、内存与接口的编址方式、流水线操作 
-        　　难点I/O控制方式、地址计算、并行处理的概念和层次 
-        　　考试出现频率较高的内容指令的寻址方式以及指令的执行过程存储容量的计算、流
-        水线处理机的主要指标、CISC/RISC比较等。
-        　　2.1.2.1.4 安全性、可靠性与系统性能评测基础知识 
-        　　* 诊断与容错 
-        　　* 系统可靠性分析评价 
-        　　* 计算机系统性能评测方式  
-        　　2.1.2.1.5 【分析2.1.2.1.4】
-        　　本部分内容多为记忆型内容 
-        　　重点数据加密/解密知识、计算机安全等级、认证技术、数字签名等 平均无故障时间、
-        平均修复时间定义、计算机可靠性模型、性能评价。
-        　　难点数据加密/解密知识、密钥体制 考试出现频率较高的内容可靠性能评价、数据安
-        全知识、计算机可靠性及性能评价。
-        　　2.1.2.2 软件知识
-        　　 2.1.2.2.1 操作系统知识。
-        　　* 操作系统的内核中断控制、进程、线程概念 
-        　　* 处理机管理状态转换、共享与互斥、分时轮转、抢占、死锁 
-        　　* 存储管理主存保护、动态连接分配、分段、分页、虚存 
-        　　* 设备管理I/O控制、假脱机 
-        　　* 文件管理文件目录、文件组织、存取方法、存取控制、恢复处理 
-        　　* 作业管理作业调度、作业控制语言JCL、多道程序设计 
-        　　* 汉字处理多媒体处理人机界面 
-        　　* 网络操作系统和嵌入式操作系统基础知识 
-        　　* 操作系统的配置  
-        2.1.2.2.2 【分析2.1.2.2.1】 
-        　　重点操作系统的五大管理功能其中如处理机管理、存储管理、作业调度、进程调度、
-        页面调度等尤为重要、状态转换、共享与互斥、分时轮转、抢占、死锁 
-        　　难点作业调度、进程调度、页面调度算法、PV操作 考试题型一般分布在操作系统
-        的概述、处理机管理、存储、文件管理、作业、进程调度、进程状态变化 
-        　　考试出现频率较高的内容PV操作、进程死锁/同步、内存分配、并发执行程序、进程
-        间状态转换、PV实现进程间的同步与互斥、死锁及其避免、地址变换、页面置换、工作集  
-        2.1.2.2.3 程序设计语言和语言处理程序的知识 
-        　　* 汇编、编译、解释系统的基础知识和基本工作原理 
-        　　* 程序设计语言的基本成分数据、运算、控制和传输，过程（函数）调用 
-        　　* 各类程序设计语言主要特点和适用情况  
-        2.1.2.2.4 【分析2.1.2.2.3】 
-        　　分析文法考查、自动机、正则式 
-        　　重点编译程序的基本组成、正则表达式和有限自动机、文法及语言的形式描述、中间
-        代码、自动机原理、文法和语言的定义 
-        　　考试出现频率较高的内容正则表达式和正则集、有限自动机和正则表达式的转换  
-        2.1.2.3 计算机网络知识 
-        　　* 网络体系结构网络拓扑、OSI/RM、基本的网络协议 
-        　　* 传输介质、传输技术、传输方法、传输控制 
-        　　* 常用网络设备和各类通信设备 
-        　　* Client/Server结构、Browser/Server结构 
-        　　* LAN拓扑存取控制LAN的组网LAN间连接LAN-WAN连接 
-        　　* 因特网基础知识以及应用 
-        　　* 网络软件 
-        　　* 网络管理 
-        　　* 网络性能分析  
-        2.1.2.4 【分析2.1.2.3】 
-        　　计算机网络中对OSI/RM七层的划分及各种协议的功能。传输理论、互联设备、Internet
-        知识，除参考模型理论外，其他的比较比较琐碎，需要知识积累。 
-        　　重点网络分类、拓扑结构、OSI参考模型层次划分及对应的协议、带宽计算、子网划分、
-        防火墙技术
-        　　难点IP子网划分，传输控制、各层协议的功能
-        　　考试题型一般分布在这部分知识除了上面的难点部分外，基本属于了解记忆性的知识
-        点，知识点比较散乱，但考试中考点均落在大纲中列出的知识点中。
-            考试出现频率较高的内容TCP/IP协议、参考模型7层协议、IP地址的分类、各种网络
-        设备的比较  
-        2.1.2.5 数据库知识 
-        　　* 数据库管理系统的功能和特征 
-        　　* 数据库模型概念模式、外模式、内模式 
-        　　* 数据模型ER图，第一范式、第二范式、第三范式 
-        　　* 数据操作集合运算和关系运算 
-        　　* 数据库语言SQL 
-        　　* 数据库的控制功能并发控制、恢复、安全性、完整性 
-        　　* 数据仓库和分布式数据库基础知识  
-        2.1.2.6 【分析2.1.2.5】 
-        　　无论对上午题目还是下午题目本部分都很重要这是学习和复习的一个重点。 重点
-        用E-R模型表示现实问题扩充的E-R模型、ER图向关系模式的转换、数据库语言SQL
-        、对SELECT查询语句的应用、关系代数表达式、关系模型的完整性约束、函数依赖 难点
-        五种基本的关系运算方法、组合的关系运算方法、规则化理论、函数依赖、分解的保
-        持函数依赖、无损连接又保持函数依赖的分解、判断一个分解的无损连接性和保持函数 考试
-        出现频率较高的内容数据模型、关系运算与SQL语句的转换、函数依赖  
-        　　2.1.2.7 多媒体知识 
-        　　* 多媒体系统基础知识多媒体设备的性能特性常用多媒体文件格式 
-        　　* 简单图形的绘制图像文件的处理方法 
-        　　* 音频和视频信息的应用 
-        　　* 多媒体应用开发过程  
-        　　2.1.2.8 【分析2.1.2.7】 
-        　　基本属于了解记忆性的知识点。 
-        　　重点多媒体的基本概念、声音数字化的过程、图像压缩编码、视频文件的国际标准、
-        流媒体概念、多媒体计算机系统、虚拟现实技术 
-        　　难点多媒体信息的容量计算、数据压缩、常用多媒体文件格式、音频和视频的物理特
-        征等 
-        　　考试出现频率较高的内容基本知识、信息的容量计算  
-        　　2.1.2.9 系统性能知识 
-        　　* 性能指标响应时间、吞吐量、周转时间和性能设计 
-        　　* 性能测试和性能评估
-        　　* 可靠性指标及计算、可靠性设计 
-        　　* 可靠性测试和可靠性评估  
-            2.1.2.10 【分析2.1.2.9】 
-        　　    重点可靠性评估 
-        　　    考试出现频率较高的内容系统可靠性的计算、设备周转时间  
-            2.1.2.11 计算机应用基础知识 
-                * 信息管理、数据处理、辅助设计、自动控制、科学计算、人工智能等基础知识 
-                * 远程通信服务基础知识 
-                * 常用应用系统  
-            2.1.2.12 【分析2.1.2.11】 
-                本部分内容不是考试重点做一般了解即可。  
-
-        2.1.3 系统开发和运行知识 
-            本部分内容涉及上午考试和下午考试是软件设计师工作能力的考查重点。  
-            2.1.3.1 软件工程、软件过程改进和软件开发项目管理知识 
-                * 软件工程知识 
-                * 软件开发生命周期各阶段的目标和任务 
-                * 软件开发项目管理基础知识时间管理、成本管理、质量管理、人力资源管理、
-        风险管理等及其常用管理工具 
-                * 主要的软件开发方法生命周期法、原型法、面向对象法、CASE 
-                * 软件开发工具与环境知识 
-                * 软件过程改进知识 
-                * 软件质量管理知识 
-                * 软件开发过程评估、软件能力成熟评估基础知识  
-            2.1.3.2 【分析2.1.3.1】 
-                重点软件开发方法、CMM、成本估算、风险分析、进度管理、人员管理、软件开
-        发环境  
-            2.1.3.3 系统分析基础知识 
-                * 系统分析的目的和任务 
-                * 结构化分析方法数据流图（DFD）、数据字典（DD）、实体关系图（ERD）、描
-        述加工处理的结构化语言 
-                * 统一建模语言（UML） 
-                * 系统规格说明书  
-            2.1.3.4 【分析2.1.3.3】 
-                高度重视UML在系统分析中的应用 
-                重点数据流图（DFD）、数据字典（DD）、实体关系图（ERD）考点UML的各类
-        图。
-            2.1.3.5 系统设计知识 
-                * 系统设计的目的和任务 
-                * 结构化设计方法和工具系统流程图、HIPO图、控制流程图 
-                * 系统总体结构设计总体布局、设计原则、模块结构设计、数据存储设计、系统
-        配置方案 
-                * 系统详细设计代码设计、数据库设计、用户界面设计、处理过程设计 
-                * 系统设计说明书  
-            2.1.3.6 【分析2.1.3.5】 
-                重点系统流程图、HIPO图、控制流程图  
-            2.1.3.7 系统实施知识 
-                * 系统实施的主要任务 
-                * 结构化程序设计、面向对象程序设计、可视化程序设计 
-                * 程序设计风格 * 程序设计语言的选择 
-                * 系统测试的目的、类型系统测试方法黑盒测试、白盒测试、灰盒测试 
-                * 测试设计和管理错误曲线、错误排除、收敛、注入故障、测试用例设计、系统
-        测试报告 
-                * 系统转换基础知识  
-            2.1.3.8 系统运行和维护知识 
-                * 系统运行管理基础知识 
-                * 系统维护基础知识 
-                * 系统评价基础知识  
-            2.1.3.9 【分析2.1.3.7 / 2.1.3.8】 
-                重点结构化设计中信息流、变换分析、系统结构设计原则、系统划分、模块设计、
-        数据存储设计、面向对象程序设计、测试方法、系统维护的分类 
-                难点系统测试方法、测试分类、系统可维护性评价指标  
-            2.1.3.10 面向对象开发方法 
-                * 面向对象开发概念类、对象、属性、封装性、继承性、多态性、对象之间的引
-        用 
-                * 面向对象开发方法的优越性以及有效领域 
-                * 面向对象设计方法体系结构、类的设计、用户接口设计 
-                * 面向对象实现方法选择程序设计语言、类的实现、方法的实现、用户接口的实
-        现、准备测试数据 
-                * 面向对象程序设计语言如C++、Java、Visual、Bsasic、Visual C++的基本机
-        制 
-                * 面向对象数据库、分布式对象的概念  
-            2.1.3.11 【分析2.1.3.10】 
-                重点面向对象开发类、对象、属性、封装性、继承性、多态性、OMT方法 难
-        点建议在数据流图、结构化分析方法上多加掌握。  
-
-        2.1.4 【分析2.1.3】 
-            考试题型一般分布：DFD、软件的生存周期；数据流图；模块间的关系；软件测试
-    的分类、软件质量管理（标准）软件的特性、主要的软件开发方法、系统测试、软件能力成
-    熟评估 
-            考试出现频率较高的内容数据流图、黑盒/白盒测试、面向对象技术的概念。
-
-        2.1.5 安全性知识 
-            * 安全性基本概念 
-            * 防治计算机病毒、防范计算机犯罪 
-            * 存取控制、防闯入、安全管理措施 
-            * 加密与解密机制 
-            * 风险分析、风险类型、抗风险措施和内部控制  
-
-        2.1.6 【分析2.1.5】 
-            系统安全问题是目前社会关注的问题，也是应用价值较高的知识，可结合现实中的相关
-        问题来加深理解。 
-            考试出现频率较高的内容加密与解密算法、  
-
-        2.1.7 标准化知识 
-            * 标准化意识、标准化的发展、标准制订过程 
-            * 国际标准、国家标准、行业标准、企业标准基本知识    
-    　　    * 代码标准、文件格式标准、安全标准、软件开发规范和文档标准知识 
-    　　    * 标准化机构  
-
-    　　2.1.8 信息化基础知识 
-    　　    * 信息化意识 
-    　　    * 全球信息化趋势、国家信息化战略、企业信息化战略和策略 
-    　　    * 有关的法律、法规 
-    　　    * 远程教育、电子商务、电子政务等基础知识 
-    　　    * 企业信息资源管理基础知识
-
-    　　2.1.9 【分析2.1.7 / 2.1.8】 
-    　　    信息化、标准化知识是新增考点。标准化方面有标准标识，标准修订等是对基本素
-    质的考查，也要重视。  
-
-    　　2.1.10 计算机专业英语 
-    　　    * 掌握计算机技术的基本词汇 
-    　　    * 能正确阅读和理解计算机领域的英文资料 
-
-    　　2.1.11 【分析2.1.10】 
-    　　    专业英语，是对专业知识和英语水平的考查，考前需有意识阅读点英文专业资料。 
-    　　    考试题型一般分布在：软件行业标准，计算机安全基础知识，信息化基础知识。 
-    　　    考试出现频率较高的内容：行业标准的类别：计算机安全，CMM分类，计算机软
-    件著作权问题。  
-
-   2.2 考试科目2
-　　    软件设计 本部分具体内容如下 
-　　    （1）外部设计 
-　　    （2）内部设计 
-　　    （3）程序设计 
-　　    （4）系统实施 
-　　    （5）软件工程 
-　　本部分所涉及内容为软件设计的日常工作这些内容同样出现在上午考试试题中。  
-    2.2.1 外部设计 
-    　　2.2.1.1 理解系统需求说明 
-    　　2.2.1.2 系统开发的准备 
-    　　    * 选择开发方法、准备开发环境、制订开发计划  
-    　　2.2.1.3 设计系统功能 
-    　　    * 选择系统结构
-    　　    设计各子系统的功能和接口设计安全性策略、需求和实现方法制订详细的工作
-    流和数据流  
-    　　2.2.1.4 设计数据模型 
-    　　* 设计ER模型、数据模型  
-    　　2.2.1.5 编写外部设计文档 
-    　　* 系统配置图、各子系统关系图、系统流程图、系统功能说明书、输入输出规格说明、
-    数据规格说明、用户手册框架 
-    　　* 设计系统测试要求  
-    　　2.2.1.6 设计评审 应能由考试说明内容,来阅读  
-    　　2.2.2 内部设计 
-    　　2.2.2.1 设计软件结构 
-    　　* 按构件分解确定构件功能规格以及构件之间的接口 
-    　　* 采用中间件和工具  
-    　　2.2.2.2 设计输入输出 
-    　　* 屏幕界面设计、设计输入输出检查方法和检查信息  
-    　　2.2.2.3 设计物理数据 
-    　　* 分析数据特性确定逻辑数据组织方式、存储介质,设计记录格式和处理方式 
-    　　* 将逻辑数据结构换成物理数据结构,计算容量,进行优化  
-    　　2.2.2.4 构件的创建和重用 
-    　　* 创建、重用构件的概念 
-    　　* 使用子程序库或类库  
-    　　2.2.2.5 编写内部设计文档 
-    　　* 构件划分图、构件间的接口、构件处理说明、屏幕设计文档、报表设计文档、文件设
-    计文档、数据库设计文档  
-    　　2.2.2.6 设计评审  
-    　　2.2.3 程序设计 
-    　　2.2.3.1 模块划分原则、方法、标准 
-    　　2.2.3.2 编写程序设计文档 
-    　　* 模块规格说明书功能和接口说明、程序处理逻辑的描述、输入输出数据格式的描述
-         * 测试要求说明书测试类型和目标、测试用例、测试方法  
-    　　2.2.3.3 程序设计评审  
-    　　2.2.4 系统实施 
-    　　2.2.4.1 配置计算机系统及其环境 
-    　　2.2.4.2 选择合适的程序设计语言 
-    　　*掌握C程序设计语言,以及C++、Java、Visual Basic、Visual C++中任一种程序设计语
-    言,以便能指导程序员进行编程和测试,并进行必要的优化  
-    　　2.2.4.3 系统测试 
-    　　* 指导程序员进行模块测试,并进行验收 
-    　　* 准备系统集成测试环境和测试工具
-    　　* 准备测试数据 
-    　　* 写出测试报告  
-    　　2.2.5 软件工程 
-    　　* 软件生存期模型(瀑布模型、螺旋模型、喷泉模型)和软件成本模型 
-    　　* 定义软件需求(系统化的目标、配置、功能、性能和约束)
-    　　* 描述软件需求的方法(功能层次模型、数据流模型、控制流模型、面向数据的模型、
-    面向对象的模型等) 
-    　　* 定义软件需求的方法(结构化分析方法、面向对象分析方法)
-    　　* 软件设计(分析与集成、逐步求精、抽象、信息隐蔽) 
-    　　* 软件设计方法(结构化设计方法、Jackson方法、Warnier方法、面向对象设计方法)
-      * 程序设计(结构化程序设计、面向对象程序设计) 
-    　　* 软件测试的原则与方法 
-    　　* 软件质量（软件质量特性、软件质量控制） 
-    　　* 软件过程评估基本方法、软件能力成熟度评估基本方法 
-    　　* 软件开发环境和开发工具（分析工具、设计工具、编程工具、测试工具、维护工具、
-    CASE） 
-    　　* 软件工程发展趋势（面向构件，统一建模语言，UML） 
-    　　* 软件过程改进模型和方法  
-
-　　2.3 【2.2综合分析】 
-    　　软件设计师,关键是设计软件的能力。 
-    　　考纲要求要熟悉软件工程、软件过程改进和软件开发项目管理的基础知识;熟练掌握软
-    件设计的方法和技术;掌握C程序设计语言及指定的四种面向对象语言中的一种。 
-    　　这部分主要体现在下午考试中,现就如何应对下午考试进行分析 
-    　　近几次考试中下午试题分五个题目,一个数据库,一个程序填空题、一个面向对象的语言
-    题另两个题目分别为数据流图、UML、或流程图等。 
-    　　数据库题目要求补全SQL语言,这要求考生熟悉SQL的语言,无论对上午题目还是下午
-    题目都很重要。这是学习和复习的一个重点。 
-    　　数据流图DFD是一种分析系统数据流程的图形,意在让用户理解系统的功能、输入、输
-    出和数据存储等。请认真弄清其应用,在画出数据流图的情况下,系统的功能也就确定了,再经
-    过细化,逐步向物理结构迈进。考核时,试题多从父图和子图的平衡来分析。这部分内容,一个
-    解题的关键是高度重视题目说明,务必正确、深入理解其内容,必要时要读几遍同时对于给出
-    的图表,也要务必看懂。这样答题就轻松了,答案实际就蕴含在说明中。 
-    　　流程图类题目是大家再熟悉不过的了,它就一个具体问题的解题思路进行描述,是面向
-    过程的。但所求问题是千差万别的,因此应理解思路,细心作答。 
-    　　答题形式最简单也是难度最大的是程序填空。为便于阅卷,这类题目以程序填空形式出现,
-    这不仅要求理解问题本质,同时也要弄清作者解题思路,这一点比自己独立完成程序设计要难
-    得的多。针对问题,首先设计自己的思路,如何解决问题,先后顺序怎样; 然后试读程序,如何
-    思路大体一致,很好,这题容易解决了。如思路不一致,设法弄清每一段代码的功能,其逻辑结
-    构怎样,进而弄清命题人的解题思路,再顺势解决问题。人们常讲,答案就在题目中，这是对的。
-    在分析问题过程中，找到所求答案。不过前提条件是考生要熟悉这种语言，又要明白解题思
-    路，这样才能正确作答。这个题目比较难，要么不得分，要么得全分。 
-    　　近年对于统一建模语言UML考查较多，已引起了考生的注意。它代表了软件工程的发展
-    趋势，目前是可视化建模的事实上的工业标准。人们对于图的理解相对其他形式更容易一些，
-    图能更清晰地描述和说明问题的本质，因此，UML体现了这一特点。这类题目难度与数据流图
-    相似，自然解题思想也相同。从形式上看，数据流图更朴实一些，UML类的题目则透出一种新
-    颖、现代的气息。 
-    　　最后的题目面向对象语言是一个选做题，给考生以自由，可以发挥个人的优势。命题已
-    注意到不同语言的考查难度一致性，要求考生就同一问题回答，实现了形式上的公平，自然
-    是一个进步。
-</code></pre>
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/06/2014-03-19-2012软件设计师考纲及分析/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1851,8 +990,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/06/2014-12-12-StackEdit/" itemprop="url">
-                  开始使用stackedit.io
+                <a class="post-title-link" href="/2016/07/06/2014-05-07-vagrant/" itemprop="url">
+                  使用Vagrant配置开发环境
                 </a>
               
             
@@ -1864,7 +1003,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-06T14:10:25+08:00" content="2016-07-06">
               2016-07-06
             </time>
@@ -1876,7 +1015,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/教程/" itemprop="url" rel="index">
@@ -1895,8 +1034,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/06/2014-12-12-StackEdit/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/2014-12-12-StackEdit/" itemprop="commentsCount"></span>
+                <a href="/2016/07/06/2014-05-07-vagrant/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/2014-05-07-vagrant/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1921,200 +1060,141 @@
       
         
           
-            <h1 id="Welcome-to-StackEdit"><a href="#Welcome-to-StackEdit" class="headerlink" title="Welcome to StackEdit!"></a>Welcome to StackEdit!</h1><p>Hey! I’m your first Markdown document in <strong>StackEdit</strong>[^stackedit]. Don’t delete me, I’m very helpful! I can be recovered anyway in the <strong>Utils</strong> tab of the <i class="icon-cog"></i> <strong>Settings</strong> dialog.</p>
-<hr>
-<h2 id="Documents"><a href="#Documents" class="headerlink" title="Documents"></a>Documents</h2><p>StackEdit stores your documents in your browser, which means all your documents are automatically saved locally and are accessible <strong>offline!</strong></p>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li>StackEdit is accessible offline after the application has been loaded for the first time.</li>
-<li>Your local documents are not shared between different browsers or computers.</li>
-<li>Clearing your browser’s data may <strong>delete all your local documents!</strong> Make sure your documents are synchronized with <strong>Google Drive</strong> or <strong>Dropbox</strong> (check out the <a href="#synchronization"><i class="icon-refresh"></i> Synchronization</a> section).</li>
-</ul>
-</blockquote>
-<h4 id="Create-a-document"><a href="#Create-a-document" class="headerlink" title=" Create a document"></a><i class="icon-file"></i> Create a document</h4><p>The document panel is accessible using the <i class="icon-folder-open"></i> button in the navigation bar. You can create a new document by clicking <i class="icon-file"></i> <strong>New document</strong> in the document panel.</p>
-<h4 id="Switch-to-another-document"><a href="#Switch-to-another-document" class="headerlink" title=" Switch to another document"></a><i class="icon-folder-open"></i> Switch to another document</h4><p>All your local documents are listed in the document panel. You can switch from one to another by clicking a document in the list or you can toggle documents using <kbd>Ctrl+[</kbd> and <kbd>Ctrl+]</kbd>.</p>
-<h4 id="Rename-a-document"><a href="#Rename-a-document" class="headerlink" title=" Rename a document"></a><i class="icon-pencil"></i> Rename a document</h4><p>You can rename the current document by clicking the document title in the navigation bar.</p>
-<h4 id="Delete-a-document"><a href="#Delete-a-document" class="headerlink" title=" Delete a document"></a><i class="icon-trash"></i> Delete a document</h4><p>You can delete the current document by clicking <i class="icon-trash"></i> <strong>Delete document</strong> in the document panel.</p>
-<h4 id="Export-a-document"><a href="#Export-a-document" class="headerlink" title=" Export a document"></a><i class="icon-hdd"></i> Export a document</h4><p>You can save the current document to a file by clicking <i class="icon-hdd"></i> <strong>Export to disk</strong> from the <i class="icon-provider-stackedit"></i> menu panel.</p>
-<blockquote>
-<p><strong>Tip:</strong> Check out the <a href="#publish-a-document"><i class="icon-upload"></i> Publish a document</a> section for a description of the different output formats.</p>
-</blockquote>
-<hr>
-<h2 id="Synchronization"><a href="#Synchronization" class="headerlink" title="Synchronization"></a>Synchronization</h2><p>StackEdit can be combined with <i class="icon-provider-gdrive"></i> <strong>Google Drive</strong> and <i class="icon-provider-dropbox"></i> <strong>Dropbox</strong> to have your documents saved in the <em>Cloud</em>. The synchronization mechanism takes care of uploading your modifications or downloading the latest version of your documents.</p>
-<blockquote>
-<p><strong>Note:</strong></p>
-<ul>
-<li>Full access to <strong>Google Drive</strong> or <strong>Dropbox</strong> is required to be able to import any document in StackEdit. Permission restrictions can be configured in the settings.</li>
-<li>Imported documents are downloaded in your browser and are not transmitted to a server.</li>
-<li>If you experience problems saving your documents on Google Drive, check and optionally disable browser extensions, such as Disconnect.</li>
-</ul>
-</blockquote>
-<h4 id="Open-a-document"><a href="#Open-a-document" class="headerlink" title=" Open a document"></a><i class="icon-refresh"></i> Open a document</h4><p>You can open a document from <i class="icon-provider-gdrive"></i> <strong>Google Drive</strong> or the <i class="icon-provider-dropbox"></i> <strong>Dropbox</strong> by opening the <i class="icon-refresh"></i> <strong>Synchronize</strong> sub-menu and by clicking <strong>Open from…</strong>. Once opened, any modification in your document will be automatically synchronized with the file in your <strong>Google Drive</strong> / <strong>Dropbox</strong> account.</p>
-<h4 id="Save-a-document"><a href="#Save-a-document" class="headerlink" title=" Save a document"></a><i class="icon-refresh"></i> Save a document</h4><p>You can save any document by opening the <i class="icon-refresh"></i> <strong>Synchronize</strong> sub-menu and by clicking <strong>Save on…</strong>. Even if your document is already synchronized with <strong>Google Drive</strong> or <strong>Dropbox</strong>, you can export it to a another location. StackEdit can synchronize one document with multiple locations and accounts.</p>
-<h4 id="Synchronize-a-document"><a href="#Synchronize-a-document" class="headerlink" title=" Synchronize a document"></a><i class="icon-refresh"></i> Synchronize a document</h4><p>Once your document is linked to a <i class="icon-provider-gdrive"></i> <strong>Google Drive</strong> or a <i class="icon-provider-dropbox"></i> <strong>Dropbox</strong> file, StackEdit will periodically (every 3 minutes) synchronize it by downloading/uploading any modification. A merge will be performed if necessary and conflicts will be detected.</p>
-<p>If you just have modified your document and you want to force the synchronization, click the <i class="icon-refresh"></i> button in the navigation bar.</p>
-<blockquote>
-<p><strong>Note:</strong> The <i class="icon-refresh"></i> button is disabled when you have no document to synchronize.</p>
-</blockquote>
-<h4 id="Manage-document-synchronization"><a href="#Manage-document-synchronization" class="headerlink" title=" Manage document synchronization"></a><i class="icon-refresh"></i> Manage document synchronization</h4><p>Since one document can be synchronized with multiple locations, you can list and manage synchronized locations by clicking <i class="icon-refresh"></i> <strong>Manage synchronization</strong> in the <i class="icon-refresh"></i> <strong>Synchronize</strong> sub-menu. This will let you remove synchronization locations that are associated to your document.</p>
-<blockquote>
-<p><strong>Note:</strong> If you delete the file from <strong>Google Drive</strong> or from <strong>Dropbox</strong>, the document will no longer be synchronized with that location.</p>
-</blockquote>
-<hr>
-<h2 id="Publication"><a href="#Publication" class="headerlink" title="Publication"></a>Publication</h2><p>Once you are happy with your document, you can publish it on different websites directly from StackEdit. As for now, StackEdit can publish on <strong>Blogger</strong>, <strong>Dropbox</strong>, <strong>Gist</strong>, <strong>GitHub</strong>, <strong>Google Drive</strong>, <strong>Tumblr</strong>, <strong>WordPress</strong> and on any SSH server.</p>
-<h4 id="Publish-a-document"><a href="#Publish-a-document" class="headerlink" title=" Publish a document"></a><i class="icon-upload"></i> Publish a document</h4><p>You can publish your document by opening the <i class="icon-upload"></i> <strong>Publish</strong> sub-menu and by choosing a website. In the dialog box, you can choose the publication format:</p>
-<ul>
-<li>Markdown, to publish the Markdown text on a website that can interpret it (<strong>GitHub</strong> for instance),</li>
-<li>HTML, to publish the document converted into HTML (on a blog for example),</li>
-<li>Template, to have a full control of the output.</li>
-</ul>
-<blockquote>
-<p><strong>Note:</strong> The default template is a simple webpage wrapping your document in HTML format. You can customize it in the <strong>Advanced</strong> tab of the <i class="icon-cog"></i> <strong>Settings</strong> dialog.</p>
-</blockquote>
-<h4 id="Update-a-publication"><a href="#Update-a-publication" class="headerlink" title=" Update a publication"></a><i class="icon-upload"></i> Update a publication</h4><p>After publishing, StackEdit will keep your document linked to that publication which makes it easy for you to update it. Once you have modified your document and you want to update your publication, click on the <i class="icon-upload"></i> button in the navigation bar.</p>
-<blockquote>
-<p><strong>Note:</strong> The <i class="icon-upload"></i> button is disabled when your document has not been published yet.</p>
-</blockquote>
-<h4 id="Manage-document-publication"><a href="#Manage-document-publication" class="headerlink" title=" Manage document publication"></a><i class="icon-upload"></i> Manage document publication</h4><p>Since one document can be published on multiple locations, you can list and manage publish locations by clicking <i class="icon-upload"></i> <strong>Manage publication</strong> in the <i class="icon-provider-stackedit"></i> menu panel. This will let you remove publication locations that are associated to your document.</p>
-<blockquote>
-<p><strong>Note:</strong> If the file has been removed from the website or the blog, the document will no longer be published on that location.</p>
-</blockquote>
-<hr>
-<h2 id="Markdown-Extra"><a href="#Markdown-Extra" class="headerlink" title="Markdown Extra"></a>Markdown Extra</h2><p>StackEdit supports <strong>Markdown Extra</strong>, which extends <strong>Markdown</strong> syntax with some nice features.</p>
-<blockquote>
-<p><strong>Tip:</strong> You can disable any <strong>Markdown Extra</strong> feature in the <strong>Extensions</strong> tab of the <i class="icon-cog"></i> <strong>Settings</strong> dialog.</p>
-<p><strong>Note:</strong> You can find more information about <strong>Markdown</strong> syntax <a href="http://daringfireball.net/projects/markdown/syntax" title="Markdown" target="_blank" rel="external">here</a> and <strong>Markdown Extra</strong> extension <a href="https://github.com/jmcmanus/pagedown-extra" title="Pagedown Extra" target="_blank" rel="external">here</a>.</p>
-</blockquote>
-<h3 id="Tables"><a href="#Tables" class="headerlink" title="Tables"></a>Tables</h3><p><strong>Markdown Extra</strong> has a special syntax for tables:</p>
-<table>
-<thead>
-<tr>
-<th>Item</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Computer</td>
-<td>$1600</td>
-</tr>
-<tr>
-<td>Phone</td>
-<td>$12</td>
-</tr>
-<tr>
-<td>Pipe</td>
-<td>$1</td>
-</tr>
-</tbody>
-</table>
-<p>You can specify column alignment with one or two colons:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Item</th>
-<th style="text-align:right">Value</th>
-<th style="text-align:center">Qty</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Computer</td>
-<td style="text-align:right">$1600</td>
-<td style="text-align:center">5</td>
-</tr>
-<tr>
-<td style="text-align:left">Phone</td>
-<td style="text-align:right">$12</td>
-<td style="text-align:center">12</td>
-</tr>
-<tr>
-<td style="text-align:left">Pipe</td>
-<td style="text-align:right">$1</td>
-<td style="text-align:center">234</td>
-</tr>
-</tbody>
-</table>
-<h3 id="Definition-Lists"><a href="#Definition-Lists" class="headerlink" title="Definition Lists"></a>Definition Lists</h3><p><strong>Markdown Extra</strong> has a special syntax for definition lists too:</p>
-<p>Term 1<br>Term 2<br>:   Definition A<br>:   Definition B</p>
-<p>Term 3</p>
-<p>:   Definition C</p>
-<p>:   Definition D</p>
-<pre><code>&gt; part of definition D
-</code></pre><h3 id="Fenced-code-blocks"><a href="#Fenced-code-blocks" class="headerlink" title="Fenced code blocks"></a>Fenced code blocks</h3><p>GitHub’s fenced code blocks are also supported with <strong>Highlight.js</strong> syntax highlighting:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// Foo</div><div class="line">var bar = 0;</div></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>Tip:</strong> To use <strong>Prettify</strong> instead of <strong>Highlight.js</strong>, just configure the <strong>Markdown Extra</strong> extension in the <i class="icon-cog"></i> <strong>Settings</strong> dialog.</p>
-<p><strong>Note:</strong> You can find more information:</p>
-<ul>
-<li>about <strong>Prettify</strong> syntax highlighting <a href="https://code.google.com/p/google-code-prettify/" target="_blank" rel="external">here</a>,</li>
-<li>about <strong>Highlight.js</strong> syntax highlighting <a href="http://highlightjs.org/" target="_blank" rel="external">here</a>.</li>
-</ul>
-</blockquote>
-<h3 id="Footnotes"><a href="#Footnotes" class="headerlink" title="Footnotes"></a>Footnotes</h3><p>You can create footnotes like this[^footnote].</p>
-<p>  [^footnote]: Here is the <em>text</em> of the <strong>footnote</strong>.</p>
-<h3 id="SmartyPants"><a href="#SmartyPants" class="headerlink" title="SmartyPants"></a>SmartyPants</h3><p>SmartyPants converts ASCII punctuation characters into “smart” typographic punctuation HTML entities. For example:</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th>ASCII</th>
-<th>HTML</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td>Single backticks</td>
-<td><code>&#39;Isn&#39;t this fun?&#39;</code></td>
-<td>‘Isn’t this fun?’</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>Quotes</td>
-<td><code>&quot;Isn&#39;t this fun?&quot;</code></td>
-<td>“Isn’t this fun?”</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td>Dashes</td>
-<td><code>-- is en-dash, --- is em-dash</code></td>
-<td>– is en-dash, — is em-dash</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="Table-of-contents"><a href="#Table-of-contents" class="headerlink" title="Table of contents"></a>Table of contents</h3><p>You can insert a table of contents using the marker <code>[TOC]</code>:</p>
-<p>[TOC]</p>
-<h3 id="MathJax"><a href="#MathJax" class="headerlink" title="MathJax"></a>MathJax</h3><p>You can render <em>LaTeX</em> mathematical expressions using <strong>MathJax</strong>, as on <a href="http://math.stackexchange.com/" target="_blank" rel="external">math.stackexchange.com</a>:</p>
-<p>The <em>Gamma function</em> satisfying $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$ is via the Euler integral</p>
-<p>$$<br>\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt\,.<br>$$</p>
-<blockquote>
-<p><strong>Tip:</strong> To make sure mathematical expressions are rendered properly on your website, include <strong>MathJax</strong> into your template:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>Note:</strong> You can find more information about <strong>LaTeX</strong> mathematical expressions <a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" target="_blank" rel="external">here</a>.</p>
-</blockquote>
-<h3 id="UML-diagrams"><a href="#UML-diagrams" class="headerlink" title="UML diagrams"></a>UML diagrams</h3><p>You can also render sequence diagrams like this:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Alice-&gt;Bob: Hello Bob, how are you?</div><div class="line">Note right of Bob: Bob thinks</div><div class="line">Bob--&gt;Alice: I am good thanks!</div></pre></td></tr></table></figure>
-<p>And flow charts like this:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">st=&gt;start: Start</div><div class="line">e=&gt;end</div><div class="line">op=&gt;operation: My Operation</div><div class="line">cond=&gt;condition: Yes or No?</div><div class="line"></div><div class="line">st-&gt;op-&gt;cond</div><div class="line">cond(yes)-&gt;e</div><div class="line">cond(no)-&gt;op</div></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>Note:</strong> You can find more information:</p>
-<ul>
-<li>about <strong>Sequence diagrams</strong> syntax <a href="http://bramp.github.io/js-sequence-diagrams/" target="_blank" rel="external">here</a>,</li>
-<li>about <strong>Flow charts</strong> syntax <a href="http://adrai.github.io/flowchart.js/" target="_blank" rel="external">here</a>.</li>
-</ul>
-</blockquote>
-<h3 id="Support-StackEdit"><a href="#Support-StackEdit" class="headerlink" title="Support StackEdit"></a>Support StackEdit</h3><p><a href="https://monetizejs.com/authorize?client_id=ESTHdCYOi18iLhhO&amp;summary=true" target="_blank" rel="external"><img src="https://cdn.monetizejs.com/resources/button-32.png" alt=""></a></p>
-<p>  [^stackedit]: <a href="https://stackedit.io/" target="_blank" rel="external">StackEdit</a> is a full-featured, open-source Markdown editor based on PageDown, the Markdown library used by Stack Overflow and the other Stack Exchange sites.</p>
+          为了使线上环境和开发环境统一，使用vagrant可以在你使用的系统下搭建一套虚拟开发环境；让开发者更方便的在统一的环境下进行开发；避免环境差异带了的问题。并且vagrant的使用和配置都非常简单。
+使用Vagrant搭建虚拟环境（windows系统为例）1. 安装VirtualBoxVagrant需
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/06/2014-05-07-vagrant/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/06/2014-05-08-sublime-text-2/" itemprop="url">
+                  使用Sublime Text 2
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-07-06T14:10:25+08:00" content="2016-07-06">
+              2016-07-06
+            </time>
+          </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/教程/" itemprop="url" rel="index">
+                    <span itemprop="name">教程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/06/2014-05-08-sublime-text-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/2014-05-08-sublime-text-2/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          程序开发，开发语言（html,javascript,php,python,go）,要选择一个轻便、快捷的编辑器，那么Sublime Text 2是个不错的选择；
+使用Sublime Text 2（windows系统为例）1. 安装Sublime Text 2下载Sublime Text 2，http
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/06/2014-05-08-sublime-text-2/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -2175,7 +1255,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <span class="post-meta-item-text">Posted on</span>
             <time itemprop="dateCreated" datetime="2016-07-06T14:10:25+08:00" content="2016-07-06">
               2016-07-06
             </time>
@@ -2187,7 +1267,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">in</span>
+              <span class="post-meta-item-text">In</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/技术/" itemprop="url" rel="index">
@@ -2232,39 +1312,140 @@
       
         
           
-            <p>自从我发现，PostgreSQL 切割日志不再需要使用 logrotate 或者 cronolog，而是可以在log_filename 中使用变量来实现日志切割，就很希望nginx也能支持。</p>
-<p>事实证明，nginx不仅可以并且很容易实现，从Nginx引进了在access_log中使用变量的指令(0.7.4版本添加)，和<strong>$time_iso8601</strong> 变量提供了ISO 8601格式的时间（0.9.6版本添加）</p>
-<p>请注意，不能在<strong>error_log</strong>中使用变量，因为，当文件不可写时任何隐含的错误将不能被写入；</p>
-<p>这里是$time_iso8601格式的实例：</p>
-<pre><code>2014-05-04T18:12:02+02:00
-</code></pre><p>可以使用“if”语句用正则表达式，取得需要的时间，设置到变量中使用。</p>
-<p>按天分割日志，可以在服务上使用下面的语句片段：</p>
-<pre><code>if ($time_iso8601 ~ &quot;^(\d{4})-(\d{2})-(\d{2})&quot;) {
-    set $year $1;
-    set $month $2;
-    set $day $3;
-}
+          自从我发现，PostgreSQL 切割日志不再需要使用 logrotate 或者 cronolog，而是可以在log_filename 中使用变量来实现日志切割，就很希望nginx也能支持。
+事实证明，nginx不仅可以并且很容易实现，从Nginx引进了在access_log中使用变量的指令(0.7
+          ...
 
-access_log /var/log/nginx/$year-$month-$day-access.log;
-</code></pre><p>另外，我们也可以使用Perl兼容的正则表达式格式实现：</p>
-<pre><code>if ($time_iso8601 ~ &quot;^(?&lt;year&gt;\d{4})-(?&lt;month&gt;\d{2})-(?&lt;day&gt;\d{2})&quot;) {}
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/06/2015-01-05-[翻译]Nginx使用配置文件实现日志切割/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
 
-access_log /var/log/nginx/$year-$month-$day-access.log;
-</code></pre><p>要使用到时、分、秒，我们可以使用下面的片段：</p>
-<pre><code>if ($time_iso8601 ~ &quot;^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})&quot;)
-{
-    set $year $1;
-    set $month $2;
-    set $day $3;
-    set $hour $4;
-    set $minutes $5;
-    set $seconds $6;
-}
-</code></pre><p>最后，再次强调，请确保Nginx进程拥有log目录的写权限。</p>
-<p>目前这个方法已经应用到了生产环境中将近一个月了，nginx 访问量很大且运行的很正常。唯一的缺点是当access_log包含变量时缓存写入无法工作，所以在运行的时候不能把log打成压缩包。</p>
-<p><a href="http://www.cambus.net/log-rotation-directly-within-nginx-configuration-file/" target="_blank" rel="external">来源 &gt;&gt;</a></p>
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/06/2014-12-12-StackEdit/" itemprop="url">
+                  开始使用stackedit.io
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-07-06T14:10:25+08:00" content="2016-07-06">
+              2016-07-06
+            </time>
+          </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/教程/" itemprop="url" rel="index">
+                    <span itemprop="name">教程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/06/2014-12-12-StackEdit/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/2014-12-12-StackEdit/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Welcome to StackEdit!Hey! I’m your first Markdown document in StackEdit[^stackedit]. Don’t delete me, I’m very helpful! I can be recovered anyway in t
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/06/2014-12-12-StackEdit/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -2337,7 +1518,7 @@ access_log /var/log/nginx/$year-$month-$day-access.log;
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">41</span>
-              <span class="site-state-item-name">Artikel</span>
+              <span class="site-state-item-name">posts</span>
             </a>
           </div>
 
@@ -2345,7 +1526,7 @@ access_log /var/log/nginx/$year-$month-$day-access.log;
             <div class="site-state-item site-state-categories">
               
                 <span class="site-state-item-count">5</span>
-                <span class="site-state-item-name">Kategorien</span>
+                <span class="site-state-item-name">categories</span>
               
             </div>
           
@@ -2354,7 +1535,7 @@ access_log /var/log/nginx/$year-$month-$day-access.log;
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">55</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               
             </div>
           
@@ -2398,7 +1579,7 @@ access_log /var/log/nginx/$year-$month-$day-access.log;
 </div>
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
@@ -2516,6 +1697,9 @@ access_log /var/log/nginx/$year-$month-$day-access.log;
   
 
   
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
 
 </body>
 </html>
