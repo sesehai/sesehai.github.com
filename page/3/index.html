@@ -329,136 +329,22 @@
 http://sesehai.github.com/tech/2011-05-05-some-usefull-commands.html
 取得地址：
 wget -r [url]
-拷贝数据scp * root@113.11.111.123:/
+拷贝数据scp * root@113.11.111.123:/path/
+
+find 命令find . -name .svn -type d -exec rm -rf {} \;
+进程控制fork,exec
+http://learn.akae.cn/media/ch30s03.html
+僵尸进程是不能用kill命令清除掉的，因为kill命令只是用来终止进程的，而僵尸进程已经终止了。
+思考一下，用什么办法可以清除掉僵尸进程？
+shell#!/bin/bash
+echo `date` &gt;&gt;/data/stat.log
+cat /data/web.log | grep found &gt;&gt; data/stat_csv.log
+tail  /data/stat_csv.log
+php cgiUsage: php-cgi [-q] [-h] 
           ...
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/06/2011-05-05-some-useful-commands/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/06/2015-01-26-with-coinbase-exchange-bitcoin-gets-a-fully-licensed-insured-and-domestic-trading-option/" itemprop="url">
-                  【transfer】With Coinbase Exchange, US Bitcoin users get a fully-licensed, insured, and domestic trading option
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-06T14:10:25+08:00" content="2016-07-06">
-              2016-07-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/News/" itemprop="url" rel="index">
-                    <span itemprop="name">News</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/06/2015-01-26-with-coinbase-exchange-bitcoin-gets-a-fully-licensed-insured-and-domestic-trading-option/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/2015-01-26-with-coinbase-exchange-bitcoin-gets-a-fully-licensed-insured-and-domestic-trading-option/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          As first reported late last night, Coinbase has launched the first regulated, US-based bitcoin exchange. The company crossed this milestone in part th
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/06/2015-01-26-with-coinbase-exchange-bitcoin-gets-a-fully-licensed-insured-and-domestic-trading-option/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -581,7 +467,10 @@ wget -r [url]
           
           Apple had a pretty good quarter.
 And by “pretty good,” I mean it was the biggest quarter in history. And not just for Apple. For any company. Ever.
-Th
+This page charts the past record holders. Until today, Russia’s Gazprom (the largest natural gas extractor in the world) held the record at $16.2 billion in a quarter.
+Apple now holds the record: $18.04 billion in profit, fiscal Q1 of 2015.
+Absolutely. Insane.
+For reference, that means Apple makes around $8.3 million dollars per hour in profit (24 ho
           ...
 
           <div class="post-more-link text-center">
@@ -636,8 +525,8 @@ Th
             
               
                 
-                <a class="post-title-link" href="/2016/07/06/2015-01-27-tim-cook-says-apple-watch-should-ship-in-april/" itemprop="url">
-                  【transfer】Tim Cook Says Apple Watch Ships In April
+                <a class="post-title-link" href="/2016/07/06/2015-01-22-nypd-guards-gawker-buzzfeed-and-daily-beast-offices-after-republishing-charlie-hebdo-cartoons/" itemprop="url">
+                  【transfer】NYPD guards Gawker, BuzzFeed, and Daily Beast offices after republishing Charlie Hebdo cartoons
                 </a>
               
             
@@ -680,8 +569,8 @@ Th
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/06/2015-01-27-tim-cook-says-apple-watch-should-ship-in-april/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/2015-01-27-tim-cook-says-apple-watch-should-ship-in-april/" itemprop="commentsCount"></span>
+                <a href="/2016/07/06/2015-01-22-nypd-guards-gawker-buzzfeed-and-daily-beast-offices-after-republishing-charlie-hebdo-cartoons/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/2015-01-22-nypd-guards-gawker-buzzfeed-and-daily-beast-offices-after-republishing-charlie-hebdo-cartoons/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -706,11 +595,12 @@ Th
       
         
           
-          The Apple Watch will start shipping in April to consumers, according to Apple CEO Tim Cook, who revealed that month as the expected target launch date
+          According to Gawker, its offices along with at least two other New York media companies are under special protection of the New York Police Department, after all three outlets republished Charlie Hebdo covers depicting Muhammed.
+On January 7, the Paris magazine Charlie Hebdo came under attack by gunmen who killed 12 people, presumably in response to controversial cartoons it published depicting the Islamic prophet Muhammed. Some Islamic teachings explicitly forbid pictorial representations of Mu
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/06/2015-01-27-tim-cook-says-apple-watch-should-ship-in-april/#more" rel="contents">
+            <a class="btn" href="/2016/07/06/2015-01-22-nypd-guards-gawker-buzzfeed-and-daily-beast-offices-after-republishing-charlie-hebdo-cartoons/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -831,11 +721,138 @@ Th
       
         
           
-          Amazon has a new product called WorkMail debuting today (via Forbes), which is an email and calendaring service that aims to provide those tools for c
+          Amazon has a new product called WorkMail debuting today (via Forbes), which is an email and calendaring service that aims to provide those tools for corporate customers. The tech is based on Amazon Web Services, and aims to best the reigning champs (which include Microsoft, and to a lesser extent, Google) in terms of ease of use and security.
+The WorkMail product is compatible with existing client software like Outlook, and as such it could be easier to substitute for legacy Exchange email servi
           ...
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/06/2015-01-28-amazon-workmail/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/06/2015-01-27-tim-cook-says-apple-watch-should-ship-in-april/" itemprop="url">
+                  【transfer】Tim Cook Says Apple Watch Ships In April
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-06T14:10:25+08:00" content="2016-07-06">
+              2016-07-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/News/" itemprop="url" rel="index">
+                    <span itemprop="name">News</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/06/2015-01-27-tim-cook-says-apple-watch-should-ship-in-april/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/2015-01-27-tim-cook-says-apple-watch-should-ship-in-april/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          The Apple Watch will start shipping in April to consumers, according to Apple CEO Tim Cook, who revealed that month as the expected target launch date for the company on Apple’s Q1 2015 earnings call. The timeframe for launch was described as “early 2015″ when the Apple Watch was originally announced in September of last year.
+The Apple Watch release date has been the subject of much speculation since its announcement, with recent reports pegging March as the month of its arrival. Cook’s decisio
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/06/2015-01-27-tim-cook-says-apple-watch-should-ship-in-april/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -957,136 +974,13 @@ Th
         
           
           Google has taken another step towards knowing everything about its users.
-The company announced today that Google Now, the virtual assistant software 
+The company announced today that Google Now, the virtual assistant software that promises to provide information before a consumer even knows she needs it, will now be able to collect and present relevant data from some 40 third-party applications.
+Here’s one example, from the blog post announcing the platform’s expansion, of how this ability to showcase information from other apps might work for consumers:
+In the morning,
           ...
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/06/2015-01-30-google-now-learns-even-more-about-your-likes-habits-and-activities/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/06/2015-02-02-twitter-tests-instant-timeline-feature-to-help-users-understand-the-hell-of-twitter-before-they-even-follow-anybody/" itemprop="url">
-                  【transfer】Twitter tests “instant timeline” feature to help users understand the hell of Twitter before they even follow anybody
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-06T14:10:25+08:00" content="2016-07-06">
-              2016-07-06
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/News/" itemprop="url" rel="index">
-                    <span itemprop="name">News</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/06/2015-02-02-twitter-tests-instant-timeline-feature-to-help-users-understand-the-hell-of-twitter-before-they-even-follow-anybody/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/2015-02-02-twitter-tests-instant-timeline-feature-to-help-users-understand-the-hell-of-twitter-before-they-even-follow-anybody/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Twitter is testing a new feature that creates an “instant timeline” for new users based on what those users’ friends (as collected from a smartphone’s
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/06/2015-02-02-twitter-tests-instant-timeline-feature-to-help-users-understand-the-hell-of-twitter-before-they-even-follow-anybody/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1207,7 +1101,9 @@ The company announced today that Google Now, the virtual assistant software
       
         
           
-          Most of the things revealed at the Mobile World Congress in Barcelona aren’t worth getting too excited about. For example, how many people are really 
+          Most of the things revealed at the Mobile World Congress in Barcelona aren’t worth getting too excited about. For example, how many people are really going to be using any of the payment platforms introduced during the conference, or buying the expensive-but-“secure” devices, or paying even the slightest attention to talk about Google’s wireless network or Facebook’s drones?
+But there is at least one thing worth paying attention to: Qualcomm’s fingerprint scanner.
+The new scanner uses “ultrasoni
           ...
 
           <div class="post-more-link text-center">
@@ -1262,8 +1158,8 @@ The company announced today that Google Now, the virtual assistant software
             
               
                 
-                <a class="post-title-link" href="/2016/07/06/2015-02-03-klutch-expands-across-platforms-promises-to-finally-make-group-scheduling-a-breeze/" itemprop="url">
-                  【transfer】Klutch expands across platforms, promises to finally make group scheduling a breeze
+                <a class="post-title-link" href="/2016/07/06/2015-02-02-twitter-tests-instant-timeline-feature-to-help-users-understand-the-hell-of-twitter-before-they-even-follow-anybody/" itemprop="url">
+                  【transfer】Twitter tests “instant timeline” feature to help users understand the hell of Twitter before they even follow anybody
                 </a>
               
             
@@ -1306,8 +1202,8 @@ The company announced today that Google Now, the virtual assistant software
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/06/2015-02-03-klutch-expands-across-platforms-promises-to-finally-make-group-scheduling-a-breeze/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/2015-02-03-klutch-expands-across-platforms-promises-to-finally-make-group-scheduling-a-breeze/" itemprop="commentsCount"></span>
+                <a href="/2016/07/06/2015-02-02-twitter-tests-instant-timeline-feature-to-help-users-understand-the-hell-of-twitter-before-they-even-follow-anybody/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/2015-02-02-twitter-tests-instant-timeline-feature-to-help-users-understand-the-hell-of-twitter-before-they-even-follow-anybody/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1332,11 +1228,13 @@ The company announced today that Google Now, the virtual assistant software
       
         
           
-          When it comes to productivity applications, groups change everything. Tasks that are easy or merely annoying when two people are involved become a nig
+          Twitter is testing a new feature that creates an “instant timeline” for new users based on what those users’ friends (as collected from a smartphone’s contacts list) are already tweeting about.
+The feature addresses a common complaint about Twitter: that it’s hard to know who to follow, which makes it harder for new users to suss out why they should even bother to use the service.
+Now, instead of having to fumble about in search of accounts worth following, new users will get a better idea of wh
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/06/2015-02-03-klutch-expands-across-platforms-promises-to-finally-make-group-scheduling-a-breeze/#more" rel="contents">
+            <a class="btn" href="/2016/07/06/2015-02-02-twitter-tests-instant-timeline-feature-to-help-users-understand-the-hell-of-twitter-before-they-even-follow-anybody/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1468,11 +1366,152 @@ git add .
 git commit -a
 git push git@github.com:sesehai/vimwiki.git
 
-另一种初始化
-          ...
+另一种初始化方法
+git config --global user.name &quot;Your Name&quot;
+git config --global user.email sesehai@gmail.com
+mkdir sesehai.github.com
+cd sesehai.github.com 
+git init
+touch README
+git add README
+git commit -m &apos;first commit&apos;
+git remote add origin git@github.com:sesehai/sesehai.github.com.git
+git push -u origin master
+
+
+github:helpgithub帮助
+
+          
 
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/06/2011-04-23-use-github-write-blog/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/06/2015-03-17-apples-going-to-launch-a-tv-service-this-fall-that-could-kill-cable/" itemprop="url">
+                  【transfer】Apple's going to launch a TV service this fall that could kill cable
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-06T14:10:25+08:00" content="2016-07-06">
+              2016-07-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/News/" itemprop="url" rel="index">
+                    <span itemprop="name">News</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/06/2015-03-17-apples-going-to-launch-a-tv-service-this-fall-that-could-kill-cable/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/2015-03-17-apples-going-to-launch-a-tv-service-this-fall-that-could-kill-cable/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Apple is reportedly working on a plan to launch its own TV service.
+A Wall Street Journal report suggests Apple, which already lets users watch television and Netflix shows through its Apple TV device, is working with programmers “to offer a slimmed-down bundle of TV networks this fall.”
+The Journal cites sources familiar with the talks who say Apple’s subscription service may provide “about 25 channels, anchored by broadcasters such as ABC, CBS and Fox, and would be available on Apple devices s
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/06/2015-03-17-apples-going-to-launch-a-tv-service-this-fall-that-could-kill-cable/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
