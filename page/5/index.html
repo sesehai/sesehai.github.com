@@ -255,8 +255,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/06/hello-world/" itemprop="url">
-                  Hello World
+                <a class="post-title-link" href="/2011/05/05/some-useful-commands/" itemprop="url">
+                  未命名
                 </a>
               
             
@@ -269,19 +269,38 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-06T14:02:01+08:00" content="2016-07-06">
-              2016-07-06
+            <time itemprop="dateCreated" datetime="2011-05-05T00:00:00+08:00" content="2011-05-05">
+              2011-05-05
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/教程/" itemprop="url" rel="index">
+                    <span itemprop="name">教程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/06/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/06/hello-world/" itemprop="commentsCount"></span>
+                <a href="/2011/05/05/some-useful-commands/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2011/05/05/some-useful-commands/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -306,20 +325,176 @@
       
         
           
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new "My New Post"
-More info: Writing
-Run server1$ hexo server
-More info: Server
-Generate static files1$ hexo generate
-More info: Generating
-Deploy to remote sites1$ hexo deploy
-More info: Deployment
+          wget请求播放地址wget -b -i url.txt 
+http://sesehai.github.com/tech/2011-05-05-some-usefull-commands.html
+取得地址：
+wget -r [url]
+拷贝数据scp * root@113.11.111.123:/path/
+
+find 命令find . -name .svn -type d -exec rm -rf {} \;
+进程控制fork,exec
+http://learn.akae.cn/media/ch30s03.html
+僵尸进程是不能用kill命令清除掉的，因为kill命令只是用来终止进程的，而僵尸进程已经终止了。
+思考一下，用什么办法可以清除掉僵尸进程？
+shell#!/bin/bash
+echo `date` &gt;&gt;/data/stat.log
+cat /data/web.log | grep found &gt;&gt; data/stat_csv.log
+tail  /data/stat_csv.log
+php cgiUsage: php-cgi [-q] [-h] 
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2011/05/05/some-useful-commands/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2011/04/23/use-github-write-blog/" itemprop="url">
+                  开始使用git
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2011-04-23T00:00:00+08:00" content="2011-04-23">
+              2011-04-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/教程/" itemprop="url" rel="index">
+                    <span itemprop="name">教程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2011/04/23/use-github-write-blog/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2011/04/23/use-github-write-blog/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          开始使用git
+初始化git
+git init
+git pull git@github.com:sesehai/vimwiki.git
+
+
+提交数据
+git add .
+git commit -a
+git push git@github.com:sesehai/vimwiki.git
+
+另一种初始化方法
+git config --global user.name &quot;Your Name&quot;
+git config --global user.email sesehai@gmail.com
+mkdir sesehai.github.com
+cd sesehai.github.com 
+git init
+touch README
+git add README
+git commit -m &apos;first commit&apos;
+git remote add origin git@github.com:sesehai/sesehai.github.com.git
+git push -u origin master
+
+
+github:helpgithub帮助
 
           
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/06/hello-world/#more" rel="contents">
+            <a class="btn" href="/2011/04/23/use-github-write-blog/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -394,7 +569,7 @@ More info: Deployment
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-count">42</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -402,7 +577,7 @@ More info: Deployment
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
