@@ -1,250 +1,36 @@
-<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+extends base
 
+block title
+  title= page.title + " | " + config.title
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+block main
 
+  // gallery that comes before the header
+  if page.photos
+     if page.photos.length
+      .article-gallery
+        .article-gallery-photos.container
+          for photo in page.photos
+            a.article-gallery-img.fancybox(href=url_for(photo), rel="gallery_" + page._id)
+              img(src=url_for(photo), itemprop="image")
 
+  article.wrapper
+    .post-main
+      .nav
+        nav.container
+          each nav, name in theme.menu
+            +a_with_current(nav, __(name))
+        .container.post-meta
+          if (page.tags && page.tags.length)
+            .post-tags
+              != list_tags(page.tags, {show_count: false, class: 'post-tag', style:'none', separator:''})
+          .post-time= page.date.format(config.date_format)
 
-  <meta name="description" content="【transfer】Apple's going to launch a TV service this fall that could kill cable"/>
+      .container.post-header
+        h1: = page.title
 
+      .container.post-content
+        != page.content
 
-
-
-  <meta name="keywords" content="Apple TV service," />
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="紫郢">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.0.0" />
-
-
-
-<link rel="canonical" href="http://sesehai.github.io/2015/03/17/apples-going-to-launch-a-tv-service-this-fall-that-could-kill-cable/"/>
-
-
-<link rel="stylesheet" type="text/css" href="/css/style.scss?v=2.0.0" />
-
-
-
-  
-
-
-
-    <title> 【transfer】Apple's going to launch a TV service this fall that could kill cable · 紫郢 </title>
-  </head>
-
-  <body>
-    <div class="container">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">紫郢</a>
-</div>
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-          </a>
-        </li>
-      
-      
-    </ul>
-  
-</nav>
-
-<div class="mobile-navbar">
-  <div class="mobile-header">
-    <div class="mobile-header-logo">
-      <a href="/." class="logo">紫郢</a>
-    </div>
-
-    <div class="mobile-header-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-  <nav class="mobile-menu">
-    
-      
-      <a class="mobile-menu-item" href="/">
-        首页
-      </a>
-    
-      
-      <a class="mobile-menu-item" href="/archives/">
-        归档
-      </a>
-    
-  </nav>
-</div>
-      </header>
-
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content">
-            
-  
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          【transfer】Apple's going to launch a TV service this fall that could kill cable
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Mar 17, 2015
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        <p>Apple is reportedly working on a plan to launch its own TV service.</p>
-<p>A Wall Street Journal report suggests Apple, which already lets users watch television and Netflix shows through its Apple TV device, is working with programmers “to offer a slimmed-down bundle of TV networks this fall.”</p>
-<p>The Journal cites sources familiar with the talks who say Apple’s subscription service may provide “about 25 channels, anchored by broadcasters such as ABC, CBS and Fox, and would be available on Apple devices such as the Apple TV.”</p>
-<p>The as-yet-unannounced service would cost $30 to $40 dollars per month, according to WSJ.</p>
-<p>Various rumors and speculation about Apple’s intention to disrupt television have been circulating for a while, but the tech company’s plans have so far been vague, and somewhat noncommittal.</p>
-<p>There has been talk in recent years that Apple might develop its own television hardware, and when that simmered down, the conversation returned to the possibility that Apple might offer precisely the type of streaming service that’s apparently being negotiated now.</p>
-<p>What is clear, however is that Apple wants to cater to customers who are giving up on expensive traditional cable subscriptions. That industry has been ripe for disruption for some time now, especially as other platforms like Netflix and Amazon build ever-stronger programming that is finally nipping at the heels of legacy media.</p>
-<p>The Journal notes that NBCUniversal is not included in the talks at the moment, “because of a falling-out between Apple and NBCUniversal parent company Comcast.”</p>
-<p><a href="http://www.businessinsider.com/apples-going-to-launch-a-tv-service-this-fall-that-could-kill-cable-2015-3" target="_blank" rel="external">source &gt;&gt;</a></p>
-
-      
-    </div>
-
-    
-      <footer class="post-footer">
-        <div class="post-tags">
-          
-            <a href="/tags/Apple-TV-service/">Apple TV service</a>
-          
-        </div>
-
-        
-  <nav class="post-nav">
-    
-      <a class="prev" href="/2015/03/19/jefferies-the-fed-removed-the-word-patient-but-not-the-meaning/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">【transfer】The Fed cleverly said something without actually saying it</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    
-    
-      <a class="next" href="/2015/03/09/content-shakeout-alert-gigaom-runs-out-of-money-will-shut-down/">
-        <span class="next-text nav-default">【transfer】Content shakeout alert" Gigaom runs out of money, will shut down"</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    
-  </nav>
-
-      </footer>
-    
-  </article>
-
-
-          </div>
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-        </div>  
-      </main>
-
-      <footer id="footer" class="footer">
-  <div class="social-links">
-    
-      
-        
-          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-    
-  </div>
-
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
-  </span>
-  
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
-  </span>
-
-  <span class="copyright-year">
-    
-    &copy; 
-     
-      2015 - 
-    
-    2016
-
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">紫郢</span>
-  </span>
-</div>
-      </footer>
-
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
-    </div>
-
-    
-
-
-    
-
-
-  <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
-
-    <script type="text/javascript" src="/js/src/even.js?v=2.0.0"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.0.0"></script>
-
-  </body>
-</html>
+    .post-main.post-comment
+      include _partial/comments

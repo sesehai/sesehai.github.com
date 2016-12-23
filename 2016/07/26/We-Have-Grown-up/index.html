@@ -1,234 +1,36 @@
-<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+extends base
 
+block title
+  title= page.title + " | " + config.title
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+block main
 
+  // gallery that comes before the header
+  if page.photos
+     if page.photos.length
+      .article-gallery
+        .article-gallery-photos.container
+          for photo in page.photos
+            a.article-gallery-img.fancybox(href=url_for(photo), rel="gallery_" + page._id)
+              img(src=url_for(photo), itemprop="image")
 
+  article.wrapper
+    .post-main
+      .nav
+        nav.container
+          each nav, name in theme.menu
+            +a_with_current(nav, __(name))
+        .container.post-meta
+          if (page.tags && page.tags.length)
+            .post-tags
+              != list_tags(page.tags, {show_count: false, class: 'post-tag', style:'none', separator:''})
+          .post-time= page.date.format(config.date_format)
 
-  <meta name="description" content="We Have Grown up"/>
+      .container.post-header
+        h1: = page.title
 
+      .container.post-content
+        != page.content
 
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="紫郢">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.0.0" />
-
-
-
-<link rel="canonical" href="http://sesehai.github.io/2016/07/26/We-Have-Grown-up/"/>
-
-
-<link rel="stylesheet" type="text/css" href="/css/style.scss?v=2.0.0" />
-
-
-
-  
-
-
-
-    <title> We Have Grown up · 紫郢 </title>
-  </head>
-
-  <body>
-    <div class="container">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">紫郢</a>
-</div>
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-          </a>
-        </li>
-      
-      
-    </ul>
-  
-</nav>
-
-<div class="mobile-navbar">
-  <div class="mobile-header">
-    <div class="mobile-header-logo">
-      <a href="/." class="logo">紫郢</a>
-    </div>
-
-    <div class="mobile-header-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-  <nav class="mobile-menu">
-    
-      
-      <a class="mobile-menu-item" href="/">
-        首页
-      </a>
-    
-      
-      <a class="mobile-menu-item" href="/archives/">
-        归档
-      </a>
-    
-  </nav>
-</div>
-      </header>
-
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content">
-            
-  
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          We Have Grown up
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Jul 26, 2016
-        </span>
-      </div>
-    </header>
-
-    
-      <div class="post-toc" id="post-toc">
-        <h2 class="post-toc-title">文章目录</h2>
-        <div class="post-toc-content">
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#《我长大了》"><span class="toc-text">《我长大了》</span></a></li></ol>
-        </div>
-      </div>
-    
-
-    <div class="post-content">
-      
-        <h2 id="《我长大了》"><a href="#《我长大了》" class="headerlink" title="《我长大了》"></a>《我长大了》</h2><p>我长大了<br>曾经   在众多人的关爱下  </p>
-<p>我们丫丫学语  蹒跚学步。</p>
-<p>曾经   在众多人的呵护下</p>
-<p>  我们开始尝试着，迈开人生第一步。<br>关注我们的眼睛永远有那么多！那么多！<br>呵护我们的双手永远有那么多！那么多！<br>妈妈，请放开你温暖的手，</p>
-<p>让我独自在坎坷的路上，磕磕碰碰向前走。<br>爸爸，请放开你慈爱的手，</p>
-<p>让我踩在坚实的土地上，</p>
-<p>与一切困难、一切胜利交朋友。<br>老师，请放开你关爱的手，请你相信我很勇敢，</p>
-<p>在任何的困难和挫折面前不会低头。<br>我想长大！我要长大！<br>可是，什么才叫做长大呢？<br>妈妈说：长大是从蹒跚学步到展翅高飞！<br>爸爸说：长大是从丫丫学语到出口成章！<br>老师说：“长大是从一张白纸到色彩斑斓”<br>哦！我明白了！<br>长大是蜕变的过程！<br>长大是成长的经历！<br>长大是一件快乐幸福的事情！<br>我们在长大的过程中获得知识。<br>我们在长大的过程中获得快乐。<br>今天，我们长大了！<br>感谢爸爸、妈妈赐予我们生命。<br>感谢老师传授我们知识。<br>感谢伙伴让我们学会了分享、承担。<br>爸爸妈妈，我们郑重的向你们宣告：</p>
-<p>我们长大了，请收起你们劳累的翅膀，</p>
-<p>我们有足够的勇气抵挡成长的风浪！<br>亲爱的的老师，我们郑重的向您宣告：</p>
-<p>我们长大了！</p>
-<p>我们会好好学习，天天向上，</p>
-<p>每天都有一个新进步！<br>亲爱的爸爸、妈妈、老师请你们放心，</p>
-<p>我们是已经启航的小船，</p>
-<p>将勇敢的驶向大海，迎接风浪！</p>
-
-      
-    </div>
-
-    
-  </article>
-
-
-          </div>
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-        </div>  
-      </main>
-
-      <footer id="footer" class="footer">
-  <div class="social-links">
-    
-      
-        
-          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-    
-  </div>
-
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
-  </span>
-  
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
-  </span>
-
-  <span class="copyright-year">
-    
-    &copy; 
-     
-      2015 - 
-    
-    2016
-
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">紫郢</span>
-  </span>
-</div>
-      </footer>
-
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
-    </div>
-
-    
-
-
-    
-
-
-  <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
-
-    <script type="text/javascript" src="/js/src/even.js?v=2.0.0"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.0.0"></script>
-
-  </body>
-</html>
+    .post-main.post-comment
+      include _partial/comments

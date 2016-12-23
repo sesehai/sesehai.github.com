@@ -1,664 +1,74 @@
-<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+extends base
+- var current_title = page.title || tag.name || category.name || site.title
+
+
+
+block title
+  title= config.title + " | " + config.subtitle
+
+block main
+
+    // Blog title and subtitle
+    header.wrapper.header
+      .container.blog-title
+        a#logo.title(href=url_for('.'))= config.title
+        span.subtitle= config.subtitle
+        label#toggle-menu(for="menu", onclick)
+          i.fa.fa-bars
+      // use checkbox hack for toggle nav-bar on small screens
+      input#menu(type="checkbox")
+      .container.nav-items
+        each nav, name in theme.menu
+          +a_with_current(nav, __(name))
+
+
+    article.wrapper
+      #index-main.container.entries
+        for post in page.posts.toArray()
+          .post-entry
+            .post-desc
+              .post-title
+                if post.link
+                    a(href=url_for(post.link),target="_blank", itemprop="url")= post.title
+                else
+                    a(href=url_for(post.path))= post.title
+
+              .post-content
+                if post.description
+                  != post.description
+                else if post.excerpt
+                  != post.excerpt
+                else if post.content
+                  - var br = post.content.indexOf('</p>')
+                  if br < 0
+                    != post.content
+                  else
+                    != post.content.substring(0, br + 4)
+
+              .post-meta
+                if (post.tags && post.tags.length)
+                  .post-tags
+                    != list_tags(post.tags, {show_count: false, class: 'post-tag', style:'none', separator:''})
+                .post-time= post.date.format(config.date_format)
+
+    include _partial/paginator.jade
+
+    footer.footer.wrapper
+      .social
+        +social_icon('email', "mailto:", "fa-envelope-o")
+        +social_icon('twitter', 'http://twitter.com/', 'fa-twitter')
+        +social_icon('weibo', 'http://weibo.com/', 'fa-weibo')
+        +social_icon('github', 'https://github.com/', 'fa-github')
+        +social_icon('googleplus', 'https://plus.google.com/', 'fa-google-plus')
+        +social_icon('rss', "", "fa-rss")
+
+      .footer-content
+        - var year = date(new Date(), 'YYYY');
+        = '© ' + year + ' '
+        a(href='/', rel='nofollow')= config.title
+        = '. Powered by '
+        a(rel='nofollow', target='_blank', href='https://hexo.io') Hexo
+        = '. Theme '
+        a(target='_blank', href='https://github.com/lotabout/hexo-theme-noise') noise
+        |.
 
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="紫郢">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.0.0" />
-
-
-
-<link rel="canonical" href="http://sesehai.github.io/"/>
-
-
-<link rel="stylesheet" type="text/css" href="/css/style.scss?v=2.0.0" />
-
-
-
-  
-
-
-
-    <title> 紫郢 </title>
-  </head>
-
-  <body>
-    <div class="container">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">紫郢</a>
-</div>
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-          </a>
-        </li>
-      
-      
-    </ul>
-  
-</nav>
-
-<div class="mobile-navbar">
-  <div class="mobile-header">
-    <div class="mobile-header-logo">
-      <a href="/." class="logo">紫郢</a>
-    </div>
-
-    <div class="mobile-header-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-  <nav class="mobile-menu">
-    
-      
-      <a class="mobile-menu-item" href="/">
-        首页
-      </a>
-    
-      
-      <a class="mobile-menu-item" href="/archives/">
-        归档
-      </a>
-    
-  </nav>
-</div>
-      </header>
-
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts">
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2016/07/26/We-Have-Grown-up/">We Have Grown up</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Jul 26, 2016
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        
-
-        
-          <h2 id="《我长大了》"><a href="#《我长大了》" class="headerlink" title="《我长大了》"></a>《我长大了》</h2><p>我长大了<br>曾经   在众多人的关爱下  </p>
-<p>我们丫丫学语  蹒跚学步。</p>
-<p>曾经   在众多人的呵护下</p>
-<p>  我们开始尝试着，迈开人生第一步。<br>关注我们的眼睛永远有那么多！那么多！<br>呵护我们的双手永远有那么多！那么多！<br>妈妈，请放开你温暖的手，</p>
-<p>让我独自在坎坷的路上，磕磕碰碰向前走。<br>爸爸，请放开你慈爱的手，</p>
-<p>让我踩在坚实的土地上，</p>
-<p>与一切困难、一切胜利交朋友。<br>老师，请放开你关爱的手，请你相信我很勇敢，</p>
-<p>在任何的困难和挫折面前不会低头。<br>我想长大！我要长大！<br>可是，什么才叫做长大呢？<br>妈妈说：长大是从蹒跚学步到展翅高飞！<br>爸爸说：长大是从丫丫学语到出口成章！<br>老师说：“长大是从一张白纸到色彩斑斓”<br>哦！我明白了！<br>长大是蜕变的过程！<br>长大是成长的经历！<br>长大是一件快乐幸福的事情！<br>我们在长大的过程中获得知识。<br>我们在长大的过程中获得快乐。<br>今天，我们长大了！<br>感谢爸爸、妈妈赐予我们生命。<br>感谢老师传授我们知识。<br>感谢伙伴让我们学会了分享、承担。<br>爸爸妈妈，我们郑重的向你们宣告：</p>
-<p>我们长大了，请收起你们劳累的翅膀，</p>
-<p>我们有足够的勇气抵挡成长的风浪！<br>亲爱的的老师，我们郑重的向您宣告：</p>
-<p>我们长大了！</p>
-<p>我们会好好学习，天天向上，</p>
-<p>每天都有一个新进步！<br>亲爱的爸爸、妈妈、老师请你们放心，</p>
-<p>我们是已经启航的小船，</p>
-<p>将勇敢的驶向大海，迎接风浪！</p>
-
-        
-      
-    </div>
-
-    
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2016/07/24/Kindergarten-Graduation-Song/">Kindergarten Graduation Song</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Jul 24, 2016
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        
-
-        
-          <h2 id="《儿园毕业歌》"><a href="#《儿园毕业歌》" class="headerlink" title="《儿园毕业歌》"></a>《儿园毕业歌》</h2><p>一直都记得<br>我的幼儿园<br>小小的桌椅<br>小小的床<br>有各种玩具<br>做各种游戏<br>每天欢笑<br>每天开心</p>
-<p>一直会记得<br>我的幼儿园<br>亲爱的老师<br>调皮的同学<br>偶尔会吵闹<br>偶尔会哭泣<br>手拉着手<br>肩并着肩</p>
-<p>一直一直会记得<br>永远永远不忘记<br>亲爱的老师<br>最好的朋友<br>我会永远永远记得你们</p>
-<p>一直一直会记得<br>永远永远不忘记<br>谢谢你老师<br>谢谢你朋友<br>全部都是我最美好的回忆</p>
-
-        
-      
-    </div>
-
-    
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2016/07/06/hello-world/">Hello World</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Jul 6, 2016
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        
-
-        
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-        
-      
-    </div>
-
-    
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2015/04/14/android-wear-apple-watch-google-advantage-developers/">【transfer】Apple just kneecapped Google's smartwatch efforts</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Apr 14, 2015
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        
-
-        
-          <p>Bad news for Google: Apple has managed to sell more Apple Watches in a single day than the number of Android Wear smartwatches sold in an entire year, if market research from Slice Intelligence is to be believed.</p>
-<p>In 2014, all manufacturers using Google’s smartwatch operating system — including Motorola, LG, and Samsung — sold 720,000 units.</p>
-<p>In contrast, Apple sold an estimated 957,000 Apple Watches on the first day the devices were available for preorder.</p>
-<p>These figures do not bode well for Google’s app ecosystem.</p>
-<p>Android plays the numbers game<br>The iPhone has always — with some truth — been considered the “rich man’s phone.” Apple customers tend to be better off than Android users and spend more on apps and in-app purchases. Accordingly, ad rates on iOS, Apple’s operating system, are higher than on Google’s OS.</p>
-<p>This means that iOS is, at least on paper, the more lucrative platform to develop for. But many developers still choose to go “Android first.” Why? Because what Android customers lack in purchasing power (on average), they make up for in sheer numbers. In 2014, Android manufacturers shipped a staggering 1 billion smartphones. That’s a milestone that will take Apple years to reach — in the same period, despite having the most profitable quarter of any company ever, the Cupertino company had (relatively) paltry sales of 192.7 million.</p>
-<p>This truly massive reach is what makes Android such a compelling platform for developers.</p>
-<p>Google just lost the one thing it had going for it<br>apple watch drawer covent gardenRob Price/BI<br>An assistant showing off Apple Watches at an Apple Store.</p>
-<p>When it comes to smartwatches, however, the Android Wear OS doesn’t even have this advantage. In a single day, Apple has shifted more units than Google’s partners did in a year. Even if you believe — as Fortune’s Philip Elmer-DeWitt does — that Slice’s estimate may skew high, it seems clear that Apple is going to win the numbers game on this one.</p>
-<p>Suddenly, Android on smartwatches becomes the platform with the smaller market share, and without the lucrative user base to justify prioritising development for it.</p>
-<p>(Of course, we don’t yet have demographics on Apple Watch customers, so we don’t yet know for sure whether they will follow the established trend of being wealthier on average than Android (Wear) customers. But considering the high price point of the Apple Watch — topping out at $17,000/£13,500 — it is a fairly reasonable assumption to make.)</p>
-<p>It’s also worth noting that Android Wear and Watch OS aren’t the only two smartwatch operating systems out there. The crowdfunded Pebble, for example, sold 1 million units in the period between its 2013 launch and the end of 2014. But this variety of options just makes the case to prioritise development for Google’s OS even less compelling.</p>
-<p>This isn’t to say that no one is going to develop for Android Wear. For larger companies that want to maximise their reach, it will be worth building products for both companies’ platforms. But when it comes to smaller developers who need to choose carefully where they allocate their resources, Android just lost its one massive advantage.</p>
-<hr>
-<p><a href="http://www.businessinsider.com/android-wear-apple-watch-google-advantage-developers-2015-4" target="_blank" rel="external">source &gt;&gt;</a></p>
-
-        
-      
-    </div>
-
-    
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2015/04/09/years-of-git-an-interview-with-git-creator-linus-torvalds/">【transfer】10 Years of Git" An Interview with Git Creator Linus Torvalds"</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Apr 9, 2015
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        
-
-        
-          <p>Ten years ago this week, the Linux kernel community faced a daunting challenge: They could no longer use their revision control system BitKeeper and no other Source Control Management (SCMs) met their needs for a distributed system. Linus Torvalds, the creator of Linux, took the challenge into his own hands and disappeared over the weekend to emerge the following week with Git. Today Git is used for thousands of projects and has ushered in a new level of social coding among programmers.</p>
-<p>To celebrate this milestone, we asked Linus to share the behind-the-scenes story of Git and tell us what he thinks of the project and its impact on software development. You’ll find his comments in the story below. We’ll follow this Q&amp;A with a week of Git in which we profile a different project each day that is using the revision control system. Look for the stories behind KVM, Qt, Drupal, Puppet and Wine, among others. </p>
-<p>Why did you create Git?</p>
-<p>Torvalds: I really never wanted to do source control management at all and felt that it was just about the least interesting thing in the computing world (with the possible exception of databases ;^), and I hated all SCM’s with a passion. But then BitKeeper came along and really changed the way I viewed source control. BK got most things right and having a local copy of the repository and distributed merging was a big deal. The big thing about distributed source control is that it makes one of the main issues with SCM’s go away - the politics around “who can make changes.” BK showed that you can avoid that by just giving everybody their own source repository. But BK had its own problems, too; there were a few technical choices that caused problems (renames were painful), but the biggest downside was the fact that since it wasn’t open source, there was a lot of people who didn’t want to use it. So while we ended up having several core maintainers use BK - it was free to use for open source projects - it never got ubiquitous. So it helped kernel development, but there were still pain points.</p>
-<p>That then came to a head when Tridge (Andrew Tridgell) started reverse-engineering the (fairly simply) BK protocol, which was against the usage rules for BK. I spent a few weeks (months? It felt that way) trying to mediate between Tridge and Larry McVoy, but in the end it clearly wasn’t working. So at some point I decided that I can’t continue using BK, but that I really didn’t want to go back to the bad old pre-BK days. Sadly, at the time, while there were some other SCM’s that kind of tried to get the whole distributed thing, none of them did it remotely well.  I had performance requirements that were not even remotely satisfied by what was available, and I also worried about integrity of the code and the whole workflow, so I ended up just deciding to write my own.</p>
-<p>How did you approach it? Did you stay up all weekend to write it or was it just during regular hours?</p>
-<p>Torvalds: Heh. You can actually see how it all took shape in the git source code repository, except for the very first day or so. It took about a day to get to be “self-hosting” so that I could start committing things into git using git itself, so the first day or so is hidden, but everything else is there. The work was clearly mostly during the day, but there’s a few midnight entries and a couple of 2 a.m. ones. The most interesting part is how quickly it took shape ; the very first commit in the git tree is not a lot of code, but it already did the basics - enough to commit itself. The trick wasn’t really so much the coding but coming up with how it organizes the data.</p>
-<p>So I’d like to stress that while it really came together in just about ten days or so (at which point I did my first <em>kernel</em> commit using git), it wasn’t like it was some kind of mad dash of coding. The actual amount of that early code is actually fairly small, it all depended on getting the basic ideas right. And that I had been mulling over for a while before the whole project started. I’d seen the problems others had. I’d seen what I wanted to avoid doing. </p>
-<p>Has it lived up to your expectations? How is it working today in your estimation? Are there any limitations?</p>
-<p>Torvalds: I’m very happy with git. It works remarkably well for the kernel and is still meeting all my expectations. What I find interesting is how it took over so many other projects, too. Surprisingly quickly, in the end. There is a lot of inertia in switching source control systems;  just look at how long CVS and even RCS have stayed around, but at some point git just took over.</p>
-<p>Why do you think it’s been so widely adopted?</p>
-<p>Torvalds: I think that many others had been frustrated by all the same issues that made me hate SCM’s, and while there have been many projects that tried to fix one or two small corner cases that drove people wild, there really hadn’t been anything like git that really ended up taking on the big problems head on. Even when people don’t realize how important that “distributed” part was (and a lot of people were fighting it), once they figure out that it allows those easy and reliable backups, and allows people to make their own private test repositories without having to worry about the politics of having write access to some central repository, they’ll never go back.</p>
-<p>Does Git last forever, or do you foresee another revision control system in another 10 years? Will you be the one to write it? </p>
-<p>Torvalds: I’m not going to be the one writing it, no. And maybe we’ll see something new in ten years, but I guarantee that it will be pretty “git-like.” It’s not like git got everything right, but it got all the really basic issues right in a way that no other SCM had ever done before.</p>
-<p>No false modesty ;)</p>
-<p>Why does Git work so well for Linux?</p>
-<p>Torvalds: Well, it was obviously designed for our workflow, so that is part of it. I’ve already mentioned the whole “distributed” part many times, but it bears repeating. But it was also designed to be efficient enough for a biggish project like Linux, and it was designed to do things that people considered “hard” before git - because those are the things <em>I</em> do every day.</p>
-<p>Just to pick an example: the concept of “merging” was generally considered to be something really quite painful and hard in most SCM’s. You’d plan your merges, because they were big deals. That’s not acceptable to me, since I commonly do tens of merges a day when in the merge window, and even then, the biggest overhead shouldn’t be the merge itself, it should be testing the result. The “git” part of the merge is just a couple of seconds, it should take me much longer just to write the merge explanation message.</p>
-<p>So git was basically designed and written for my requirements, and it shows.</p>
-<p>People have said that Git is only for super smart people. Even Andrew Morton said Git is “expressly designed to make you feel less intelligent than you thought you were.” What’s your response to this?</p>
-<p>Torvalds: So I think it used to be true but isn’t any more. There is a few reasons people feel that way, but I think only one of them remains. The one that remains is fairly simple: “you can do things so many ways.”</p>
-<p>You can do a lot of things with git, and many of the rules of what you <em>should</em> do are not so much technical limitations but are about what works well when working together with other people. So git is a very powerful set of tools, and that can not only be overwhelming at first, it also means that you can often do the same (or similar) things different ways, and they all “work.” Generally, the best way to learn git is probably to first only do very basic things and not even look at some of the things you can do until you are familiar and confident about the basics.</p>
-<p>There’s a few historical reasons for why git was considered complicated. One of them is that it was complicated. The people who started using git very early on in order to work on the kernel really had to learn a very rough set of scripts to make everything work. All the effort had been on making the core technology work and very little on making it easy or obvious. So git (deservedly) had a reputation for requiring you to know exactly what you did early on. But that was mainly true for the first 6 months or a year.</p>
-<p>The other big reason people thought git was hard is that git is very different. There are people who used things like CVS for a decade or two, and git is not CVS. Not even close. The concepts are different. The commands are different. Git never even really tried to look like CVS, quite the reverse. And if you’ve used a CVS-like system for a long time, that makes git appear complicated and needlessly different. People were put off by the odd revision numbers. Why is a git revision not “1.3.1” with nice incrementing numbers like it was in CVS? Why is it that odd scary 40-character HEX number?</p>
-<p>But git wasn’t “needlessly different.” The differences are required. It’s just that it made some people really think it was more complicated than it is, because they came from a very different background. The “CVS background” thing is going away. By now there are probably lots of programmers out there who have never used CVS in their lives and would find the CVS way of doing things very confusing, because they learned git first.</p>
-<p>Do you think the rate of Linux kernel development would have been able to grow at its current rate without Git? Why or why not?</p>
-<p>Torvalds: Well, “without git,” sure. But it would have required that somebody else wrote something git-equivalent: a distributed SCM that is as efficient as git is. We definitely needed something <em>like</em> git.</p>
-<p>What’s your latest opinion of GitHub?</p>
-<p>Torvalds: Github is an excellent hosting service; I have nothing against it at all. Now, the complaints I’ve had is that GitHub as a development platform - making commits, pull requests, keeping track of issues etc - doesn’t work very well at all. It’s not even close, not for something like the kernel. It’s much too limited.</p>
-<p>That’s partly because of how the kernel is developed, but part of it was that the GitHub interfaces were actively encouraging bad behavior. Commits done on GitHub had bad commit messages etc, because the web interfaces at GitHub were actively encouraging bad behavior. They did fix some of that, so it probably works better, but it will never be appropriate for something like the Linux kernel.</p>
-<p>What is the most interesting use you’ve seen for Git and/or GitHub?</p>
-<p>Torvalds: I’m just happy that it made it so easy to start a new project. Project hosting used to be painful, and with git and GitHub it’s just so trivial to do a random small project. It doesn’t matter what the project is; what matters is that you can do it.</p>
-<p>Do you have side projects up your sleeve today? Any more brilliant software projects that will dominate software development for years to come?</p>
-<p>Torvalds: Nothing planned. But I’ll let you know if that changes.</p>
-<hr>
-<p><a href="http://www.linux.com/news/featured-blogs/185-jennifer-cloer/821541-10-years-of-git-an-interview-with-git-creator-linus-torvalds" target="_blank" rel="external">source &gt;&gt;</a></p>
-
-        
-      
-    </div>
-
-    
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2015/04/08/report-russia-hacked-the-white-house/">【transfer】REPORT" Russia hacked the White House"</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Apr 8, 2015
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        
-
-        
-          <p>Russian-hired hackers breached an unclassified White House system and pilfered information about President Obama’s daily schedule and communications, CNN reports.</p>
-<p>The hackers gained “access to sensitive information such as real-time non-public details of the president’s schedule.”</p>
-<p>A phishing-style attack allowed Russian hackers to access a State Department computer network, which in turn allowed access to the White House’s system.</p>
-<p>The hackers were working for the Russian government but did not succeed in accessing any classified networks, according to CNN.</p>
-<p>Even so, nonclassified networks can contain sensitive information that the White House might not want in the hands of a rival government. And it’s a sign that even high-level US government systems are far from impervious to outside attacks.Cyber securityREUTERS/Rick Wilking<br>2Lt William Liggett works at the Air Force Space Command Network Operations &amp; Security Center at Peterson Air Force Base in Colorado Springs, Colorado.</p>
-<p>The attack stemmed from a nearly year-long breach of the US State Department’s computer systems that investigators described as the “worst ever” against a US federal agency target, according to a CNN report in March. Those ongoing problems with the computer networks has apparently now affected the White House as well.</p>
-<p>On CNN, White House deputy national security adviser Ben Rhodes explained that federal staffers have previously been encouraged to guard even nonclassified information being passed through government systems because of hacking concerns.Ben Rhodes Martha’s VineyardKevin Lamarque/Reuters<br>U.S. Deputy National Security Advisor Ben Rhodes</p>
-<p>“If you’re going to do something that is classified you have to do it on one email system and on phone system, and act as if information could be compromised if it’s not on the classified system,” he said. Rhodes said the hackers did not access classified information, even though the government views unclassified information as “sensitive.”</p>
-<p>Rhodes wouldn’t confirm or deny that Russian hackers were responsible for the reported White House breach.</p>
-<p>“It’s fair to say … Russia has been active in the cyber space and in the espionage space,” Rhodes told CNN.</p>
-<p><a href="http://www.businessinsider.com/report-russia-hacked-the-white-house-2015-4" target="_blank" rel="external">source &gt;&gt;</a></p>
-
-        
-      
-    </div>
-
-    
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2015/04/01/harpercollins-amazon-contract-expiring/">【transfer】A major publisher may withdraw all its books from Amazon</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Apr 1, 2015
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        
-
-        
-          <p>The contract between “Big Five” book publisher HarperCollins and Amazon is about to expire and HarperCollins is refusing to sign an agreement with the new terms that Amazon is asking, a source with knowledge of the situation tells Business Insider. </p>
-<p>The contract presented to HarperCollins was the same contract recently signed by Simon &amp; Schuster, Hachette, and Macmillan, our source says.</p>
-<p>If HarperCollins and Amazon don’t come to an agreement, no print or digital HarperCollins books will be available on Amazon once its current contract runs out “very soon,” our source says. </p>
-<p>Last year, Amazon and Hachette fought a brutal, public battle after its contract expired in March. After a long back-and-forth, the two came to an agreement that reportedly gave Hachette “control over most of its pricing but offered incentives to sell at lower prices,” while Amazon “got increased co-op funds, the payments for placement on the retailer’s website.” At the time, both Amazon and Hachette said they were “pleased with the agreement” and Simon &amp; Schuster and Macmillan both signed a similar contracts.</p>
-<p>A HarperCollins spokesperson said that the publisher does not comment on its contracts with retailers.</p>
-<p>An Amazon spokesperson sent the following:</p>
-<p>“I can’t comment on that rumor. I can say that we have offered Harper the same terms for a contract that Simon &amp; Schuster, Hachette and Macmillan have all recently agreed to.”</p>
-<p>In late 2013, HarperCollins formed a partnership with Accenture to sell e-books of the “Chronicles of Narnia” and titles by C.S. Lewis on individual websites. In July 2014, it decided to start selling its own print and e-books directly through HarperCollins.com, cutting Amazon out of the equation for some sales. </p>
-<p>At the time, Forbes contributor Jeremy Greenfield wrote that Amazon was “taking steps to build and strengthen alternate retail channels, grow in size and create new business lines” so that it wouldn’t have to rely as much on Amazon. As the publisher and Amazon continue their negotiations, HarperCollins will likely be relying on these alternate retail channels even more. </p>
-<p>Disclosure: Jeff Bezos is an investor in Business Insider through his personal investment company Bezos Expeditions.</p>
-<p><a href="http://www.businessinsider.com/harpercollins-amazon-contract-expiring-2015-3" target="_blank" rel="external">source &gt;&gt;</a></p>
-
-        
-      
-    </div>
-
-    
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2015/03/26/why-apple-bought-foundationdb/">【transfer】A lot of people are mad that Apple bought this tiny company and shut it down</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Mar 26, 2015
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        
-
-        
-          <p>On Tuesday, word leaked that Apple was buying a tiny 40-person database startup called FoundationDB and a source tells us that this move is really freaking a lot of people out.</p>
-<p>Neither Apple nor FoundationDB has publicly acknowledged the purchase yet (we’ve reached out repeatedly and asked for comment). But there’s plenty of evidence that it happened and that Apple also immediately shuttered FoundationDB.</p>
-<p>For some context, FoundationDB is a type of noSQL database. That’s a popular type of database for Web applications, and it’s cheaper to use than traditional databases like Oracle because they spread themselves across many low-cost commodity servers. An Oracle database prefers to be loaded onto a big, high-performance, and very expensive server.</p>
-<p>“Apple bought Foundation not to resell the database, but for internal use,” Peter Goldmacher, vice president of development of Aerospike, another noSQL database, tells us. (Prior to joining Aerospike, Goldmacher worked at MongoDB and prior to that, he was a Wall Street analyst covering databases.)</p>
-<p>Word in Goldmacher’s circles is that Apple will be “replacing” its huge Cassandra noSQL implementation with FoundationDB. Apple uses Cassandra for “iMessage, iTunes passwords, a bunch of stuff,” he says.</p>
-<p>In fact, Apple is touted as having one of the largest production deployments of Cassandra of all, with over 75,000 nodes storing over 10 pedabytes of data. Cassandra is a free and open source database with a commercial version offered by Datalogix.</p>
-<p>Having Apple bail on Cassandra is not good for Datastax,  which recently raised $106 million (total funding of $190 million), on an $840 million valuation to take on Oracle. Apple’s huge project serves as a showcase for Cassandra and is one reason why Cassandra has been growing in popularity, market watcher DB-Engines reports. (Datastax had no comment on this.)</p>
-<p>FoundationDB shut down<br>GitHub/screen shot<br>FoundationDB pulled from GitHub</p>
-<p>But that’s not why people are mad.</p>
-<p>While both Cassandra/DataStax and FoundationDB are noSQL databases, FoundationDB had some unique technology. It works super-fast but needs far less hardware than Cassandra, making it even cheaper to use, even as it scales. (In geek speak, it’s an “in-memory” database that runs on flash storage.)</p>
-<p>Goldmacher says it needs somewhere between 5% to 10% less hardware than Cassandra.</p>
-<p>Most of these noSQL databases give their basic software away for free in an open source version, which allows their customers to add features and help with development. </p>
-<p>But FoundationDB’s new owner (Apple, we presume) without notice yanked FoundationDB’s open source software off of Github. </p>
-<p>FoundationDB teamFoundationDB<br>the FoundationDB team</p>
-<p>FoundationDB had an active community of companies using it for their own sites.</p>
-<p>Developers took a thread on Hacker News to vent. </p>
-<p>One user wrote, “Pulling an open-source project upon which people may depend is total jerk behavior.”</p>
-<p>FoundationDB, which sold its database as a cloud service, has also quietly suspended new customer registrations. (The sign-up page redirects you back to the home page.)</p>
-<p>So Apple has no intention of sharing this technology, it seems.</p>
-<p>Datalogix had no comment on Apple replacing Cassandra. But there’s an awful lot of comment about all of this in the developer world.</p>
-<p><a href="http://www.businessinsider.com/why-apple-bought-foundationdb-2015-3" target="_blank" rel="external">source &gt;&gt;</a></p>
-
-        
-      
-    </div>
-
-    
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2015/03/26/a-pilot-on-the-germanwings-flight-was-locked-out-of-the-cockpit-before-the-crash/">【transfer】Senior military official" A pilot on the Germanwings flight that crashed was locked out of the cockpit"</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Mar 26, 2015
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        
-
-        
-          <p>There are more questions than answers right now regarding a German passenger plane crash in southern France that killed 150 people.</p>
-<p>A senior military official involved in investigation, citing evidence from a cockpit voice recorder, told The New York Times that one the pilots was locked out of the cockpit and could not get back in before the plane smashed into the alps on Tuesday.</p>
-<p>“The guy outside is knocking lightly on the door and there is no answer,” the investigator told the Times. “And then he hits the door stronger and no answer. There is never an answer. … You can hear he is trying to smash the door down.”</p>
-<p>The plane dropped from 38,000 feet to under 6,000 feet in about 8 minutes.</p>
-<p>“Contact between the airplane and French radar and French flight controllers was lost at 10:53 a.m. at an altitude of about 6,000 feet. The plane then crashed,” Lufthansa unit Germanwings’ managing director, Thomas Winkelmann, said on Tuesday.</p>
-<p>During the rescue effort, investigators found one of two black boxes, and were reportedly analyzing the contents.</p>
-<p>recorder germanwingsBureau d’Enquêtes et d’AnalysesThe voice recorder retrieved from the crash</p>
-<p>The senior military official — the Times does specify which country the person is from — noted the conversations between pilots were  “very smooth, very cool” during the early portion of the Barcelona-to-Düsseldorf flight.</p>
-<p>france crashREUTERS</p>
-<p>One of the pilots of the plane had 10 years of experience of flying for Lufthansa, German officials said at a press conference on Tuesday. Officials said the plane had been last checked by technicians on Monday.</p>
-<p>Overall, the Airbus A320 has a solid safety record, with only 23 fatal crashes in its service lift — not including Tuesday’s incident — according to Aviation Safety Net.</p>
-<p>Weather conditions were reportedly good at the time of the crash.</p>
-<p> “We don’t know yet the reason why one of the guys went out,” the senior military official told the Times. “But what is sure is that at the very end of the flight, the other pilot is alone and does not open the door.”</p>
-<p><a href="http://www.businessinsider.com/a-pilot-on-the-germanwings-flight-was-locked-out-of-the-cockpit-before-the-crash-2015-3" target="_blank" rel="external">source &gt;&gt;</a></p>
-
-        
-      
-    </div>
-
-    
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2015/03/25/secret-may-be-pivoting-to-a-startup-incubator/">【transfer】After pocketing millions and buying a Ferrari, Secret founder David Byttow may be pivoting his year-old startup yet again</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Mar 25, 2015
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        
-
-        
-          <p>It’s been an eventful year for Secret, an anonymous gossip app that experienced meteoric success when it launched last winter and fell out of the App Store charts almost as quickly.</p>
-<p>Now the company is thinking about pivoting, a person with knowledge of the plans tells Business Insider. One possibility that was floated was a startup incubator, which would allow Secret to test new ideas and see what sticks, a source explains.</p>
-<p>We’ve also heard that an incubator isn’t likely, but the company is definitely trying to think about how to iterate the product.</p>
-<p>It’s unclear if Secret’s current mobile app would stay up and running or shut down if the company pivots. </p>
-<p>Secret was co-founded by David Byttow, a former Google and Square engineer, and Chrys Bader-Wechseler. The pair launched an anonymous gossip-sharing application in January 2013 that resembled another popular mobile application, Whisper.david byttow secret ferrariPinterest<br>It sounds like Byttow doesn’t need to want a Ferrari anymore.</p>
-<p>Silicon Valley took to Secret instantly, and news about major tech companies began to break on the application before it was announced on Twitter or traditional news outlets. Secret raised an $8.4 million series A round of financing in March 2014 and then raised a $25 million series B round in July. During the series B round, Byttow and Bader-Wechseler exchanged some of their stock for $3 million each. Byttow then promptly purchased a Ferrari, a toy he’s wanted for a long time, sources say.</p>
-<p>Shortly after the fundraise, Secret’s popularity waned. Its instant popularity seemed more driven by media articles than actual user traction. The company began working on other app ideas and in December, it pivoted the app to look a lot like Yik Yak, an anonymous, location-based microblogging application.</p>
-<p>In January, one of Secret’s co-founders, Bader-Wechseler, left the company. One person told Business Insider he and Byttow had different visions for how to save Secret. </p>
-<p>People who have worked with Byttow previously also say he’s not the best manager and there was a lot of drama when he departed Square. Multiple sources say he announced his departure to the company with a short email that referenced a fellow Square employee he was dating and a line from “Good Will Hunting:” “Gotta see about a girl.”</p>
-<p>One of the app’s top Android engineers, Sarah Haider, has also left Secret this month. Now she’s at a startup Twitter just acquired, Periscope. </p>
-<p>Unfortunately, Secret’s crazy year is a somewhat typical startup story. Companies including Yo, Ello, and Turntable all experienced a lot of buzz when they launched but quickly realized media buzz and actual traction are two very different things.</p>
-<p>It’s not clear how much money Secret has in the bank to figure itself out, but it certainly seems to be exploring lots of options.</p>
-<p>Byttow declined to comment on Secret’s plans.</p>
-<p><a href="http://www.businessinsider.com/secret-may-be-pivoting-to-a-startup-incubator-2015-3" target="_blank" rel="external">source &gt;&gt;</a></p>
-
-        
-      
-    </div>
-
-    
-  </article>
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    
-    
-      <a class="next" href="/page/2/">
-        <span class="next-text">下一页</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    
-  </nav>
-
-
-          </div>
-          
-        </div>  
-      </main>
-
-      <footer id="footer" class="footer">
-  <div class="social-links">
-    
-      
-        
-          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-    
-  </div>
-
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
-  </span>
-  
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
-  </span>
-
-  <span class="copyright-year">
-    
-    &copy; 
-     
-      2015 - 
-    
-    2016
-
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">紫郢</span>
-  </span>
-</div>
-      </footer>
-
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
-    </div>
-
-    
-
-
-    
-
-
-  <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
-
-    <script type="text/javascript" src="/js/src/even.js?v=2.0.0"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.0.0"></script>
-
-  </body>
-</html>

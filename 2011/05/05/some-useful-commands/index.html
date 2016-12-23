@@ -1,308 +1,36 @@
-<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+extends base
 
+block title
+  title= page.title + " | " + config.title
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+block main
 
+  // gallery that comes before the header
+  if page.photos
+     if page.photos.length
+      .article-gallery
+        .article-gallery-photos.container
+          for photo in page.photos
+            a.article-gallery-img.fancybox(href=url_for(photo), rel="gallery_" + page._id)
+              img(src=url_for(photo), itemprop="image")
 
+  article.wrapper
+    .post-main
+      .nav
+        nav.container
+          each nav, name in theme.menu
+            +a_with_current(nav, __(name))
+        .container.post-meta
+          if (page.tags && page.tags.length)
+            .post-tags
+              != list_tags(page.tags, {show_count: false, class: 'post-tag', style:'none', separator:''})
+          .post-time= page.date.format(config.date_format)
 
+      .container.post-header
+        h1: = page.title
 
+      .container.post-content
+        != page.content
 
-
-  <meta name="keywords" content="linux,shell,nginx,php," />
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="紫郢">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.0.0" />
-
-
-
-<link rel="canonical" href="http://sesehai.github.io/2011/05/05/some-useful-commands/"/>
-
-
-<link rel="stylesheet" type="text/css" href="/css/style.scss?v=2.0.0" />
-
-
-
-  
-
-
-
-    <title>  · 紫郢 </title>
-  </head>
-
-  <body>
-    <div class="container">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">紫郢</a>
-</div>
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-          </a>
-        </li>
-      
-      
-    </ul>
-  
-</nav>
-
-<div class="mobile-navbar">
-  <div class="mobile-header">
-    <div class="mobile-header-logo">
-      <a href="/." class="logo">紫郢</a>
-    </div>
-
-    <div class="mobile-header-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-  <nav class="mobile-menu">
-    
-      
-      <a class="mobile-menu-item" href="/">
-        首页
-      </a>
-    
-      
-      <a class="mobile-menu-item" href="/archives/">
-        归档
-      </a>
-    
-  </nav>
-</div>
-      </header>
-
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content">
-            
-  
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          May 5, 2011
-        </span>
-      </div>
-    </header>
-
-    
-      <div class="post-toc" id="post-toc">
-        <h2 class="post-toc-title">文章目录</h2>
-        <div class="post-toc-content">
-          <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#wget请求播放地址"><span class="toc-text">wget请求播放地址</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#拷贝数据"><span class="toc-text">拷贝数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#find-命令"><span class="toc-text">find 命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#进程控制"><span class="toc-text">进程控制</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#shell"><span class="toc-text">shell</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#php-cgi"><span class="toc-text">php cgi</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#查看系统状态"><span class="toc-text">查看系统状态</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#mysql-进程管理"><span class="toc-text">mysql 进程管理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Chrome-模拟-Agent-信息"><span class="toc-text">Chrome 模拟 Agent 信息</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#nginx-管理命令"><span class="toc-text">nginx 管理命令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#nginx-开启ssi模块"><span class="toc-text">nginx 开启ssi模块</span></a></li></ol>
-        </div>
-      </div>
-    
-
-    <div class="post-content">
-      
-        <h5 id="wget请求播放地址"><a href="#wget请求播放地址" class="headerlink" title="wget请求播放地址"></a>wget请求播放地址</h5><pre><code>wget -b -i url.txt 
-http://sesehai.github.com/tech/2011-05-05-some-usefull-commands.html
-取得地址：
-wget -r [url]
-</code></pre><h5 id="拷贝数据"><a href="#拷贝数据" class="headerlink" title="拷贝数据"></a>拷贝数据</h5><pre><code>scp * root@113.11.111.123:/path/
-</code></pre><!--break-->
-<h5 id="find-命令"><a href="#find-命令" class="headerlink" title="find 命令"></a>find 命令</h5><pre><code>find . -name .svn -type d -exec rm -rf {} \;
-</code></pre><h5 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h5><pre><code>fork,exec
-http://learn.akae.cn/media/ch30s03.html
-僵尸进程是不能用kill命令清除掉的，因为kill命令只是用来终止进程的，而僵尸进程已经终止了。
-思考一下，用什么办法可以清除掉僵尸进程？
-</code></pre><h5 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h5><pre><code>#!/bin/bash
-echo `date` &gt;&gt;/data/stat.log
-cat /data/web.log | grep found &gt;&gt; data/stat_csv.log
-tail  /data/stat_csv.log
-</code></pre><h5 id="php-cgi"><a href="#php-cgi" class="headerlink" title="php cgi"></a>php cgi</h5><pre><code>Usage: php-cgi [-q] [-h] [-s] [-v] [-i] [-f &lt;file&gt;]
-       php-cgi &lt;file&gt; [args...]
-  -a               Run interactively
-  -b &lt;address:port&gt;|&lt;port&gt; Bind Path for external FASTCGI Server mode
-  -C               Do not chdir to the script&apos;s directory
-  -c &lt;path&gt;|&lt;file&gt; Look for php.ini file in this directory
-  -n               No php.ini file will be used
-  -d foo[=bar]     Define INI entry foo with value &apos;bar&apos;
-  -e               Generate extended information for debugger/profiler
-  -f &lt;file&gt;        Parse &lt;file&gt;.  Implies `-q&apos;
-  -h               This help
-  -i               PHP information
-  -l               Syntax check only (lint)
-  -m               Show compiled in modules
-  -q               Quiet-mode.  Suppress HTTP Header output.
-  -s               Display colour syntax highlighted source.
-  -v               Version number
-  -w               Display source with stripped comments and whitespace.
-  -z &lt;file&gt;        Load Zend extension &lt;file&gt;.
-  -T &lt;count&gt;       Measure execution time of script repeated &lt;count&gt; times.
-</code></pre><h5 id="查看系统状态"><a href="#查看系统状态" class="headerlink" title="查看系统状态"></a>查看系统状态</h5><pre><code>vmstat 1 100 
-</code></pre><h5 id="mysql-进程管理"><a href="#mysql-进程管理" class="headerlink" title="mysql 进程管理"></a>mysql 进程管理</h5><pre><code>mysqladmin -u name -ppwd processlist
-mysqladmin -u name -ppwd kill 
-
- show full processlist;
-
- netstat -ntp | grep 60691
-</code></pre><h5 id="Chrome-模拟-Agent-信息"><a href="#Chrome-模拟-Agent-信息" class="headerlink" title="Chrome 模拟 Agent 信息"></a>Chrome 模拟 Agent 信息</h5><pre><code>chrome.exe --user-agent=&quot;Mozilla/5.0 (iPad; U; CPU OS 3_2_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B500 Safari/531.21.10&quot;
-
-chrome.exe --user-agent=&quot;Mozilla/5.0 (Linux; U; Android 2.2; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1&quot;
-
-chrome.exe --user-agent=&quot;Mozilla/5.0 (iPhone; U; CPU OS 3_2_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B500 Safari/531.21.10&quot;
-</code></pre><h5 id="nginx-管理命令"><a href="#nginx-管理命令" class="headerlink" title="nginx 管理命令"></a>nginx 管理命令</h5><pre><code>/usr/sbin/nginx -c /etc/nginx/nginx.conf
-/usr/sbin/nginx -t
-kill -HUP `cat /data/nginx/logs/nginx.pid`
-kill -HUP 977
-</code></pre><h5 id="nginx-开启ssi模块"><a href="#nginx-开启ssi模块" class="headerlink" title="nginx 开启ssi模块"></a>nginx 开启ssi模块</h5><pre><code>ssi on;
-ssi_silent_errors on;
-ssi_types text/shtml;
-</code></pre><p>关闭在LINUX终端下的按键警报声</p>
-<pre><code>setterm -bleng 0
-</code></pre>
-      
-    </div>
-
-    
-      <footer class="post-footer">
-        <div class="post-tags">
-          
-            <a href="/tags/linux/">linux</a>
-          
-            <a href="/tags/shell/">shell</a>
-          
-            <a href="/tags/nginx/">nginx</a>
-          
-            <a href="/tags/php/">php</a>
-          
-        </div>
-
-        
-  <nav class="post-nav">
-    
-      <a class="prev" href="/2011/08/15/china-rock-roll-music/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default"></span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    
-    
-      <a class="next" href="/2011/04/23/use-github-write-blog/">
-        <span class="next-text nav-default">开始使用git</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    
-  </nav>
-
-      </footer>
-    
-  </article>
-
-
-          </div>
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-        </div>  
-      </main>
-
-      <footer id="footer" class="footer">
-  <div class="social-links">
-    
-      
-        
-          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-    
-  </div>
-
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
-  </span>
-  
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
-  </span>
-
-  <span class="copyright-year">
-    
-    &copy; 
-     
-      2015 - 
-    
-    2016
-
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">紫郢</span>
-  </span>
-</div>
-      </footer>
-
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
-    </div>
-
-    
-
-
-    
-
-
-  <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
-
-    <script type="text/javascript" src="/js/src/even.js?v=2.0.0"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.0.0"></script>
-
-  </body>
-</html>
+    .post-main.post-comment
+      include _partial/comments

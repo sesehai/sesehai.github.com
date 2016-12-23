@@ -1,218 +1,56 @@
-<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+extends base
 
+block title
+  if page.category
+     title= page.category + " | " + config.title
+  if page.tag
+     title= page.tag + " | " + config.title
+  if page.archive
+     title= __('archive') + " | " + config.title
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+block main
+  // Blog title and subtitle
+  header.wrapper.header
+    .container.blog-title
+      a#logo.title(href=url_for('.'))= config.title
+      span.subtitle= config.subtitle
+      label#toggle-menu(for="menu", onclick)
+        i.fa.fa-bars
+    // use checkbox hack for toggle nav-bar on small screens
+    input#menu(type="checkbox")
+    .container.nav-items
+      each nav, name in theme.menu
+        +a_with_current(nav, __(name))
 
+  article.wrapper
+    .post-entry
+      if page.category || page.tag
+          h1.label-title=  (page.category || page.tag)
+      .post
+        // show all categories and tags
+        if !(page.category || page.tag)
+            .all-categories
+              ul.tag-box.list-unstyled
+                for category in site.categories.sort('name').toArray()
+                  li
+                    a(href=root+'categories/'+category.name)= category.name
+                      span= category.posts.length
+            .all-tags
+              ul.tag-box.list-unstyled
+                for tag in site.tags.sort('name').toArray()
+                  li
+                    a(href=root+'tags/'+tag.name)= tag.name
+                      span= tag.posts.length
 
+        .post-archive
+            //Use lodash to classify posts. See https://lodash.com/docs#groupBy
+            each posts, year in _.groupBy(page.posts.toArray(), function(p){return -p.date.format('YYYY')})
+              h2= -year
+              ul.listing
+                for post in posts
+                  li
+                    span.date= post.date.format('YYYY/MM/DD')
+                    a(href=url_for(post.path), title=post.title)
+                      = post.title
 
-
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="紫郢">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.0.0" />
-
-
-
-<link rel="canonical" href="http://sesehai.github.io/tags/翻译/"/>
-
-
-<link rel="stylesheet" type="text/css" href="/css/style.scss?v=2.0.0" />
-
-
-
-  
-
-
-
-    <title>
-  
-    翻译 · 紫郢
-  
-</title>
-  </head>
-
-  <body>
-    <div class="container">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">紫郢</a>
-</div>
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-          </a>
-        </li>
-      
-      
-    </ul>
-  
-</nav>
-
-<div class="mobile-navbar">
-  <div class="mobile-header">
-    <div class="mobile-header-logo">
-      <a href="/." class="logo">紫郢</a>
-    </div>
-
-    <div class="mobile-header-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-  <nav class="mobile-menu">
-    
-      
-      <a class="mobile-menu-item" href="/">
-        首页
-      </a>
-    
-      
-      <a class="mobile-menu-item" href="/archives/">
-        归档
-      </a>
-    
-  </nav>
-</div>
-      </header>
-
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content">
-            
-  
-  <section id="archive" class="archive">
-    
-      
-        <div class="archive-title tag">
-          <h2 class="archive-name">翻译</h2>
-        </div>
-      
-    
-
-    
-      
-      
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2015-01-05
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2015/01/05/[翻译]Nginx使用配置文件实现日志切割/" class="archive-post-link">
-            【翻译】Nginx使用配置文件实现日志切割
-          </a>
-        </span>
-      </div>
-    
-  </section>
-
-  
-  <nav class="pagination">
-    
-    
-  </nav>
-
-
-
-          </div>
-          
-        </div>  
-      </main>
-
-      <footer id="footer" class="footer">
-  <div class="social-links">
-    
-      
-        
-          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-    
-  </div>
-
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
-  </span>
-  
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
-  </span>
-
-  <span class="copyright-year">
-    
-    &copy; 
-     
-      2015 - 
-    
-    2016
-
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">紫郢</span>
-  </span>
-</div>
-      </footer>
-
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
-    </div>
-
-    
-
-
-    
-
-
-  <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
-
-    <script type="text/javascript" src="/js/src/even.js?v=2.0.0"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.0.0"></script>
-
-  </body>
-</html>
+  include _partial/paginator.jade

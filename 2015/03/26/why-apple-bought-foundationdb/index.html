@@ -1,262 +1,36 @@
-<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+extends base
 
+block title
+  title= page.title + " | " + config.title
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+block main
 
+  // gallery that comes before the header
+  if page.photos
+     if page.photos.length
+      .article-gallery
+        .article-gallery-photos.container
+          for photo in page.photos
+            a.article-gallery-img.fancybox(href=url_for(photo), rel="gallery_" + page._id)
+              img(src=url_for(photo), itemprop="image")
 
+  article.wrapper
+    .post-main
+      .nav
+        nav.container
+          each nav, name in theme.menu
+            +a_with_current(nav, __(name))
+        .container.post-meta
+          if (page.tags && page.tags.length)
+            .post-tags
+              != list_tags(page.tags, {show_count: false, class: 'post-tag', style:'none', separator:''})
+          .post-time= page.date.format(config.date_format)
 
-  <meta name="description" content="【transfer】A lot of people are mad that Apple bought this tiny company and shut it down"/>
+      .container.post-header
+        h1: = page.title
 
+      .container.post-content
+        != page.content
 
-
-
-  <meta name="keywords" content="Apple," />
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="紫郢">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.0.0" />
-
-
-
-<link rel="canonical" href="http://sesehai.github.io/2015/03/26/why-apple-bought-foundationdb/"/>
-
-
-<link rel="stylesheet" type="text/css" href="/css/style.scss?v=2.0.0" />
-
-
-
-  
-
-
-
-    <title> 【transfer】A lot of people are mad that Apple bought this tiny company and shut it down · 紫郢 </title>
-  </head>
-
-  <body>
-    <div class="container">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">紫郢</a>
-</div>
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-          </a>
-        </li>
-      
-      
-    </ul>
-  
-</nav>
-
-<div class="mobile-navbar">
-  <div class="mobile-header">
-    <div class="mobile-header-logo">
-      <a href="/." class="logo">紫郢</a>
-    </div>
-
-    <div class="mobile-header-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-  <nav class="mobile-menu">
-    
-      
-      <a class="mobile-menu-item" href="/">
-        首页
-      </a>
-    
-      
-      <a class="mobile-menu-item" href="/archives/">
-        归档
-      </a>
-    
-  </nav>
-</div>
-      </header>
-
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content">
-            
-  
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          【transfer】A lot of people are mad that Apple bought this tiny company and shut it down
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Mar 26, 2015
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        <p>On Tuesday, word leaked that Apple was buying a tiny 40-person database startup called FoundationDB and a source tells us that this move is really freaking a lot of people out.</p>
-<p>Neither Apple nor FoundationDB has publicly acknowledged the purchase yet (we’ve reached out repeatedly and asked for comment). But there’s plenty of evidence that it happened and that Apple also immediately shuttered FoundationDB.</p>
-<p>For some context, FoundationDB is a type of noSQL database. That’s a popular type of database for Web applications, and it’s cheaper to use than traditional databases like Oracle because they spread themselves across many low-cost commodity servers. An Oracle database prefers to be loaded onto a big, high-performance, and very expensive server.</p>
-<p>“Apple bought Foundation not to resell the database, but for internal use,” Peter Goldmacher, vice president of development of Aerospike, another noSQL database, tells us. (Prior to joining Aerospike, Goldmacher worked at MongoDB and prior to that, he was a Wall Street analyst covering databases.)</p>
-<p>Word in Goldmacher’s circles is that Apple will be “replacing” its huge Cassandra noSQL implementation with FoundationDB. Apple uses Cassandra for “iMessage, iTunes passwords, a bunch of stuff,” he says.</p>
-<p>In fact, Apple is touted as having one of the largest production deployments of Cassandra of all, with over 75,000 nodes storing over 10 pedabytes of data. Cassandra is a free and open source database with a commercial version offered by Datalogix.</p>
-<p>Having Apple bail on Cassandra is not good for Datastax,  which recently raised $106 million (total funding of $190 million), on an $840 million valuation to take on Oracle. Apple’s huge project serves as a showcase for Cassandra and is one reason why Cassandra has been growing in popularity, market watcher DB-Engines reports. (Datastax had no comment on this.)</p>
-<p>FoundationDB shut down<br>GitHub/screen shot<br>FoundationDB pulled from GitHub</p>
-<p>But that’s not why people are mad.</p>
-<p>While both Cassandra/DataStax and FoundationDB are noSQL databases, FoundationDB had some unique technology. It works super-fast but needs far less hardware than Cassandra, making it even cheaper to use, even as it scales. (In geek speak, it’s an “in-memory” database that runs on flash storage.)</p>
-<p>Goldmacher says it needs somewhere between 5% to 10% less hardware than Cassandra.</p>
-<p>Most of these noSQL databases give their basic software away for free in an open source version, which allows their customers to add features and help with development. </p>
-<p>But FoundationDB’s new owner (Apple, we presume) without notice yanked FoundationDB’s open source software off of Github. </p>
-<p>FoundationDB teamFoundationDB<br>the FoundationDB team</p>
-<p>FoundationDB had an active community of companies using it for their own sites.</p>
-<p>Developers took a thread on Hacker News to vent. </p>
-<p>One user wrote, “Pulling an open-source project upon which people may depend is total jerk behavior.”</p>
-<p>FoundationDB, which sold its database as a cloud service, has also quietly suspended new customer registrations. (The sign-up page redirects you back to the home page.)</p>
-<p>So Apple has no intention of sharing this technology, it seems.</p>
-<p>Datalogix had no comment on Apple replacing Cassandra. But there’s an awful lot of comment about all of this in the developer world.</p>
-<p><a href="http://www.businessinsider.com/why-apple-bought-foundationdb-2015-3" target="_blank" rel="external">source &gt;&gt;</a></p>
-
-      
-    </div>
-
-    
-      <footer class="post-footer">
-        <div class="post-tags">
-          
-            <a href="/tags/Apple/">Apple</a>
-          
-        </div>
-
-        
-  <nav class="post-nav">
-    
-      <a class="prev" href="/2015/04/01/harpercollins-amazon-contract-expiring/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">【transfer】A major publisher may withdraw all its books from Amazon</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    
-    
-      <a class="next" href="/2015/03/26/a-pilot-on-the-germanwings-flight-was-locked-out-of-the-cockpit-before-the-crash/">
-        <span class="next-text nav-default">【transfer】Senior military official" A pilot on the Germanwings flight that crashed was locked out of the cockpit"</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    
-  </nav>
-
-      </footer>
-    
-  </article>
-
-
-          </div>
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-        </div>  
-      </main>
-
-      <footer id="footer" class="footer">
-  <div class="social-links">
-    
-      
-        
-          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-    
-  </div>
-
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
-  </span>
-  
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
-  </span>
-
-  <span class="copyright-year">
-    
-    &copy; 
-     
-      2015 - 
-    
-    2016
-
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">紫郢</span>
-  </span>
-</div>
-      </footer>
-
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
-    </div>
-
-    
-
-
-    
-
-
-  <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
-
-    <script type="text/javascript" src="/js/src/even.js?v=2.0.0"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.0.0"></script>
-
-  </body>
-</html>
+    .post-main.post-comment
+      include _partial/comments

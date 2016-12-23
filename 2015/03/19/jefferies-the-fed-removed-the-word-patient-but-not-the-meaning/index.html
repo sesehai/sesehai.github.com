@@ -1,256 +1,36 @@
-<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+extends base
 
+block title
+  title= page.title + " | " + config.title
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+block main
 
+  // gallery that comes before the header
+  if page.photos
+     if page.photos.length
+      .article-gallery
+        .article-gallery-photos.container
+          for photo in page.photos
+            a.article-gallery-img.fancybox(href=url_for(photo), rel="gallery_" + page._id)
+              img(src=url_for(photo), itemprop="image")
 
+  article.wrapper
+    .post-main
+      .nav
+        nav.container
+          each nav, name in theme.menu
+            +a_with_current(nav, __(name))
+        .container.post-meta
+          if (page.tags && page.tags.length)
+            .post-tags
+              != list_tags(page.tags, {show_count: false, class: 'post-tag', style:'none', separator:''})
+          .post-time= page.date.format(config.date_format)
 
-  <meta name="description" content="【transfer】The Fed cleverly said something without actually saying it"/>
+      .container.post-header
+        h1: = page.title
 
+      .container.post-content
+        != page.content
 
-
-
-  <meta name="keywords" content="monetary policy," />
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="紫郢">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.0.0" />
-
-
-
-<link rel="canonical" href="http://sesehai.github.io/2015/03/19/jefferies-the-fed-removed-the-word-patient-but-not-the-meaning/"/>
-
-
-<link rel="stylesheet" type="text/css" href="/css/style.scss?v=2.0.0" />
-
-
-
-  
-
-
-
-    <title> 【transfer】The Fed cleverly said something without actually saying it · 紫郢 </title>
-  </head>
-
-  <body>
-    <div class="container">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">紫郢</a>
-</div>
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-          </a>
-        </li>
-      
-      
-    </ul>
-  
-</nav>
-
-<div class="mobile-navbar">
-  <div class="mobile-header">
-    <div class="mobile-header-logo">
-      <a href="/." class="logo">紫郢</a>
-    </div>
-
-    <div class="mobile-header-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-  <nav class="mobile-menu">
-    
-      
-      <a class="mobile-menu-item" href="/">
-        首页
-      </a>
-    
-      
-      <a class="mobile-menu-item" href="/archives/">
-        归档
-      </a>
-    
-  </nav>
-</div>
-      </header>
-
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content">
-            
-  
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          【transfer】The Fed cleverly said something without actually saying it
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Mar 19, 2015
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        <p>Something fascinating happened Wednesday.</p>
-<p>The people who set monetary policy said something without explicitly saying it.</p>
-<p>Bear with us.</p>
-<p>Wednesday’s Federal Open Market Committee (FOMC) statement leaned dovish, meaning we can expect monetary policy to remain loose and stimulative for a little while longer.</p>
-<p>This was kind of surprising as most economists were expecting the Fed to stop using the phrase “remain patient” in talking about normalizing monetary policy (hiking interest rates).</p>
-<p>In the statement, the FOMC did indeed take out the language “remain patient.”</p>
-<p>However, the meaning of the existing language didn’t change that much, according to a note from Jefferies’ Ward McCarthy, so it’s unlikely that interest rates will rise in the next couple of meetings.</p>
-<p>“The word “patient” was removed, but the meaning of patient remained. Translation: this is a small step toward normalization, and liftoff is not on the immediate horizon,” wrote McCarthy.</p>
-<p>This willingness to not rush rate hikes was reinforced by reductions in the Fed’s forecasts for GDP growth and inflation.</p>
-<p>Because of all of this, McCarthy doesn’t think an initial rate hike is going to happen as early as June.</p>
-<p>Here’s what the new FOMC language says: </p>
-<p>To support continued progress toward maximum employment and price stability, the Committee today reaffirmed its view that the current 0 to 1/4 percent target range for the federal funds rate remains appropriate. In determining how long to maintain this target range, the Committee will assess progress–both realized and expected–toward its objectives of maximum employment and 2 percent inflation.</p>
-<p>Federal Reserve chair Janet Yellen said more or less the same think that McCarthy did (with the exception of a firm rate hike prediction) at the press conference following the FOMC statement.</p>
-<p>“Just because we removed the word ‘patient’ doesn’t mean we’re going to be impatient,” she said.</p>
-<p><a href="http://www.businessinsider.com/jefferies-the-fed-removed-the-word-patient-but-not-the-meaning-2015-3" target="_blank" rel="external">source &gt;&gt;</a></p>
-
-      
-    </div>
-
-    
-      <footer class="post-footer">
-        <div class="post-tags">
-          
-            <a href="/tags/monetary-policy/">monetary policy</a>
-          
-        </div>
-
-        
-  <nav class="post-nav">
-    
-      <a class="prev" href="/2015/03/24/pinterest-will-let-employees-exercise-options-for-seven-years-after-leaving/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">【transfer】Pinterest just made a deal with employees that could rock the startup world</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    
-    
-      <a class="next" href="/2015/03/17/apples-going-to-launch-a-tv-service-this-fall-that-could-kill-cable/">
-        <span class="next-text nav-default">【transfer】Apple's going to launch a TV service this fall that could kill cable</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    
-  </nav>
-
-      </footer>
-    
-  </article>
-
-
-          </div>
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-        </div>  
-      </main>
-
-      <footer id="footer" class="footer">
-  <div class="social-links">
-    
-      
-        
-          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-    
-  </div>
-
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
-  </span>
-  
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
-  </span>
-
-  <span class="copyright-year">
-    
-    &copy; 
-     
-      2015 - 
-    
-    2016
-
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">紫郢</span>
-  </span>
-</div>
-      </footer>
-
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
-    </div>
-
-    
-
-
-    
-
-
-  <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
-
-    <script type="text/javascript" src="/js/src/even.js?v=2.0.0"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.0.0"></script>
-
-  </body>
-</html>
+    .post-main.post-comment
+      include _partial/comments

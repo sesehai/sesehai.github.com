@@ -1,249 +1,36 @@
-<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+extends base
 
+block title
+  title= page.title + " | " + config.title
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+block main
 
+  // gallery that comes before the header
+  if page.photos
+     if page.photos.length
+      .article-gallery
+        .article-gallery-photos.container
+          for photo in page.photos
+            a.article-gallery-img.fancybox(href=url_for(photo), rel="gallery_" + page._id)
+              img(src=url_for(photo), itemprop="image")
 
+  article.wrapper
+    .post-main
+      .nav
+        nav.container
+          each nav, name in theme.menu
+            +a_with_current(nav, __(name))
+        .container.post-meta
+          if (page.tags && page.tags.length)
+            .post-tags
+              != list_tags(page.tags, {show_count: false, class: 'post-tag', style:'none', separator:''})
+          .post-time= page.date.format(config.date_format)
 
-  <meta name="description" content="【transfer】Tim Cook Says Apple Watch Ships In April"/>
+      .container.post-header
+        h1: = page.title
 
+      .container.post-content
+        != page.content
 
-
-
-  <meta name="keywords" content="Apple Watch,earnings call," />
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="紫郢">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.0.0" />
-
-
-
-<link rel="canonical" href="http://sesehai.github.io/2015/01/27/tim-cook-says-apple-watch-should-ship-in-april/"/>
-
-
-<link rel="stylesheet" type="text/css" href="/css/style.scss?v=2.0.0" />
-
-
-
-  
-
-
-
-    <title> 【transfer】Tim Cook Says Apple Watch Ships In April · 紫郢 </title>
-  </head>
-
-  <body>
-    <div class="container">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">紫郢</a>
-</div>
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-          </a>
-        </li>
-      
-      
-    </ul>
-  
-</nav>
-
-<div class="mobile-navbar">
-  <div class="mobile-header">
-    <div class="mobile-header-logo">
-      <a href="/." class="logo">紫郢</a>
-    </div>
-
-    <div class="mobile-header-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-  <nav class="mobile-menu">
-    
-      
-      <a class="mobile-menu-item" href="/">
-        首页
-      </a>
-    
-      
-      <a class="mobile-menu-item" href="/archives/">
-        归档
-      </a>
-    
-  </nav>
-</div>
-      </header>
-
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content">
-            
-  
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          【transfer】Tim Cook Says Apple Watch Ships In April
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Jan 27, 2015
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        <p>The Apple Watch will start shipping in April to consumers, according to Apple CEO Tim Cook, who revealed that month as the expected target launch date for the company on Apple’s Q1 2015 earnings call. The timeframe for launch was described as “early 2015″ when the Apple Watch was originally announced in September of last year.</p>
-<p>The Apple Watch release date has been the subject of much speculation since its announcement, with recent reports pegging March as the month of its arrival. Cook’s decision to add some clarity to its actual release timeline is uncharacteristic for Apple, which normally doesn’t put a firm launch date on unreleased products, but pre-announcing the hardware months in advance was already a departure from standard practice.</p>
-<p>Setting a more definite timeline for the Apple Watch does set expectations, however, ensuring that no one will be surprised when the wearable doesn’t appear in March as rumored. It also helps developers time their software releases correctly. Developers wanting to target the platform have so far depended upon using a virtual simulation of the wearable, and haven’t had any set deadline to work towards, so an announced April shipping target provides a clear goal to aim for.</p>
-<p>Apple’s decision to pre-announce the Apple Watch was designed in part to get developers on board with the platform, so this helps set expectations in that regard. Its typical secrecy around product launches also isn’t necessary in this case, given that the Watch was pre-announced last year and expectations were already set for a general window.</p>
-<p>“I’m using it every day, and love it, and I can’t live without it,” Cook said on the call, explaining his own excitement for the product. He also defended the April timeframe as within Apple’s defined “early 2014″ range in response to an analyst question which implied Apple may have wanted to deliver it earlier.</p>
-<p><a href="http://techcrunch.com/2015/01/27/tim-cook-says-apple-watch-should-ship-in-april/" target="_blank" rel="external">source &gt;&gt;</a></p>
-
-      
-    </div>
-
-    
-      <footer class="post-footer">
-        <div class="post-tags">
-          
-            <a href="/tags/Apple-Watch/">Apple Watch</a>
-          
-            <a href="/tags/earnings-call/">earnings call</a>
-          
-        </div>
-
-        
-  <nav class="post-nav">
-    
-      <a class="prev" href="/2015/01/27/apple-just-had-the-biggest-quarterly-earnings-of-any-company-ever/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">【transfer】Apple Just Had The Most Profitable Quarter Of Any Company Evertrading option</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    
-    
-      <a class="next" href="/2015/01/26/with-coinbase-exchange-bitcoin-gets-a-fully-licensed-insured-and-domestic-trading-option/">
-        <span class="next-text nav-default">【transfer】With Coinbase Exchange, US Bitcoin users get a fully-licensed, insured, and domestic trading option</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    
-  </nav>
-
-      </footer>
-    
-  </article>
-
-
-          </div>
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-        </div>  
-      </main>
-
-      <footer id="footer" class="footer">
-  <div class="social-links">
-    
-      
-        
-          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-    
-  </div>
-
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
-  </span>
-  
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
-  </span>
-
-  <span class="copyright-year">
-    
-    &copy; 
-     
-      2015 - 
-    
-    2016
-
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">紫郢</span>
-  </span>
-</div>
-      </footer>
-
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
-    </div>
-
-    
-
-
-    
-
-
-  <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
-
-    <script type="text/javascript" src="/js/src/even.js?v=2.0.0"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.0.0"></script>
-
-  </body>
-</html>
+    .post-main.post-comment
+      include _partial/comments

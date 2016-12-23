@@ -1,256 +1,36 @@
-<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+extends base
 
+block title
+  title= page.title + " | " + config.title
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+block main
 
+  // gallery that comes before the header
+  if page.photos
+     if page.photos.length
+      .article-gallery
+        .article-gallery-photos.container
+          for photo in page.photos
+            a.article-gallery-img.fancybox(href=url_for(photo), rel="gallery_" + page._id)
+              img(src=url_for(photo), itemprop="image")
 
+  article.wrapper
+    .post-main
+      .nav
+        nav.container
+          each nav, name in theme.menu
+            +a_with_current(nav, __(name))
+        .container.post-meta
+          if (page.tags && page.tags.length)
+            .post-tags
+              != list_tags(page.tags, {show_count: false, class: 'post-tag', style:'none', separator:''})
+          .post-time= page.date.format(config.date_format)
 
-  <meta name="description" content="【transfer】Apple just kneecapped Google's smartwatch efforts"/>
+      .container.post-header
+        h1: = page.title
 
+      .container.post-content
+        != page.content
 
-
-
-  <meta name="keywords" content="Apple Google's smartwatch," />
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="紫郢">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.0.0" />
-
-
-
-<link rel="canonical" href="http://sesehai.github.io/2015/04/14/android-wear-apple-watch-google-advantage-developers/"/>
-
-
-<link rel="stylesheet" type="text/css" href="/css/style.scss?v=2.0.0" />
-
-
-
-  
-
-
-
-    <title> 【transfer】Apple just kneecapped Google's smartwatch efforts · 紫郢 </title>
-  </head>
-
-  <body>
-    <div class="container">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">紫郢</a>
-</div>
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-          </a>
-        </li>
-      
-      
-    </ul>
-  
-</nav>
-
-<div class="mobile-navbar">
-  <div class="mobile-header">
-    <div class="mobile-header-logo">
-      <a href="/." class="logo">紫郢</a>
-    </div>
-
-    <div class="mobile-header-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-  <nav class="mobile-menu">
-    
-      
-      <a class="mobile-menu-item" href="/">
-        首页
-      </a>
-    
-      
-      <a class="mobile-menu-item" href="/archives/">
-        归档
-      </a>
-    
-  </nav>
-</div>
-      </header>
-
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content">
-            
-  
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          【transfer】Apple just kneecapped Google's smartwatch efforts
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Apr 14, 2015
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        <p>Bad news for Google: Apple has managed to sell more Apple Watches in a single day than the number of Android Wear smartwatches sold in an entire year, if market research from Slice Intelligence is to be believed.</p>
-<p>In 2014, all manufacturers using Google’s smartwatch operating system — including Motorola, LG, and Samsung — sold 720,000 units.</p>
-<p>In contrast, Apple sold an estimated 957,000 Apple Watches on the first day the devices were available for preorder.</p>
-<p>These figures do not bode well for Google’s app ecosystem.</p>
-<p>Android plays the numbers game<br>The iPhone has always — with some truth — been considered the “rich man’s phone.” Apple customers tend to be better off than Android users and spend more on apps and in-app purchases. Accordingly, ad rates on iOS, Apple’s operating system, are higher than on Google’s OS.</p>
-<p>This means that iOS is, at least on paper, the more lucrative platform to develop for. But many developers still choose to go “Android first.” Why? Because what Android customers lack in purchasing power (on average), they make up for in sheer numbers. In 2014, Android manufacturers shipped a staggering 1 billion smartphones. That’s a milestone that will take Apple years to reach — in the same period, despite having the most profitable quarter of any company ever, the Cupertino company had (relatively) paltry sales of 192.7 million.</p>
-<p>This truly massive reach is what makes Android such a compelling platform for developers.</p>
-<p>Google just lost the one thing it had going for it<br>apple watch drawer covent gardenRob Price/BI<br>An assistant showing off Apple Watches at an Apple Store.</p>
-<p>When it comes to smartwatches, however, the Android Wear OS doesn’t even have this advantage. In a single day, Apple has shifted more units than Google’s partners did in a year. Even if you believe — as Fortune’s Philip Elmer-DeWitt does — that Slice’s estimate may skew high, it seems clear that Apple is going to win the numbers game on this one.</p>
-<p>Suddenly, Android on smartwatches becomes the platform with the smaller market share, and without the lucrative user base to justify prioritising development for it.</p>
-<p>(Of course, we don’t yet have demographics on Apple Watch customers, so we don’t yet know for sure whether they will follow the established trend of being wealthier on average than Android (Wear) customers. But considering the high price point of the Apple Watch — topping out at $17,000/£13,500 — it is a fairly reasonable assumption to make.)</p>
-<p>It’s also worth noting that Android Wear and Watch OS aren’t the only two smartwatch operating systems out there. The crowdfunded Pebble, for example, sold 1 million units in the period between its 2013 launch and the end of 2014. But this variety of options just makes the case to prioritise development for Google’s OS even less compelling.</p>
-<p>This isn’t to say that no one is going to develop for Android Wear. For larger companies that want to maximise their reach, it will be worth building products for both companies’ platforms. But when it comes to smaller developers who need to choose carefully where they allocate their resources, Android just lost its one massive advantage.</p>
-<hr>
-<p><a href="http://www.businessinsider.com/android-wear-apple-watch-google-advantage-developers-2015-4" target="_blank" rel="external">source &gt;&gt;</a></p>
-
-      
-    </div>
-
-    
-      <footer class="post-footer">
-        <div class="post-tags">
-          
-            <a href="/tags/Apple-Google-s-smartwatch/">Apple Google's smartwatch</a>
-          
-        </div>
-
-        
-  <nav class="post-nav">
-    
-      <a class="prev" href="/2016/07/06/hello-world/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Hello World</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    
-    
-      <a class="next" href="/2015/04/09/years-of-git-an-interview-with-git-creator-linus-torvalds/">
-        <span class="next-text nav-default">【transfer】10 Years of Git" An Interview with Git Creator Linus Torvalds"</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    
-  </nav>
-
-      </footer>
-    
-  </article>
-
-
-          </div>
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-        </div>  
-      </main>
-
-      <footer id="footer" class="footer">
-  <div class="social-links">
-    
-      
-        
-          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-    
-  </div>
-
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
-  </span>
-  
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
-  </span>
-
-  <span class="copyright-year">
-    
-    &copy; 
-     
-      2015 - 
-    
-    2016
-
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">紫郢</span>
-  </span>
-</div>
-      </footer>
-
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
-    </div>
-
-    
-
-
-    
-
-
-  <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
-
-    <script type="text/javascript" src="/js/src/even.js?v=2.0.0"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.0.0"></script>
-
-  </body>
-</html>
+    .post-main.post-comment
+      include _partial/comments

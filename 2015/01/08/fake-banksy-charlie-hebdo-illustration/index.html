@@ -1,260 +1,36 @@
-<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+extends base
 
+block title
+  title= page.title + " | " + config.title
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+block main
 
+  // gallery that comes before the header
+  if page.photos
+     if page.photos.length
+      .article-gallery
+        .article-gallery-photos.container
+          for photo in page.photos
+            a.article-gallery-img.fancybox(href=url_for(photo), rel="gallery_" + page._id)
+              img(src=url_for(photo), itemprop="image")
 
+  article.wrapper
+    .post-main
+      .nav
+        nav.container
+          each nav, name in theme.menu
+            +a_with_current(nav, __(name))
+        .container.post-meta
+          if (page.tags && page.tags.length)
+            .post-tags
+              != list_tags(page.tags, {show_count: false, class: 'post-tag', style:'none', separator:''})
+          .post-time= page.date.format(config.date_format)
 
-  <meta name="description" content="【transfer】The Image That Everyone Is Sharing By 'Banksy' Isn't By Banksy — But It's Awesome"/>
+      .container.post-header
+        h1: = page.title
 
+      .container.post-content
+        != page.content
 
-
-
-  <meta name="keywords" content="Banksy,Instagram,Art,Charlie Hebdo," />
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="紫郢">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.0.0" />
-
-
-
-<link rel="canonical" href="http://sesehai.github.io/2015/01/08/fake-banksy-charlie-hebdo-illustration/"/>
-
-
-<link rel="stylesheet" type="text/css" href="/css/style.scss?v=2.0.0" />
-
-
-
-  
-
-
-
-    <title> 【transfer】The Image That Everyone Is Sharing By 'Banksy' Isn't By Banksy — But It's Awesome · 紫郢 </title>
-  </head>
-
-  <body>
-    <div class="container">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">紫郢</a>
-</div>
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-          </a>
-        </li>
-      
-      
-    </ul>
-  
-</nav>
-
-<div class="mobile-navbar">
-  <div class="mobile-header">
-    <div class="mobile-header-logo">
-      <a href="/." class="logo">紫郢</a>
-    </div>
-
-    <div class="mobile-header-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-  <nav class="mobile-menu">
-    
-      
-      <a class="mobile-menu-item" href="/">
-        首页
-      </a>
-    
-      
-      <a class="mobile-menu-item" href="/archives/">
-        归档
-      </a>
-    
-  </nav>
-</div>
-      </header>
-
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content">
-            
-  
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          【transfer】The Image That Everyone Is Sharing By 'Banksy' Isn't By Banksy — But It's Awesome
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Jan 8, 2015
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        <p>There’s an illustration being shared on Facebook, Instagram and Twitter that claims to be a tribute created by street artist Banksy in response to the terrorist attack that killed 12 people near the offices of the French satirical magazine Charlie Hebdo in Paris earlier today.</p>
-<p>While the image does have a touching message, it’s almost certainly a fake - not created by Banksy.</p>
-<p>Here’s the illustration that everyone is sharing:</p>
-<p>Fake Banksy illustration<br>Instagram/Banksy</p>
-<p>Mashable is reporting that the image was posted by a “popular ‘Banksy’ account” on Instagram. The instagram.com/banksy Instagram isn’t run by Banksy at all, and is actually a fan page that shares street art created by a variety of different artists - rarely with any attribution.</p>
-<p>Search on Facebook, Twitter, and Instagram and you’ll see plenty of popular accounts that seem to be official Banksy pages. The problem of fake social media accounts is so widespread that Banksy has even posted on his official website to deny he runs any Facebook or Twitter accounts. He does, however, have one Instagram account, which was used during his recent trip to New York.</p>
-<p>Facebook was recently forced to remove the verification checkmark for a Facebook page for a Banksy account with millions of Likes after the artists PR representative denied that he had anything to do with it.</p>
-<p>The Instagram account that the pencil illustration originates from is part of a ring of fake social media profiles. As well as the fake Instagram and Facebook accounts, the administrators behind the Banksy pages also run a YouTube account that re-uploads popular viral videos to capitalize on their popularity.</p>
-<p>Here’s an example of a video posted by the fake Banksy YouTube account:</p>
-<p>Another clue that points to the image being fake is its file size. The image uploaded to the fake Banksy social media posts is pixelated and low-resolution. Banksy is an artist who makes a living from exhibiting his work, he wouldn’t want his work to be displayed in a way that makes it look bad.</p>
-<p>It’s tricky to verify new Banksy work. Because of Banksy’s continued anonymity, and the often confusing similarity to other graffiti artists, many works of art end up mistakenly labeled as created by Banksy. A handful of galleries and companies in the UK are, however, experts in his work, meaning that they can verify prints purported to originate from Banksy.</p>
-<p>Nevertheless, given today’s tragic events, the sentiment is strong.</p>
-<p><a href="http://www.businessinsider.com/fake-banksy-charlie-hebdo-illustration-2015-1" target="_blank" rel="external">source &gt;&gt;</a></p>
-
-      
-    </div>
-
-    
-      <footer class="post-footer">
-        <div class="post-tags">
-          
-            <a href="/tags/Banksy/">Banksy</a>
-          
-            <a href="/tags/Instagram/">Instagram</a>
-          
-            <a href="/tags/Art/">Art</a>
-          
-            <a href="/tags/Charlie-Hebdo/">Charlie Hebdo</a>
-          
-        </div>
-
-        
-  <nav class="post-nav">
-    
-      <a class="prev" href="/2015/01/09/r-obama-proposes-two-years-of-free-community-college/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">【transfer】Obama Wants To Offer Two Years Of Free Community College</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    
-    
-      <a class="next" href="/2015/01/07/android-tv-ces/">
-        <span class="next-text nav-default">【transfer】Google’s Android TV Will Power Sets From Sony, Sharp, and Philips Beginning This Spring</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    
-  </nav>
-
-      </footer>
-    
-  </article>
-
-
-          </div>
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-        </div>  
-      </main>
-
-      <footer id="footer" class="footer">
-  <div class="social-links">
-    
-      
-        
-          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-    
-  </div>
-
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
-  </span>
-  
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
-  </span>
-
-  <span class="copyright-year">
-    
-    &copy; 
-     
-      2015 - 
-    
-    2016
-
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">紫郢</span>
-  </span>
-</div>
-      </footer>
-
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
-    </div>
-
-    
-
-
-    
-
-
-  <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
-
-    <script type="text/javascript" src="/js/src/even.js?v=2.0.0"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.0.0"></script>
-
-  </body>
-</html>
+    .post-main.post-comment
+      include _partial/comments

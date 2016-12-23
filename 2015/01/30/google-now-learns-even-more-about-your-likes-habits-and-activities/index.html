@@ -1,251 +1,36 @@
-<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+extends base
 
+block title
+  title= page.title + " | " + config.title
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+block main
 
+  // gallery that comes before the header
+  if page.photos
+     if page.photos.length
+      .article-gallery
+        .article-gallery-photos.container
+          for photo in page.photos
+            a.article-gallery-img.fancybox(href=url_for(photo), rel="gallery_" + page._id)
+              img(src=url_for(photo), itemprop="image")
 
+  article.wrapper
+    .post-main
+      .nav
+        nav.container
+          each nav, name in theme.menu
+            +a_with_current(nav, __(name))
+        .container.post-meta
+          if (page.tags && page.tags.length)
+            .post-tags
+              != list_tags(page.tags, {show_count: false, class: 'post-tag', style:'none', separator:''})
+          .post-time= page.date.format(config.date_format)
 
-  <meta name="description" content="【transfer】Google Now learns even more about your likes, habits, and activities"/>
+      .container.post-header
+        h1: = page.title
 
+      .container.post-content
+        != page.content
 
-
-
-  <meta name="keywords" content="Google," />
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="紫郢">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.0.0" />
-
-
-
-<link rel="canonical" href="http://sesehai.github.io/2015/01/30/google-now-learns-even-more-about-your-likes-habits-and-activities/"/>
-
-
-<link rel="stylesheet" type="text/css" href="/css/style.scss?v=2.0.0" />
-
-
-
-  
-
-
-
-    <title> 【transfer】Google Now learns even more about your likes, habits, and activities · 紫郢 </title>
-  </head>
-
-  <body>
-    <div class="container">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">紫郢</a>
-</div>
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-          </a>
-        </li>
-      
-      
-    </ul>
-  
-</nav>
-
-<div class="mobile-navbar">
-  <div class="mobile-header">
-    <div class="mobile-header-logo">
-      <a href="/." class="logo">紫郢</a>
-    </div>
-
-    <div class="mobile-header-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-  <nav class="mobile-menu">
-    
-      
-      <a class="mobile-menu-item" href="/">
-        首页
-      </a>
-    
-      
-      <a class="mobile-menu-item" href="/archives/">
-        归档
-      </a>
-    
-  </nav>
-</div>
-      </header>
-
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content">
-            
-  
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          【transfer】Google Now learns even more about your likes, habits, and activities
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Jan 30, 2015
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        <p>Google has taken another step towards knowing everything about its users.</p>
-<p>The company announced today that Google Now, the virtual assistant software that promises to provide information before a consumer even knows she needs it, will now be able to collect and present relevant data from some 40 third-party applications.</p>
-<p>Here’s one example, from the blog post announcing the platform’s expansion, of how this ability to showcase information from other apps might work for consumers:</p>
-<p>In the morning, catch up on news of the day with cards from The Guardian. On your commute, Pandora can give you recommendations for music to play, based on what you like, or you can be reminded to complete your daily French lesson on Duolingo. During your downtime, you can take care of the groceries, with a card from Instacart reminding you to stock up on the things you often order. If you’re planning a trip and looked up places to stay on your Airbnb app but couldn’t make up your mind, you’ll see Now cards from Airbnb for the location and dates you’ve researched. And when you land at an airport, you’ll see a card to order a Lyft.</p>
-<p>This is supposed to be an exciting peek into a world where Google Now can know everything about you and make your life easier by unifying scores of applications in a virtual assistant that happens to have been made by a multi-tens-of-billion-dollar business built on selling consumers’ personal information to advertisers.</p>
-<p>But the “new and improved” Google Now seems more like a nightmare scenario that makes it even harder to keep Google from learning all about its customers. It would know when they have woken up, when they’re driving, and when their flights land. It would know where they eat, what language they’re studying, and what music they like.</p>
-<p>There’s a fair chance the company already knows much of this information. (How else are you going to find a language-learning app than by searching for it in Google? Or book a flight whose receipts are sent to Gmail? Or explore a city with anything besides Google Maps?) Yet this latest update is much more upfront about this fact, leaving no doubt about just how deeply into your life Google wishes to peer.</p>
-<p>Google knows almost everything already, but it’s not satisfied with “almost.” For all the things it doesn’t know, it seems the plan is to partner with other companies to gather this information.  And, by saving consumers a few taps whenever they want to use their phones, Google will likely convince consumers it’s a trade-off worth making. After all, the main reason Google has survived (and thrived) this long is because it can make convenience trump privacy.</p>
-<p>Now, if you’ll excuse me, Google Chrome just told me I’ve written too many words about how Google might be eroding consumer privacy. Luckily it’s playing this YouTube video to calm me down while it finds the weather forecast for the dank, dark dungeon Eric Schmidt built when he was still the company’s chief executive.</p>
-<p><a href="http://pando.com/2015/01/30/google-now-learns-even-more-about-your-likes-habits-and-activities/" target="_blank" rel="external">source &gt;&gt;</a></p>
-
-      
-    </div>
-
-    
-      <footer class="post-footer">
-        <div class="post-tags">
-          
-            <a href="/tags/Google/">Google</a>
-          
-        </div>
-
-        
-  <nav class="post-nav">
-    
-      <a class="prev" href="/2015/02/02/twitter-tests-instant-timeline-feature-to-help-users-understand-the-hell-of-twitter-before-they-even-follow-anybody/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">【transfer】Twitter tests “instant timeline” feature to help users understand the hell of Twitter before they even follow anybody</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    
-    
-      <a class="next" href="/2015/01/28/amazon-workmail/">
-        <span class="next-text nav-default">【transfer】Amazon WorkMail Takes On Microsoft And Google For Enterprise Email And Calendars</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    
-  </nav>
-
-      </footer>
-    
-  </article>
-
-
-          </div>
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-        </div>  
-      </main>
-
-      <footer id="footer" class="footer">
-  <div class="social-links">
-    
-      
-        
-          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-    
-  </div>
-
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
-  </span>
-  
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
-  </span>
-
-  <span class="copyright-year">
-    
-    &copy; 
-     
-      2015 - 
-    
-    2016
-
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">紫郢</span>
-  </span>
-</div>
-      </footer>
-
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
-    </div>
-
-    
-
-
-    
-
-
-  <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
-
-    <script type="text/javascript" src="/js/src/even.js?v=2.0.0"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.0.0"></script>
-
-  </body>
-</html>
+    .post-main.post-comment
+      include _partial/comments

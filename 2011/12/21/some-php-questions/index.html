@@ -1,265 +1,36 @@
-<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+extends base
 
+block title
+  title= page.title + " | " + config.title
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+block main
 
+  // gallery that comes before the header
+  if page.photos
+     if page.photos.length
+      .article-gallery
+        .article-gallery-photos.container
+          for photo in page.photos
+            a.article-gallery-img.fancybox(href=url_for(photo), rel="gallery_" + page._id)
+              img(src=url_for(photo), itemprop="image")
 
+  article.wrapper
+    .post-main
+      .nav
+        nav.container
+          each nav, name in theme.menu
+            +a_with_current(nav, __(name))
+        .container.post-meta
+          if (page.tags && page.tags.length)
+            .post-tags
+              != list_tags(page.tags, {show_count: false, class: 'post-tag', style:'none', separator:''})
+          .post-time= page.date.format(config.date_format)
 
-  <meta name="description" content="几个php的问题"/>
+      .container.post-header
+        h1: = page.title
 
+      .container.post-content
+        != page.content
 
-
-
-  <meta name="keywords" content="php," />
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="紫郢">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.0.0" />
-
-
-
-<link rel="canonical" href="http://sesehai.github.io/2011/12/21/some-php-questions/"/>
-
-
-<link rel="stylesheet" type="text/css" href="/css/style.scss?v=2.0.0" />
-
-
-
-  
-
-
-
-    <title> 几个php的问题 · 紫郢 </title>
-  </head>
-
-  <body>
-    <div class="container">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">紫郢</a>
-</div>
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-          </a>
-        </li>
-      
-      
-    </ul>
-  
-</nav>
-
-<div class="mobile-navbar">
-  <div class="mobile-header">
-    <div class="mobile-header-logo">
-      <a href="/." class="logo">紫郢</a>
-    </div>
-
-    <div class="mobile-header-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-  <nav class="mobile-menu">
-    
-      
-      <a class="mobile-menu-item" href="/">
-        首页
-      </a>
-    
-      
-      <a class="mobile-menu-item" href="/archives/">
-        归档
-      </a>
-    
-  </nav>
-</div>
-      </header>
-
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content">
-            
-  
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          几个php的问题
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Dec 21, 2011
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        <ul>
-<li><p>zend framework request router 的实现；</p>
-</li>
-<li><p>empty() 判断返回true值的变量的值：<br> “”,0,”0”,null,false,array(),var $var,没有任何属性的对象；</p>
-</li>
-<li><p>error_reporting(E_ALL) 设置哪些错误、提示、警告，汇报出来；<br> ini_set(‘display_errors’,1) 是否显示错误<br> ini_set(‘log_errors’,1)     错误信息是否存入error.log<br> ini_set(‘error_log’,’error.log’) 设置错误存放文件<br> set_error_handler() 设置自定义的错误处理方法</p>
-<!--break--></li>
-<li><p>json_decode($str,true); 第二个参数true 将返回的对象转换为数组</p>
-</li>
-<li><p>memcache 内容如何更新：1）切换新的key（缺点耗资源）</p>
-</li>
-<li><p>生成静态文件时，同一目录下最多能放多少个文件或文件夹，而不会影响存取效率，如何解决？<br> 同一路径下一级子目录最多有 31998 个，如果名字是数字，都除以10000得到的整数最为父目录；</p>
-</li>
-<li><p>array 排序：<br> asort() 对数组按值排序，保持索引<br> sort()  对数组按值排序，不保持索引<br> ksort()按键值排序</p>
-</li>
-<li><p>ajax 跨域请求<br> ajax 的刷新</p>
-</li>
-<li><p>html5 video 标签的试用？</p>
-</li>
-<li><p>静态化解决方案：<br>  db并发太高、表死锁频繁、php执行缓慢、积压负载 如何处理？<br>  db-&gt;应用之间缓存，db-&gt;静态化</p>
-</li>
-<li><p>数据统计：<br>  百万条数据、多表联合查询、数据去重 执行缓慢如何处理？<br>  去重有何方法？</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-      <footer class="post-footer">
-        <div class="post-tags">
-          
-            <a href="/tags/php/">php</a>
-          
-        </div>
-
-        
-  <nav class="post-nav">
-    
-      <a class="prev" href="/2014/03/19/2012软件设计师考纲及分析/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">2012年软件设计师 考试大纲分析</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    
-    
-      <a class="next" href="/2011/08/15/china-rock-roll-music/">
-        <span class="next-text nav-default"></span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    
-  </nav>
-
-      </footer>
-    
-  </article>
-
-
-          </div>
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-        </div>  
-      </main>
-
-      <footer id="footer" class="footer">
-  <div class="social-links">
-    
-      
-        
-          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-    
-  </div>
-
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
-  </span>
-  
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
-  </span>
-
-  <span class="copyright-year">
-    
-    &copy; 
-     
-      2015 - 
-    
-    2016
-
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">紫郢</span>
-  </span>
-</div>
-      </footer>
-
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
-    </div>
-
-    
-
-
-    
-
-
-  <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
-
-    <script type="text/javascript" src="/js/src/even.js?v=2.0.0"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.0.0"></script>
-
-  </body>
-</html>
+    .post-main.post-comment
+      include _partial/comments

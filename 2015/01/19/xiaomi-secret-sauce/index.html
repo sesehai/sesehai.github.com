@@ -1,259 +1,36 @@
-<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+extends base
 
+block title
+  title= page.title + " | " + config.title
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+block main
 
+  // gallery that comes before the header
+  if page.photos
+     if page.photos.length
+      .article-gallery
+        .article-gallery-photos.container
+          for photo in page.photos
+            a.article-gallery-img.fancybox(href=url_for(photo), rel="gallery_" + page._id)
+              img(src=url_for(photo), itemprop="image")
 
+  article.wrapper
+    .post-main
+      .nav
+        nav.container
+          each nav, name in theme.menu
+            +a_with_current(nav, __(name))
+        .container.post-meta
+          if (page.tags && page.tags.length)
+            .post-tags
+              != list_tags(page.tags, {show_count: false, class: 'post-tag', style:'none', separator:''})
+          .post-time= page.date.format(config.date_format)
 
-  <meta name="description" content="【transfer】This Is How Xiaomi Keeps The Cost Of Its Smartphones So Low"/>
+      .container.post-header
+        h1: = page.title
 
+      .container.post-content
+        != page.content
 
-
-
-  <meta name="keywords" content="Xiaomi," />
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="紫郢">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.0.0" />
-
-
-
-<link rel="canonical" href="http://sesehai.github.io/2015/01/19/xiaomi-secret-sauce/"/>
-
-
-<link rel="stylesheet" type="text/css" href="/css/style.scss?v=2.0.0" />
-
-
-
-  
-
-
-
-    <title> 【transfer】This Is How Xiaomi Keeps The Cost Of Its Smartphones So Low · 紫郢 </title>
-  </head>
-
-  <body>
-    <div class="container">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">紫郢</a>
-</div>
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-          </a>
-        </li>
-      
-      
-    </ul>
-  
-</nav>
-
-<div class="mobile-navbar">
-  <div class="mobile-header">
-    <div class="mobile-header-logo">
-      <a href="/." class="logo">紫郢</a>
-    </div>
-
-    <div class="mobile-header-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-  <nav class="mobile-menu">
-    
-      
-      <a class="mobile-menu-item" href="/">
-        首页
-      </a>
-    
-      
-      <a class="mobile-menu-item" href="/archives/">
-        归档
-      </a>
-    
-  </nav>
-</div>
-      </header>
-
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content">
-            
-  
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          【transfer】This Is How Xiaomi Keeps The Cost Of Its Smartphones So Low
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Jan 19, 2015
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        <p>Xiaomi’s combination of well-spec’ed phones and low price tags drove the company to over 60 million sales last year. That progress saw it replace Samsung as China’s top-selling smartphone company and become the world’s third top selling phone maker in the process.</p>
-<p>The Chinese company’s flagship Mi devices typically retail for around $300 — its new Mi Note Pro notably breaks the $500 barrier for the first time — while its affordable Redmi family is sub-$150. For comparison, Apple’s top of the range iPhones sell for over $1,000 off contract, while the Samsung Note and GalaxyS families are similarly priced. So how can Xiaomi be so aggressive with its pricing?</p>
-<p>Many theories have been put forward, including claims that Xiaomi sells at cost and makes money from other services. Hugo Barra, the company’s VP of International, lifted the lid on some of the company’s secret sauce in an interview with TechCrunch in Beijing last week.</p>
-<p>Xiaomi is able to make price concessions thanks to the combination of a small portfolio and longer average selling time per device<br>Barra explained that Xiaomi is able to make price concessions thanks to the combination of a small portfolio and longer average selling time per device.</p>
-<p>Importantly, Xiaomi continues to sell older devices (and tweaked versions of them) at reduced prices even after it releases newer models.</p>
-<p>“A product that stays on the shelf for 18-24 months — which is most of our products — goes through three or four price cuts. The Mi2 and Mi2s are essentially the same device, for example,” Barra explained. “The Mi2/Mi2s were on sale for 26 months. The Redmi 1 was first launched in September 2013, and we just announced the Redmi 2 this month, that’s 16 months later.”</p>
-<p>That’s important because the longer runway for devices gives Xiaomi leverage to secure better component deals with its suppliers.</p>
-<p>“The reason we do these price cuts is because we’ve managed to negotiate component cost decreases [with our suppliers] over time, which ends up leaving us with a bigger margin than we’d like to have, so we do a price cut,” Barra added.</p>
-<p>“The vast majority of the components [in our devices] are still the same, so in terms of supply chain and component sourcing, we’re on the same supply contracts as Redmi 1, which means we’re still getting the same discounts on components,” he explained. “We can continue to ride the cost curve, so the importance of having a very small portfolio is significant — the fact that we only launch a few products each year, and (the fact that) we only have two product families.”</p>
-<p>xiaomi</p>
-<p>Barra said that the dynamics are “very simple,” but a commitment to devices for two or three years isn’t just about making price cuts. He pointed out that Xiaomi maintains software updates, spare parts and other services that customers require, longer than most companies would.</p>
-<p>“The more focused the portfolio, the more efficient we can be at managing those costs too,” he explained.</p>
-<p>There are other factors that contribute to the cost structure, including Xiaomi’s lean, online-only marketing focus and its location close to manufacturing plants in China , but the management of components and supply chain partnerships is a crucial element.</p>
-<p>Xiaomi has big plans for expanding beyond Asia this year, which will make its pricing model and supply chain more important than ever.</p>
-<p>The company sells its phone using an online-only model in most markets, but it has recently begun testing operator partnerships outside of China. It is running a limited trial with Airtel in India, and has found partners in Taiwan, Malaysia and Singapore.</p>
-<p>Barra explained that operator partnerships are difficult in markets where the majority of consumers are on pre-paid tariffs — such as India — but it seems clear that Xiaomi is looking into ways to expand its retail footprint. It sold one million devices in its first five months in India using its flash sales model. If it can move beyond that and better meet demand for its phones in India and other emerging markets, it could vastly increase its sales figures in 2015.</p>
-<p>Last year, Xiaomi projected that it would sell 100 million devices this year. It increased its target for 2014 mid-way through the year, but we’re yet to hear of a new figure for 2015 from the company.</p>
-<p><a href="http://techcrunch.com/2015/01/18/xiaomi-kingsoft/" target="_blank" rel="external">source &gt;&gt;</a></p>
-
-      
-    </div>
-
-    
-      <footer class="post-footer">
-        <div class="post-tags">
-          
-            <a href="/tags/Xiaomi/">Xiaomi</a>
-          
-        </div>
-
-        
-  <nav class="post-nav">
-    
-      <a class="prev" href="/2015/01/21/google-facebook-and-apple-all-spent-more-than-ever-on-lobbying-in-2014/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">【transfer】Google, Facebook, and Apple all spent more than ever on lobbying in 2014</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    
-    
-      <a class="next" href="/2015/01/18/xiaomi-kingsoft/">
-        <span class="next-text nav-default">【transfer】Xiaomi Buys 3% Of Chinese Games And Software Giant Kingsoft For $68M</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    
-  </nav>
-
-      </footer>
-    
-  </article>
-
-
-          </div>
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-        </div>  
-      </main>
-
-      <footer id="footer" class="footer">
-  <div class="social-links">
-    
-      
-        
-          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-    
-  </div>
-
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
-  </span>
-  
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
-  </span>
-
-  <span class="copyright-year">
-    
-    &copy; 
-     
-      2015 - 
-    
-    2016
-
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">紫郢</span>
-  </span>
-</div>
-      </footer>
-
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
-    </div>
-
-    
-
-
-    
-
-
-  <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
-
-    <script type="text/javascript" src="/js/src/even.js?v=2.0.0"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.0.0"></script>
-
-  </body>
-</html>
+    .post-main.post-comment
+      include _partial/comments

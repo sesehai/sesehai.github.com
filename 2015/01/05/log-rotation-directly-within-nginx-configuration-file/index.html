@@ -1,276 +1,36 @@
-<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+extends base
 
+block title
+  title= page.title + " | " + config.title
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+block main
 
+  // gallery that comes before the header
+  if page.photos
+     if page.photos.length
+      .article-gallery
+        .article-gallery-photos.container
+          for photo in page.photos
+            a.article-gallery-img.fancybox(href=url_for(photo), rel="gallery_" + page._id)
+              img(src=url_for(photo), itemprop="image")
 
+  article.wrapper
+    .post-main
+      .nav
+        nav.container
+          each nav, name in theme.menu
+            +a_with_current(nav, __(name))
+        .container.post-meta
+          if (page.tags && page.tags.length)
+            .post-tags
+              != list_tags(page.tags, {show_count: false, class: 'post-tag', style:'none', separator:''})
+          .post-time= page.date.format(config.date_format)
 
-  <meta name="description" content="【transfer】Log rotation directly within Nginx configuration file"/>
+      .container.post-header
+        h1: = page.title
 
+      .container.post-content
+        != page.content
 
-
-
-  <meta name="keywords" content="nginx,log,rotation," />
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="紫郢">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.0.0" />
-
-
-
-<link rel="canonical" href="http://sesehai.github.io/2015/01/05/log-rotation-directly-within-nginx-configuration-file/"/>
-
-
-<link rel="stylesheet" type="text/css" href="/css/style.scss?v=2.0.0" />
-
-
-
-  
-
-
-
-    <title> 【transfer】Log rotation directly within Nginx configuration file · 紫郢 </title>
-  </head>
-
-  <body>
-    <div class="container">
-      <header id="header" class="header"><div class="logo-wrapper">
-  <a href="/." class="logo">紫郢</a>
-</div>
-
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/">
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item">
-          <a class="menu-item-link" href="/archives/">
-            归档
-          </a>
-        </li>
-      
-      
-    </ul>
-  
-</nav>
-
-<div class="mobile-navbar">
-  <div class="mobile-header">
-    <div class="mobile-header-logo">
-      <a href="/." class="logo">紫郢</a>
-    </div>
-
-    <div class="mobile-header-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-  <nav class="mobile-menu">
-    
-      
-      <a class="mobile-menu-item" href="/">
-        首页
-      </a>
-    
-      
-      <a class="mobile-menu-item" href="/archives/">
-        归档
-      </a>
-    
-  </nav>
-</div>
-      </header>
-
-      <main id="main" class="main">
-        <div class="content-wrapper">
-          <div id="content" class="content">
-            
-  
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          【transfer】Log rotation directly within Nginx configuration file
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          Jan 5, 2015
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        <p>Ever since I discovered PostgreSQL allowed to embed variables in log_filename allowing to split logs without using logrotate or cronolog, I’ve been wanting to do the same with Nginx.</p>
-<p>As it turns out, it’s not only possible but also pretty easy to achieve, since <strong>Nginx</strong> introduced the possibility to use <strong>variables in access_log</strong> directives (added in 0.7.4), and the <strong>$time_iso8601</strong> variable providing time in ISO 8601 format (added in 0.9.6).</p>
-<p>Please note, that it’s not possible to embed <strong>variables in error_log</strong> directives, as any potential error would not be able to be logged if the file cannot be written.</p>
-<p>Here is an example showing $time_iso8601 format :</p>
-<pre><code>2014-05-04T18:12:02+02:00
-</code></pre><p>All there is to do is use an “if” block to split required data using a regular expression and set time variables.</p>
-<p>For splitting logs by day, one would use the following snippet in the server block :</p>
-<pre><code>if ($time_iso8601 ~ &quot;^(\d{4})-(\d{2})-(\d{2})&quot;) {
-    set $year $1;
-    set $month $2;
-    set $day $3;
-}
-
-access_log /var/log/nginx/$year-$month-$day-access.log;
-</code></pre><p>Alternatively, we can also use the Perl compatible syntax for named regular expression capture :</p>
-<pre><code>if ($time_iso8601 ~ &quot;^(?&lt;year&gt;\d{4})-(?&lt;month&gt;\d{2})-(?&lt;day&gt;\d{2})&quot;) {}
-
-access_log /var/log/nginx/$year-$month-$day-access.log;
-</code></pre><p>To also create variables for hours, minutes and seconds, we can use the following snippet :</p>
-<pre><code>if ($time_iso8601 ~ &quot;^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})&quot;)
-{
-    set $year $1;
-    set $month $2;
-    set $day $3;
-    set $hour $4;
-    set $minutes $5;
-    set $seconds $6;
-}
-</code></pre><p>Lastly, and I cannot stress it enough, please make sure the Nginx workers have proper permissions to access and write to the log directory.</p>
-<p>This method is currently used in production on a busy Nginx server and has been running flawlessly for almost a month now. The only drawback is that buffered writes do not work when the access_log file path contain variables, so it isn’t possible to gzip logs on the fly.</p>
-<p><a href="http://www.cambus.net/log-rotation-directly-within-nginx-configuration-file/" target="_blank" rel="external">source &gt;&gt;</a></p>
-
-      
-    </div>
-
-    
-      <footer class="post-footer">
-        <div class="post-tags">
-          
-            <a href="/tags/nginx/">nginx</a>
-          
-            <a href="/tags/log/">log</a>
-          
-            <a href="/tags/rotation/">rotation</a>
-          
-        </div>
-
-        
-  <nav class="post-nav">
-    
-      <a class="prev" href="/2015/01/06/the-valedo-helps-you-train-back-pain-away/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">【transfer】The valedo helps you train back pain away</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
-    
-    
-      <a class="next" href="/2015/01/05/[翻译]Nginx使用配置文件实现日志切割/">
-        <span class="next-text nav-default">【翻译】Nginx使用配置文件实现日志切割</span>
-        <span class="prev-text nav-mobile">下一篇</span>
-        <i class="iconfont icon-right"></i>
-      </a>
-    
-  </nav>
-
-      </footer>
-    
-  </article>
-
-
-          </div>
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-        </div>  
-      </main>
-
-      <footer id="footer" class="footer">
-  <div class="social-links">
-    
-      
-        
-          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-    
-  </div>
-
-
-<div class="copyright">
-  <span class="power-by">
-    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
-  </span>
-  
-  <span class="theme-info">
-    主题 - 
-    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
-  </span>
-
-  <span class="copyright-year">
-    
-    &copy; 
-     
-      2015 - 
-    
-    2016
-
-    <span class="heart">
-      <i class="iconfont icon-heart"></i>
-    </span>
-    <span class="author">紫郢</span>
-  </span>
-</div>
-      </footer>
-
-      <div class="back-to-top" id="back-to-top">
-        <i class="iconfont icon-up"></i>
-      </div>
-    </div>
-
-    
-
-
-    
-
-
-  <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
-
-    <script type="text/javascript" src="/js/src/even.js?v=2.0.0"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.0.0"></script>
-
-  </body>
-</html>
+    .post-main.post-comment
+      include _partial/comments
