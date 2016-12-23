@@ -1,11 +1,485 @@
-extends base
-block title
-  title= page.title + ' | ' + config.title
-block content
-  .post
-    h1.post-title= page.title
-    .post-content
-      != page.content
-  if page.comments
-    include _partial/comments
+<!doctype html>
 
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="tags">
+<meta property="og:url" content="http://sesehai.github.io/tags/index.html">
+<meta property="og:site_name" content="紫郢">
+<meta property="og:updated_time" content="2016-07-06T09:27:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tags">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://sesehai.github.io/tags/"/>
+
+  <title>
+  
+
+  
+    标签 | 紫郢
+  
+</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?2e81b3087a0b895a29d925786310634d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">紫郢</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+      <div class="tag-cloud">
+        <div class="tag-cloud-title">
+            目前共计 55 个标签
+        </div>
+        <div class="tag-cloud-tags">
+          <a href="/tags/Amazon/" style="font-size: 30px; color: #111">Amazon</a> <a href="/tags/Amazon-WorkMail/" style="font-size: 12px; color: #ccc">Amazon WorkMail</a> <a href="/tags/Android-TV/" style="font-size: 12px; color: #ccc">Android TV</a> <a href="/tags/Apple/" style="font-size: 30px; color: #111">Apple</a> <a href="/tags/Apple-Google-s-smartwatch/" style="font-size: 12px; color: #ccc">Apple Google's smartwatch</a> <a href="/tags/Apple-TV-service/" style="font-size: 12px; color: #ccc">Apple TV service</a> <a href="/tags/Apple-Watch/" style="font-size: 12px; color: #ccc">Apple Watch</a> <a href="/tags/Art/" style="font-size: 12px; color: #ccc">Art</a> <a href="/tags/Banksy/" style="font-size: 12px; color: #ccc">Banksy</a> <a href="/tags/Barack-Obama/" style="font-size: 12px; color: #ccc">Barack Obama</a> <a href="/tags/CES/" style="font-size: 21px; color: #6f6f6f">CES</a> <a href="/tags/Charlie-Hebdo/" style="font-size: 21px; color: #6f6f6f">Charlie Hebdo</a> <a href="/tags/Coinbase/" style="font-size: 12px; color: #ccc">Coinbase</a> <a href="/tags/College/" style="font-size: 12px; color: #ccc">College</a> <a href="/tags/David-Byttow-Secret/" style="font-size: 12px; color: #ccc">David Byttow Secret</a> <a href="/tags/Education/" style="font-size: 12px; color: #ccc">Education</a> <a href="/tags/Facebook/" style="font-size: 12px; color: #ccc">Facebook</a> <a href="/tags/Gigaom/" style="font-size: 12px; color: #ccc">Gigaom</a> <a href="/tags/Git-Linus-Torvalds/" style="font-size: 12px; color: #ccc">Git Linus Torvalds</a> <a href="/tags/Github-blog/" style="font-size: 12px; color: #ccc">Github_blog</a> <a href="/tags/Google/" style="font-size: 30px; color: #111">Google</a> <a href="/tags/Instagram/" style="font-size: 12px; color: #ccc">Instagram</a> <a href="/tags/Kingsoft/" style="font-size: 12px; color: #ccc">Kingsoft</a> <a href="/tags/Klutch/" style="font-size: 12px; color: #ccc">Klutch</a> <a href="/tags/Microsoft-Windows-10/" style="font-size: 12px; color: #ccc">Microsoft Windows 10</a> <a href="/tags/Pinterest-equity/" style="font-size: 12px; color: #ccc">Pinterest equity</a> <a href="/tags/Qualcomm/" style="font-size: 12px; color: #ccc">Qualcomm</a> <a href="/tags/Reuters/" style="font-size: 12px; color: #ccc">Reuters</a> <a href="/tags/Senior-military-official/" style="font-size: 12px; color: #ccc">Senior military official</a> <a href="/tags/Sublime-Text-2/" style="font-size: 12px; color: #ccc">Sublime Text 2</a> <a href="/tags/Twitter/" style="font-size: 12px; color: #ccc">Twitter</a> <a href="/tags/VirtualBox/" style="font-size: 12px; color: #ccc">VirtualBox</a> <a href="/tags/Xiaomi/" style="font-size: 21px; color: #6f6f6f">Xiaomi</a> <a href="/tags/back/" style="font-size: 12px; color: #ccc">back</a> <a href="/tags/earnings-call/" style="font-size: 12px; color: #ccc">earnings call</a> <a href="/tags/fingerprint/" style="font-size: 12px; color: #ccc">fingerprint</a> <a href="/tags/investor/" style="font-size: 12px; color: #ccc">investor</a> <a href="/tags/ip地址/" style="font-size: 12px; color: #ccc">ip地址</a> <a href="/tags/jekyll/" style="font-size: 12px; color: #ccc">jekyll</a> <a href="/tags/jekyll-bootstrap/" style="font-size: 12px; color: #ccc">jekyll-bootstrap</a> <a href="/tags/linux/" style="font-size: 12px; color: #ccc">linux</a> <a href="/tags/log/" style="font-size: 21px; color: #6f6f6f">log</a> <a href="/tags/monetary-policy/" style="font-size: 12px; color: #ccc">monetary policy</a> <a href="/tags/nginx/" style="font-size: 30px; color: #111">nginx</a> <a href="/tags/php/" style="font-size: 21px; color: #6f6f6f">php</a> <a href="/tags/rotation/" style="font-size: 21px; color: #6f6f6f">rotation</a> <a href="/tags/shell/" style="font-size: 12px; color: #ccc">shell</a> <a href="/tags/stackedit-io/" style="font-size: 12px; color: #ccc">stackedit.io</a> <a href="/tags/techcrunch/" style="font-size: 21px; color: #6f6f6f">techcrunch</a> <a href="/tags/vagrant/" style="font-size: 12px; color: #ccc">vagrant</a> <a href="/tags/valedo/" style="font-size: 12px; color: #ccc">valedo</a> <a href="/tags/摇滚/" style="font-size: 12px; color: #ccc">摇滚</a> <a href="/tags/翻译/" style="font-size: 12px; color: #ccc">翻译</a> <a href="/tags/软件设计师/" style="font-size: 12px; color: #ccc">软件设计师</a> <a href="/tags/音乐/" style="font-size: 12px; color: #ccc">音乐</a>
+        </div>
+      </div>
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="tags/index.html"
+           data-title="tags" data-url="http://sesehai.github.io/tags/index.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="紫郢" />
+          <p class="site-author-name" itemprop="name">紫郢</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">55</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">紫郢</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sesehai"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>

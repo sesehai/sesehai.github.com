@@ -1,51 +1,1090 @@
-extends base
+<!doctype html>
 
-block title
-  title= page.title + ' | ' + config.title
 
-block content
-  .post
-    h1.post-title= page.title
-    .post-meta= page.date.format('ll')
-      if page.categories.length > 0
-        span= ' | '
-        span.category
-          for category in page.categories.toArray()
-            a(href=url_for(category.path))= category.name
-      if theme.busuanzi == true
-        script(src='https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js', async)
-        span#busuanzi_container_page_pv= ' | '
-          span#busuanzi_value_page_pv
-          span= ' ' + __('Hits')
-    if theme.duoshuo
-      a.ds-thread-count(data-thread-key=page.path, href=url_for(page.path) + '#comments')
-    if theme.disqus
-      a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
-    if page.toc
-      div(class='clear')
-        div(id='toc' class='toc-article')
-          div(class='toc-title')= __('contents')
-          != toc(page.content)
-    .post-content
-      != page.content
-    if theme.shareto == true
-      script(type='text/javascript', src=url_for(theme.js) + '/share.js' + '?v=' + theme.version, async)
-      a.article-share-link(data-url='#{page.permalink}', data-id='#{page._id}')= __('shareto')
-    include _partial/tag
-    include _partial/post_nav
-    if theme.duoshuo
-      div(class='ds-share flat' data-thread-key=page.path, data-title=page.title, data-url=page.permalink)
-         .ds-share-inline
-            ul.ds-share-icons-16
-              li(data-toggle='ds-share-icons-more')
-                a(class='ds-more' href='javascript:void(0);') 分享到：
-              li
-                a(class='ds-weibo' href='javascript:void(0);' data-service='weibo') 微博
-              li
-                a(class='ds-qzone' href='javascript:void(0);' data-service='qzone') QQ空间
-              li
-                a(class='ds-qqt' href='javascript:void(0);' data-service='qqt') 腾讯微博
-              li
-                a(class='ds-wechat' href='javascript:void(0);' data-service='wechat') 微信
-            .ds-share-icons-more
-    include _partial/comments
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="软件设计师," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="2012年软件设计师 考试大纲分析1 考试说明分析 
+1.1 软件设计师考试的总体要求 
+    软件设计师主要完成三项工作 (1)编写文档 (2)组织指导程序员开展工作 (3)软件优化
+和集成测试,开发高质量软件。本工作要求具有工程师的实际工作能力和业务水平。 
+　　具体讲就是,通过本考试的合格人员,能根据软件开发项目管理和软件工程的要求,按照
+系统总体设计规格说明书进行软件设计,编写程序设计规">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2012年软件设计师 考试大纲分析">
+<meta property="og:url" content="http://sesehai.github.io/2014/03/19/2012软件设计师考纲及分析/index.html">
+<meta property="og:site_name" content="紫郢">
+<meta property="og:description" content="2012年软件设计师 考试大纲分析1 考试说明分析 
+1.1 软件设计师考试的总体要求 
+    软件设计师主要完成三项工作 (1)编写文档 (2)组织指导程序员开展工作 (3)软件优化
+和集成测试,开发高质量软件。本工作要求具有工程师的实际工作能力和业务水平。 
+　　具体讲就是,通过本考试的合格人员,能根据软件开发项目管理和软件工程的要求,按照
+系统总体设计规格说明书进行软件设计,编写程序设计规">
+<meta property="og:updated_time" content="2016-07-06T06:10:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2012年软件设计师 考试大纲分析">
+<meta name="twitter:description" content="2012年软件设计师 考试大纲分析1 考试说明分析 
+1.1 软件设计师考试的总体要求 
+    软件设计师主要完成三项工作 (1)编写文档 (2)组织指导程序员开展工作 (3)软件优化
+和集成测试,开发高质量软件。本工作要求具有工程师的实际工作能力和业务水平。 
+　　具体讲就是,通过本考试的合格人员,能根据软件开发项目管理和软件工程的要求,按照
+系统总体设计规格说明书进行软件设计,编写程序设计规">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://sesehai.github.io/2014/03/19/2012软件设计师考纲及分析/"/>
+
+  <title> 2012年软件设计师 考试大纲分析 | 紫郢 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?2e81b3087a0b895a29d925786310634d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">紫郢</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                2012年软件设计师 考试大纲分析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-03-19T00:00:00+08:00" content="2014-03-19">
+              2014-03-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/教程/" itemprop="url" rel="index">
+                    <span itemprop="name">教程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/03/19/2012软件设计师考纲及分析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/03/19/2012软件设计师考纲及分析/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h5 id="2012年软件设计师-考试大纲分析"><a href="#2012年软件设计师-考试大纲分析" class="headerlink" title="2012年软件设计师 考试大纲分析"></a>2012年软件设计师 考试大纲分析</h5><p>1 考试说明分析 </p>
+<pre><code>1.1 软件设计师考试的总体要求 
+    软件设计师主要完成三项工作 (1)编写文档 (2)组织指导程序员开展工作 (3)软件优化
+和集成测试,开发高质量软件。本工作要求具有工程师的实际工作能力和业务水平。 
+　　具体讲就是,通过本考试的合格人员,能根据软件开发项目管理和软件工程的要求,按照
+系统总体设计规格说明书进行软件设计,编写程序设计规格说明书等相应的文档,组织和指导
+程序员编写、调试程序,并对软件进行优化和集成测试开发出符合系统总体设计要求的高质
+量软件。  
+</code></pre><!--break-->
+<pre><code>1.2 考试内容要求 
+　　知识点的掌握程度从深到浅可分五个层次。分别要求为熟练掌握、掌握、理解、熟悉和
+了解。其中包括2个熟练掌握常用数据结构和常用算法、软件设计的方法和技术、8个掌
+握、2个熟悉，1个正确理解
+具体体现在以下12个方面  
+　　(1) 掌握数据表示、算术和逻辑运算  
+　　(2) 掌握相关的应用数学、离散数学的基础知识  
+　　(3) 掌握计算机体系结构以及各主要部件的性能和基本工作原理  
+　　(4) 掌握操作系统、程序设计语言的基础知识了解编译程序的基本知识  
+　　(5) 熟练掌握常用数据结构和常用算法  
+　　(6) 熟悉数据库、网络和多媒体的基础知识  
+　　(7) 掌握C程序设计语言，以及C++、Java、Visual Basic、Visual C++中的一种程序
+设计语言  
+　　(8) 熟悉软件工程、软件过程改进和软件开发项目管理的基础知识  
+　　(9) 熟练掌握软件设计的方法和技术  
+　　(10) 掌握常用信息技术标准、安全性以及有关法律、法规的基本知识  
+　　(11) 了解信息化、计算机应用的基础知识  
+　　(12) 正确阅读和理解计算机领域的英文资料。 
+</code></pre><p>2 考试范围 </p>
+<pre><code>2.1 考试科目1：计算机与软件工程知识 本部分包含以下内容 
+        （1）计算机科学基础 
+        （2）计算机系统知识 
+        （3）系统开发和运行知识 
+        （4）安全性知识
+        （5）标准化知识 
+        （6）信息化基础知识 
+        （7）计算机专业英语
+
+    2.1.1 计算机科学基础 
+        2.1.1.1 数制及其转换 
+            *二进制、十进制和十六进制等常用制数制及其相互转换  
+        2.1.1.2 数据的表示 
+            * 原码、反码、补码、移码表示，整数和实数的机内表示，精度和溢出 
+            * 非数值表示，字符和汉字表示、声音表示、图像表示 
+            * 校验方法和校验码，奇偶校验码、海明校验码、循环冗余校验码  
+        2.1.1.3 算术运算和逻辑运算 
+            * 计算机中的二进制数运算方法 
+            * 逻辑代数的基本运算和逻辑表达式的化简  
+        2.1.1.4 【分析2.1.1.1 / 2.1.1.2 / 2.1.1.3】 
+        　　本部分要求与程序员考试大纲基本一致 
+        　　重点数的表示、校验码 
+        　　难点数的四种编码原码、反码、补码、移码及相互之间的变换方法。浮点数的表示
+        以及其规格化。 
+        　　考试题型一般分布在数制表示、数据表示、校验码的长度、逻辑表达式公式、等效
+        变换，明确&quot;与&quot;、&quot;非&quot;、&quot;异或&quot;的运算规则。 
+        　　考试出现频率较高的内容浮点数规格化、进制转换、求反补码。  
+        2.1.1.5 数学基础知识 
+        * 命题逻辑、谓词逻辑、形式逻辑的基础知识 
+        * 常用数值计算误差、矩阵和行列式、近似求解方程、插值、数值积分 
+        * 排列组合、概率论应用、应用统计数据的统计分析 
+        * 运算基本方法预测与决策、线性规划、网络图、模拟  
+        2.1.1.6 【分析2.1.1.5】 
+        　　考纲要求掌握相关的应用数学、离散数学的基础知识，本部分内容作为背景知识，虽不
+        专门考察，但在其他题目中尤其是程序设计中出现。  
+        2.1.1.7 常用数据结构 
+        * 数组（静态数组、动态数组）、线性表、链表（单向链表、双向链表、循环链表）、队列、
+        栈、树（二叉树、查找树、平衡树、线索树、线索树、堆）、图等的定义、存储和操作 
+        * Hash（存储地址计算，冲突处理）
+        2.1.1.8 常用算法 
+        * 排序算法、查找算法、数值计算方法、字符串处理方法、数据压缩算法、递归算法、图的
+        相关算法
+        * 算法与数据结构的关系、算法效率、算法设计、算法描述流程图、伪代码、决策表、
+        算法的复杂性  
+        2.1.1.9 【分析2.1.1.7 / 2.1.1.8】 
+        　　因为数据结构是程序设计的基础，算法与数据结构密切相关，因此本部分为考试重点内
+        容，要求熟练掌握。 
+        　　重点顺序存储结构和链式存储结构的特点、链表中的头结点、栈的运算与溢出、循环
+        队列的基本操作 
+        　　数组元素的存储位置、特殊矩阵的压缩存储、广义表的表头和表尾求法 
+        　　二叉树存储方法、由遍历序列确定二叉树、二叉树的计数问题 图的遍历算法、最小生成
+        树算法、拓朴排序和关键路径、最短路径算法 平均查找长度、折半查找判定树、平衡二叉树
+        的最少结点数、插入运算及平衡化处理、哈希表的构造和查找。
+        　　排序的稳定问题、快速排序的分析及改进、内部排序的时间下界、算法时间复杂度分析 
+        　　难点二叉树节点与深度的关系、图的存储（矩阵、邻接表）与操作、遍历、 
+        　　考试出现频率较高的内容 树的遍历、数据元素存储方式、查找树、平衡树 
+        　　考试题型一般分布在数据元素存储方式、队和栈的性质及其对比、链表操作、二叉树
+        的定义及其性质、二叉树的遍历/节点计算、树的遍历、查找树、平衡树等，图的概念及其性
+        质。 
+        　　常见的排序算法、查找算法、递归算法、算法的基本特点、常用算法思想、算法效率的
+        比较时间、空间复杂度、算法描述、算法复杂性比较。 
+
+    2.1.2 计算机系统知识 
+        2.1.2.1 硬件知识 
+        2.1.2.1.1 计算机系统的组成、体系结构分类及特性 
+        　　* CPU和存储器的组成、性能和基本工作原理 
+        　　* 常用I/O设备、通信设备的性能以及基本工作原理 
+        　　* I/O接口的功能、类型和特性 
+        *    中断系统、DMA、I/O处理机方式
+        　　* CISC/RISC，流水线操作，多处理机，并行处理  
+        2.1.2.1.2 存储系统 
+        　　* 主存-Cache存储系统的工作原理 
+        　　* 虚拟存储器基本工作原理多级存储体系的性能价格 
+        　　* RAID类型和特性  
+        2.1.2.1.3 【分析2.1.2.1.1 / 2.1.2.1.2】 分析
+        　　磁盘存储器的容量计算、地址映射、流水线、系统结构分类 
+        　　重点   Cache替换算法、内存与接口的编址方式、流水线操作 
+        　　难点I/O控制方式、地址计算、并行处理的概念和层次 
+        　　考试出现频率较高的内容指令的寻址方式以及指令的执行过程存储容量的计算、流
+        水线处理机的主要指标、CISC/RISC比较等。
+        　　2.1.2.1.4 安全性、可靠性与系统性能评测基础知识 
+        　　* 诊断与容错 
+        　　* 系统可靠性分析评价 
+        　　* 计算机系统性能评测方式  
+        　　2.1.2.1.5 【分析2.1.2.1.4】
+        　　本部分内容多为记忆型内容 
+        　　重点数据加密/解密知识、计算机安全等级、认证技术、数字签名等 平均无故障时间、
+        平均修复时间定义、计算机可靠性模型、性能评价。
+        　　难点数据加密/解密知识、密钥体制 考试出现频率较高的内容可靠性能评价、数据安
+        全知识、计算机可靠性及性能评价。
+        　　2.1.2.2 软件知识
+        　　 2.1.2.2.1 操作系统知识。
+        　　* 操作系统的内核中断控制、进程、线程概念 
+        　　* 处理机管理状态转换、共享与互斥、分时轮转、抢占、死锁 
+        　　* 存储管理主存保护、动态连接分配、分段、分页、虚存 
+        　　* 设备管理I/O控制、假脱机 
+        　　* 文件管理文件目录、文件组织、存取方法、存取控制、恢复处理 
+        　　* 作业管理作业调度、作业控制语言JCL、多道程序设计 
+        　　* 汉字处理多媒体处理人机界面 
+        　　* 网络操作系统和嵌入式操作系统基础知识 
+        　　* 操作系统的配置  
+        2.1.2.2.2 【分析2.1.2.2.1】 
+        　　重点操作系统的五大管理功能其中如处理机管理、存储管理、作业调度、进程调度、
+        页面调度等尤为重要、状态转换、共享与互斥、分时轮转、抢占、死锁 
+        　　难点作业调度、进程调度、页面调度算法、PV操作 考试题型一般分布在操作系统
+        的概述、处理机管理、存储、文件管理、作业、进程调度、进程状态变化 
+        　　考试出现频率较高的内容PV操作、进程死锁/同步、内存分配、并发执行程序、进程
+        间状态转换、PV实现进程间的同步与互斥、死锁及其避免、地址变换、页面置换、工作集  
+        2.1.2.2.3 程序设计语言和语言处理程序的知识 
+        　　* 汇编、编译、解释系统的基础知识和基本工作原理 
+        　　* 程序设计语言的基本成分数据、运算、控制和传输，过程（函数）调用 
+        　　* 各类程序设计语言主要特点和适用情况  
+        2.1.2.2.4 【分析2.1.2.2.3】 
+        　　分析文法考查、自动机、正则式 
+        　　重点编译程序的基本组成、正则表达式和有限自动机、文法及语言的形式描述、中间
+        代码、自动机原理、文法和语言的定义 
+        　　考试出现频率较高的内容正则表达式和正则集、有限自动机和正则表达式的转换  
+        2.1.2.3 计算机网络知识 
+        　　* 网络体系结构网络拓扑、OSI/RM、基本的网络协议 
+        　　* 传输介质、传输技术、传输方法、传输控制 
+        　　* 常用网络设备和各类通信设备 
+        　　* Client/Server结构、Browser/Server结构 
+        　　* LAN拓扑存取控制LAN的组网LAN间连接LAN-WAN连接 
+        　　* 因特网基础知识以及应用 
+        　　* 网络软件 
+        　　* 网络管理 
+        　　* 网络性能分析  
+        2.1.2.4 【分析2.1.2.3】 
+        　　计算机网络中对OSI/RM七层的划分及各种协议的功能。传输理论、互联设备、Internet
+        知识，除参考模型理论外，其他的比较比较琐碎，需要知识积累。 
+        　　重点网络分类、拓扑结构、OSI参考模型层次划分及对应的协议、带宽计算、子网划分、
+        防火墙技术
+        　　难点IP子网划分，传输控制、各层协议的功能
+        　　考试题型一般分布在这部分知识除了上面的难点部分外，基本属于了解记忆性的知识
+        点，知识点比较散乱，但考试中考点均落在大纲中列出的知识点中。
+            考试出现频率较高的内容TCP/IP协议、参考模型7层协议、IP地址的分类、各种网络
+        设备的比较  
+        2.1.2.5 数据库知识 
+        　　* 数据库管理系统的功能和特征 
+        　　* 数据库模型概念模式、外模式、内模式 
+        　　* 数据模型ER图，第一范式、第二范式、第三范式 
+        　　* 数据操作集合运算和关系运算 
+        　　* 数据库语言SQL 
+        　　* 数据库的控制功能并发控制、恢复、安全性、完整性 
+        　　* 数据仓库和分布式数据库基础知识  
+        2.1.2.6 【分析2.1.2.5】 
+        　　无论对上午题目还是下午题目本部分都很重要这是学习和复习的一个重点。 重点
+        用E-R模型表示现实问题扩充的E-R模型、ER图向关系模式的转换、数据库语言SQL
+        、对SELECT查询语句的应用、关系代数表达式、关系模型的完整性约束、函数依赖 难点
+        五种基本的关系运算方法、组合的关系运算方法、规则化理论、函数依赖、分解的保
+        持函数依赖、无损连接又保持函数依赖的分解、判断一个分解的无损连接性和保持函数 考试
+        出现频率较高的内容数据模型、关系运算与SQL语句的转换、函数依赖  
+        　　2.1.2.7 多媒体知识 
+        　　* 多媒体系统基础知识多媒体设备的性能特性常用多媒体文件格式 
+        　　* 简单图形的绘制图像文件的处理方法 
+        　　* 音频和视频信息的应用 
+        　　* 多媒体应用开发过程  
+        　　2.1.2.8 【分析2.1.2.7】 
+        　　基本属于了解记忆性的知识点。 
+        　　重点多媒体的基本概念、声音数字化的过程、图像压缩编码、视频文件的国际标准、
+        流媒体概念、多媒体计算机系统、虚拟现实技术 
+        　　难点多媒体信息的容量计算、数据压缩、常用多媒体文件格式、音频和视频的物理特
+        征等 
+        　　考试出现频率较高的内容基本知识、信息的容量计算  
+        　　2.1.2.9 系统性能知识 
+        　　* 性能指标响应时间、吞吐量、周转时间和性能设计 
+        　　* 性能测试和性能评估
+        　　* 可靠性指标及计算、可靠性设计 
+        　　* 可靠性测试和可靠性评估  
+            2.1.2.10 【分析2.1.2.9】 
+        　　    重点可靠性评估 
+        　　    考试出现频率较高的内容系统可靠性的计算、设备周转时间  
+            2.1.2.11 计算机应用基础知识 
+                * 信息管理、数据处理、辅助设计、自动控制、科学计算、人工智能等基础知识 
+                * 远程通信服务基础知识 
+                * 常用应用系统  
+            2.1.2.12 【分析2.1.2.11】 
+                本部分内容不是考试重点做一般了解即可。  
+
+        2.1.3 系统开发和运行知识 
+            本部分内容涉及上午考试和下午考试是软件设计师工作能力的考查重点。  
+            2.1.3.1 软件工程、软件过程改进和软件开发项目管理知识 
+                * 软件工程知识 
+                * 软件开发生命周期各阶段的目标和任务 
+                * 软件开发项目管理基础知识时间管理、成本管理、质量管理、人力资源管理、
+        风险管理等及其常用管理工具 
+                * 主要的软件开发方法生命周期法、原型法、面向对象法、CASE 
+                * 软件开发工具与环境知识 
+                * 软件过程改进知识 
+                * 软件质量管理知识 
+                * 软件开发过程评估、软件能力成熟评估基础知识  
+            2.1.3.2 【分析2.1.3.1】 
+                重点软件开发方法、CMM、成本估算、风险分析、进度管理、人员管理、软件开
+        发环境  
+            2.1.3.3 系统分析基础知识 
+                * 系统分析的目的和任务 
+                * 结构化分析方法数据流图（DFD）、数据字典（DD）、实体关系图（ERD）、描
+        述加工处理的结构化语言 
+                * 统一建模语言（UML） 
+                * 系统规格说明书  
+            2.1.3.4 【分析2.1.3.3】 
+                高度重视UML在系统分析中的应用 
+                重点数据流图（DFD）、数据字典（DD）、实体关系图（ERD）考点UML的各类
+        图。
+            2.1.3.5 系统设计知识 
+                * 系统设计的目的和任务 
+                * 结构化设计方法和工具系统流程图、HIPO图、控制流程图 
+                * 系统总体结构设计总体布局、设计原则、模块结构设计、数据存储设计、系统
+        配置方案 
+                * 系统详细设计代码设计、数据库设计、用户界面设计、处理过程设计 
+                * 系统设计说明书  
+            2.1.3.6 【分析2.1.3.5】 
+                重点系统流程图、HIPO图、控制流程图  
+            2.1.3.7 系统实施知识 
+                * 系统实施的主要任务 
+                * 结构化程序设计、面向对象程序设计、可视化程序设计 
+                * 程序设计风格 * 程序设计语言的选择 
+                * 系统测试的目的、类型系统测试方法黑盒测试、白盒测试、灰盒测试 
+                * 测试设计和管理错误曲线、错误排除、收敛、注入故障、测试用例设计、系统
+        测试报告 
+                * 系统转换基础知识  
+            2.1.3.8 系统运行和维护知识 
+                * 系统运行管理基础知识 
+                * 系统维护基础知识 
+                * 系统评价基础知识  
+            2.1.3.9 【分析2.1.3.7 / 2.1.3.8】 
+                重点结构化设计中信息流、变换分析、系统结构设计原则、系统划分、模块设计、
+        数据存储设计、面向对象程序设计、测试方法、系统维护的分类 
+                难点系统测试方法、测试分类、系统可维护性评价指标  
+            2.1.3.10 面向对象开发方法 
+                * 面向对象开发概念类、对象、属性、封装性、继承性、多态性、对象之间的引
+        用 
+                * 面向对象开发方法的优越性以及有效领域 
+                * 面向对象设计方法体系结构、类的设计、用户接口设计 
+                * 面向对象实现方法选择程序设计语言、类的实现、方法的实现、用户接口的实
+        现、准备测试数据 
+                * 面向对象程序设计语言如C++、Java、Visual、Bsasic、Visual C++的基本机
+        制 
+                * 面向对象数据库、分布式对象的概念  
+            2.1.3.11 【分析2.1.3.10】 
+                重点面向对象开发类、对象、属性、封装性、继承性、多态性、OMT方法 难
+        点建议在数据流图、结构化分析方法上多加掌握。  
+
+        2.1.4 【分析2.1.3】 
+            考试题型一般分布：DFD、软件的生存周期；数据流图；模块间的关系；软件测试
+    的分类、软件质量管理（标准）软件的特性、主要的软件开发方法、系统测试、软件能力成
+    熟评估 
+            考试出现频率较高的内容数据流图、黑盒/白盒测试、面向对象技术的概念。
+
+        2.1.5 安全性知识 
+            * 安全性基本概念 
+            * 防治计算机病毒、防范计算机犯罪 
+            * 存取控制、防闯入、安全管理措施 
+            * 加密与解密机制 
+            * 风险分析、风险类型、抗风险措施和内部控制  
+
+        2.1.6 【分析2.1.5】 
+            系统安全问题是目前社会关注的问题，也是应用价值较高的知识，可结合现实中的相关
+        问题来加深理解。 
+            考试出现频率较高的内容加密与解密算法、  
+
+        2.1.7 标准化知识 
+            * 标准化意识、标准化的发展、标准制订过程 
+            * 国际标准、国家标准、行业标准、企业标准基本知识    
+    　　    * 代码标准、文件格式标准、安全标准、软件开发规范和文档标准知识 
+    　　    * 标准化机构  
+
+    　　2.1.8 信息化基础知识 
+    　　    * 信息化意识 
+    　　    * 全球信息化趋势、国家信息化战略、企业信息化战略和策略 
+    　　    * 有关的法律、法规 
+    　　    * 远程教育、电子商务、电子政务等基础知识 
+    　　    * 企业信息资源管理基础知识
+
+    　　2.1.9 【分析2.1.7 / 2.1.8】 
+    　　    信息化、标准化知识是新增考点。标准化方面有标准标识，标准修订等是对基本素
+    质的考查，也要重视。  
+
+    　　2.1.10 计算机专业英语 
+    　　    * 掌握计算机技术的基本词汇 
+    　　    * 能正确阅读和理解计算机领域的英文资料 
+
+    　　2.1.11 【分析2.1.10】 
+    　　    专业英语，是对专业知识和英语水平的考查，考前需有意识阅读点英文专业资料。 
+    　　    考试题型一般分布在：软件行业标准，计算机安全基础知识，信息化基础知识。 
+    　　    考试出现频率较高的内容：行业标准的类别：计算机安全，CMM分类，计算机软
+    件著作权问题。  
+
+   2.2 考试科目2
+　　    软件设计 本部分具体内容如下 
+　　    （1）外部设计 
+　　    （2）内部设计 
+　　    （3）程序设计 
+　　    （4）系统实施 
+　　    （5）软件工程 
+　　本部分所涉及内容为软件设计的日常工作这些内容同样出现在上午考试试题中。  
+    2.2.1 外部设计 
+    　　2.2.1.1 理解系统需求说明 
+    　　2.2.1.2 系统开发的准备 
+    　　    * 选择开发方法、准备开发环境、制订开发计划  
+    　　2.2.1.3 设计系统功能 
+    　　    * 选择系统结构
+    　　    设计各子系统的功能和接口设计安全性策略、需求和实现方法制订详细的工作
+    流和数据流  
+    　　2.2.1.4 设计数据模型 
+    　　* 设计ER模型、数据模型  
+    　　2.2.1.5 编写外部设计文档 
+    　　* 系统配置图、各子系统关系图、系统流程图、系统功能说明书、输入输出规格说明、
+    数据规格说明、用户手册框架 
+    　　* 设计系统测试要求  
+    　　2.2.1.6 设计评审 应能由考试说明内容,来阅读  
+    　　2.2.2 内部设计 
+    　　2.2.2.1 设计软件结构 
+    　　* 按构件分解确定构件功能规格以及构件之间的接口 
+    　　* 采用中间件和工具  
+    　　2.2.2.2 设计输入输出 
+    　　* 屏幕界面设计、设计输入输出检查方法和检查信息  
+    　　2.2.2.3 设计物理数据 
+    　　* 分析数据特性确定逻辑数据组织方式、存储介质,设计记录格式和处理方式 
+    　　* 将逻辑数据结构换成物理数据结构,计算容量,进行优化  
+    　　2.2.2.4 构件的创建和重用 
+    　　* 创建、重用构件的概念 
+    　　* 使用子程序库或类库  
+    　　2.2.2.5 编写内部设计文档 
+    　　* 构件划分图、构件间的接口、构件处理说明、屏幕设计文档、报表设计文档、文件设
+    计文档、数据库设计文档  
+    　　2.2.2.6 设计评审  
+    　　2.2.3 程序设计 
+    　　2.2.3.1 模块划分原则、方法、标准 
+    　　2.2.3.2 编写程序设计文档 
+    　　* 模块规格说明书功能和接口说明、程序处理逻辑的描述、输入输出数据格式的描述
+         * 测试要求说明书测试类型和目标、测试用例、测试方法  
+    　　2.2.3.3 程序设计评审  
+    　　2.2.4 系统实施 
+    　　2.2.4.1 配置计算机系统及其环境 
+    　　2.2.4.2 选择合适的程序设计语言 
+    　　*掌握C程序设计语言,以及C++、Java、Visual Basic、Visual C++中任一种程序设计语
+    言,以便能指导程序员进行编程和测试,并进行必要的优化  
+    　　2.2.4.3 系统测试 
+    　　* 指导程序员进行模块测试,并进行验收 
+    　　* 准备系统集成测试环境和测试工具
+    　　* 准备测试数据 
+    　　* 写出测试报告  
+    　　2.2.5 软件工程 
+    　　* 软件生存期模型(瀑布模型、螺旋模型、喷泉模型)和软件成本模型 
+    　　* 定义软件需求(系统化的目标、配置、功能、性能和约束)
+    　　* 描述软件需求的方法(功能层次模型、数据流模型、控制流模型、面向数据的模型、
+    面向对象的模型等) 
+    　　* 定义软件需求的方法(结构化分析方法、面向对象分析方法)
+    　　* 软件设计(分析与集成、逐步求精、抽象、信息隐蔽) 
+    　　* 软件设计方法(结构化设计方法、Jackson方法、Warnier方法、面向对象设计方法)
+      * 程序设计(结构化程序设计、面向对象程序设计) 
+    　　* 软件测试的原则与方法 
+    　　* 软件质量（软件质量特性、软件质量控制） 
+    　　* 软件过程评估基本方法、软件能力成熟度评估基本方法 
+    　　* 软件开发环境和开发工具（分析工具、设计工具、编程工具、测试工具、维护工具、
+    CASE） 
+    　　* 软件工程发展趋势（面向构件，统一建模语言，UML） 
+    　　* 软件过程改进模型和方法  
+
+　　2.3 【2.2综合分析】 
+    　　软件设计师,关键是设计软件的能力。 
+    　　考纲要求要熟悉软件工程、软件过程改进和软件开发项目管理的基础知识;熟练掌握软
+    件设计的方法和技术;掌握C程序设计语言及指定的四种面向对象语言中的一种。 
+    　　这部分主要体现在下午考试中,现就如何应对下午考试进行分析 
+    　　近几次考试中下午试题分五个题目,一个数据库,一个程序填空题、一个面向对象的语言
+    题另两个题目分别为数据流图、UML、或流程图等。 
+    　　数据库题目要求补全SQL语言,这要求考生熟悉SQL的语言,无论对上午题目还是下午
+    题目都很重要。这是学习和复习的一个重点。 
+    　　数据流图DFD是一种分析系统数据流程的图形,意在让用户理解系统的功能、输入、输
+    出和数据存储等。请认真弄清其应用,在画出数据流图的情况下,系统的功能也就确定了,再经
+    过细化,逐步向物理结构迈进。考核时,试题多从父图和子图的平衡来分析。这部分内容,一个
+    解题的关键是高度重视题目说明,务必正确、深入理解其内容,必要时要读几遍同时对于给出
+    的图表,也要务必看懂。这样答题就轻松了,答案实际就蕴含在说明中。 
+    　　流程图类题目是大家再熟悉不过的了,它就一个具体问题的解题思路进行描述,是面向
+    过程的。但所求问题是千差万别的,因此应理解思路,细心作答。 
+    　　答题形式最简单也是难度最大的是程序填空。为便于阅卷,这类题目以程序填空形式出现,
+    这不仅要求理解问题本质,同时也要弄清作者解题思路,这一点比自己独立完成程序设计要难
+    得的多。针对问题,首先设计自己的思路,如何解决问题,先后顺序怎样; 然后试读程序,如何
+    思路大体一致,很好,这题容易解决了。如思路不一致,设法弄清每一段代码的功能,其逻辑结
+    构怎样,进而弄清命题人的解题思路,再顺势解决问题。人们常讲,答案就在题目中，这是对的。
+    在分析问题过程中，找到所求答案。不过前提条件是考生要熟悉这种语言，又要明白解题思
+    路，这样才能正确作答。这个题目比较难，要么不得分，要么得全分。 
+    　　近年对于统一建模语言UML考查较多，已引起了考生的注意。它代表了软件工程的发展
+    趋势，目前是可视化建模的事实上的工业标准。人们对于图的理解相对其他形式更容易一些，
+    图能更清晰地描述和说明问题的本质，因此，UML体现了这一特点。这类题目难度与数据流图
+    相似，自然解题思想也相同。从形式上看，数据流图更朴实一些，UML类的题目则透出一种新
+    颖、现代的气息。 
+    　　最后的题目面向对象语言是一个选做题，给考生以自由，可以发挥个人的优势。命题已
+    注意到不同语言的考查难度一致性，要求考生就同一问题回答，实现了形式上的公平，自然
+    是一个进步。
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/软件设计师/" rel="tag">#软件设计师</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2011/12/21/some-php-questions/" rel="next" title="几个php的问题">
+                <i class="fa fa-chevron-left"></i> 几个php的问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/05/07/vagrant/" rel="prev" title="使用Vagrant配置开发环境">
+                使用Vagrant配置开发环境 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2014/03/19/2012软件设计师考纲及分析/"
+     data-title="2012年软件设计师 考试大纲分析"
+     data-content=""
+     data-url="http://sesehai.github.io/2014/03/19/2012软件设计师考纲及分析/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2014/03/19/2012软件设计师考纲及分析/"
+           data-title="2012年软件设计师 考试大纲分析" data-url="http://sesehai.github.io/2014/03/19/2012软件设计师考纲及分析/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="紫郢" />
+          <p class="site-author-name" itemprop="name">紫郢</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">55</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#2012年软件设计师-考试大纲分析"><span class="nav-number">1.</span> <span class="nav-text">2012年软件设计师 考试大纲分析</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">紫郢</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sesehai"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
