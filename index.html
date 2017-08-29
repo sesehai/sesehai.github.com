@@ -106,57 +106,25 @@
     <header class="post-header">
 
       <h1 class="post-title">
-        <a class="post-link" href="/2017/08/28/write-Dockerfile/">Dockerfile 编写</a>
+        <a class="post-link" href="/2017/08/29/write-Dockerfile/">Dockerfile 编写</a>
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2017年8月28日
+          2017年8月29日
         </span>
       </div>
 
       <div class="post-content-collapse">
         
+          
+        
 
         
-          <p>   开发者经常需要配置一些环境，用来模拟、测试、学习新系统。这时候使用docker，实现这些需求，是十分方便的。编写Dockerfile来完成一个完整的环境，维护、使用起来很是顺手。下面整理了编写一个Dockerfile的实例。</p>
-<h4 id="配置nginx的web服务环境"><a href="#配置nginx的web服务环境" class="headerlink" title="配置nginx的web服务环境"></a>配置nginx的web服务环境</h4><h5 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h5><p>   先使用python pip 包管理工具安装 supervisor, 使用supervisor管理nginx进程。</p>
-<h5 id="准备材料"><a href="#准备材料" class="headerlink" title="准备材料:"></a>准备材料:</h5><ul>
-<li><p>python pip，python包管理工具，安装需要： get-pip.py 文件。<br>下载地址：<a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="external">get-pip.py</a><br>详细安装请查看：<a href="https://pip.pypa.io/en/stable/installing/" target="_blank" rel="external">install pip</a></p>
-</li>
-<li><p>supervisor,是在 UNIX-like 系统下管理进程的工具。<br>需要配置文件：supervisord.conf<br>详细文档请查看：<a href="http://supervisord.org" target="_blank" rel="external">supervisord</a></p>
-</li>
-<li><p>nginx，提供web服务。<br>下载地址：<a href="http://nginx.org/download/nginx-1.12.0.tar.gz" target="_blank" rel="external">nginx download</a></p>
-</li>
-</ul>
-<h5 id="目录文件"><a href="#目录文件" class="headerlink" title="目录文件:"></a>目录文件:</h5><p>|<strong>app<br>|</strong>|<strong>Dockerfile<br>|</strong>|<strong>get-pip.py<br>|</strong>|<strong>supervisord.conf<br>|</strong>|__nginx-1.12.0.tar.gz</p>
-<h5 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">FROM centos:7</div><div class="line">WORKDIR /app</div><div class="line">ADD . /app</div><div class="line">RUN python get-pip.py</div><div class="line">RUN pip install supervisor</div><div class="line">COPY supervisord.conf /etc/supervisor/supervisord.conf</div><div class="line">RUN tar -xzvf nginx-1.12.0.tar.gz</div><div class="line">RUN yum -y install gcc</div><div class="line">RUN yum -y install make </div><div class="line">RUN yum -y install pcre-devel openssl openssl-devel</div><div class="line">WORKDIR /app/nginx-1.12.0</div><div class="line">RUN ./configure --prefix=/usr/<span class="built_in">local</span>/nginx</div><div class="line">RUN make</div><div class="line">RUN make install</div><div class="line">EXPOSE 80  9001</div><div class="line">CMD [<span class="string">"/usr/bin/supervisord"</span>]</div></pre></td></tr></table></figure>
-<h5 id="supervisord-conf"><a href="#supervisord-conf" class="headerlink" title="supervisord.conf"></a>supervisord.conf</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">[supervisord]</div><div class="line">nodaemon=<span class="literal">true</span></div><div class="line">logfile=/app/logs/supervisord.log</div><div class="line">pidfile=/app/logs/supervisord.pid</div><div class="line">[inet_http_server]         ; supervisord的tcp服务配置</div><div class="line">port=0.0.0.0:9001          ; tcp端口</div><div class="line">username=demo              ; tcp登陆用户</div><div class="line">password=demopwd           ; tcp登陆密码</div><div class="line"></div><div class="line">[program:nginx]</div><div class="line"><span class="built_in">command</span>=/usr/<span class="built_in">local</span>/nginx/sbin/nginx</div><div class="line">autorestart=unexpected</div><div class="line">autostart=<span class="literal">true</span></div><div class="line">``` </div><div class="line"></div><div class="line"><span class="comment">##### 创建image命令</span></div><div class="line">``` bash</div><div class="line"><span class="variable">$bash</span> docker build -t nginx-1.12.0 ./</div></pre></td></tr></table></figure>
-<h5 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$bash</span> docker run --name nginx -id -p 8888:80 -p 9001:9001 nginx-1.12.0</div></pre></td></tr></table></figure>
-<h5 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$bash</span> docker <span class="built_in">exec</span> -it nginx bash</div><div class="line">``` </div><div class="line"></div><div class="line"><span class="comment">##### 查看服务</span></div><div class="line">``` bash</div><div class="line">nginx:</div><div class="line">    http://loclahost:8080/</div><div class="line">supervisor:</div><div class="line">    http://localhost:9001/</div></pre></td></tr></table></figure>
-<p>【完】下面是常用命令</p>
-<hr>
-<h4 id="Docker-常用命令："><a href="#Docker-常用命令：" class="headerlink" title="Docker 常用命令："></a>Docker 常用命令：</h4><p>获取 <a href="https://hub.docker.com/" target="_blank" rel="external">docker hub</a> 上的 image:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull centos:7</div></pre></td></tr></table></figure></p>
-<p>查看本机 image 列表</p>
-<pre><code>docker images
-</code></pre><p>从image创建container:</p>
-<pre><code>(-i 交互式，-t新开启tty，-d daemon运行)
-docker run -i -d centos:7 /bin/bash
-</code></pre><p>查看运行的 container:</p>
-<pre><code>docker ps
-</code></pre><p>查看所有container （stopped starting）</p>
-<pre><code>docker ps -a
-</code></pre><p>进入运行的container:</p>
-<pre><code>docker exec -it [container id] /bin/bash
-</code></pre><p>提交新的image:</p>
-<pre><code>docker commit -m “注释，修改了什么” -a “作者，修改人”  [container id] myimage/centos7:0.1
-</code></pre><p>停止container</p>
-<pre><code>docker stop container id
-</code></pre><p>删除container</p>
-<pre><code>docker rm container id
-</code></pre><p>删除image</p>
-<pre><code>docker rmi image id
-</code></pre>
+          <p>开发者经常需要配置一些环境，用来模拟、测试、学习新系统。这时候使用docker，实现这些需求，是十分方便的。编写Dockerfile来完成一个完整的环境，维护、使用起来很是顺手。下面整理了编写一个Dockerfile的实例。</p>
+          <div class="read-more">
+            <a href="/2017/08/29/write-Dockerfile/" class="read-more-link">阅读更多</a>
+          </div>
         
       </div>
 
@@ -171,29 +139,26 @@ docker run -i -d centos:7 /bin/bash
     <header class="post-header">
 
       <h1 class="post-title">
-        <a class="post-link" href="/2017/08/26/hello-world/">Hello World !!!</a>
+        <a class="post-link" href="/2017/08/29/hello-world/">Hello World</a>
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2017年8月26日
+          2017年8月29日
         </span>
       </div>
 
       <div class="post-content-collapse">
         
+          
+        
 
         
           <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
+          <div class="read-more">
+            <a href="/2017/08/29/hello-world/" class="read-more-link">阅读更多</a>
+          </div>
         
       </div>
 
