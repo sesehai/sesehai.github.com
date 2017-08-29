@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="Dockerfile 编写"/>
+
+
+
+
+  <meta name="keywords" content="教程,docker," />
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="紫莹">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.0.0" />
+
+
+
+<link rel="canonical" href="http://sesehai.github.io/2017/08/29/write-Dockerfile/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0" />
+
+
+
+  
+
+
+
+    <title> Dockerfile 编写 · 紫莹 </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">紫莹</a>
+</div>
+
+<div class="header-icon">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+</nav>
+      </header>
+      <main id="main" class="main">
+        <div class="page-header">
+           <h1>紫莹' Blog</h1>
+           <hr class="small"></hr>
+        </div>
+
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Dockerfile 编写
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017年8月29日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#配置nginx的web服务"><span class="toc-text">配置nginx的web服务</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#简介："><span class="toc-text">简介：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#准备材料"><span class="toc-text">准备材料:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#目录文件"><span class="toc-text">目录文件:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Dockerfile"><span class="toc-text">Dockerfile</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#supervisord-conf"><span class="toc-text">supervisord.conf</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#启动容器"><span class="toc-text">启动容器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#进入容器"><span class="toc-text">进入容器</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker-常用命令："><span class="toc-text">Docker 常用命令：</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <p>   开发者经常需要配置一些环境，用来模拟、测试、学习新系统。这时候使用docker，实现这些需求，是十分方便的。编写Dockerfile来完成一个完整的环境，维护、使用起来很是顺手。下面整理了编写一个Dockerfile的实例。</p>
+<h4 id="配置nginx的web服务"><a href="#配置nginx的web服务" class="headerlink" title="配置nginx的web服务"></a>配置nginx的web服务</h4><h5 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h5><blockquote>
+<p>先使用python pip 包管理工具安装 supervisor, 使用supervisor管理nginx进程。</p>
+</blockquote>
+<h5 id="准备材料"><a href="#准备材料" class="headerlink" title="准备材料:"></a>准备材料:</h5><ul>
+<li><p>python pip，python包管理工具，安装需要： get-pip.py 文件。<br>下载地址：<a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="external">get-pip.py</a><br>详细安装请查看：<a href="https://pip.pypa.io/en/stable/installing/" target="_blank" rel="external">install pip</a></p>
+</li>
+<li><p>supervisor,是在 UNIX-like 系统下管理进程的工具。<br>需要配置文件：supervisord.conf<br>详细文档请查看：<a href="http://supervisord.org" target="_blank" rel="external">supervisord</a></p>
+</li>
+<li><p>nginx，提供web服务。<br>下载地址：<a href="http://nginx.org/download/nginx-1.12.0.tar.gz" target="_blank" rel="external">nginx download</a></p>
+</li>
+</ul>
+<h5 id="目录文件"><a href="#目录文件" class="headerlink" title="目录文件:"></a>目录文件:</h5><pre><code>app
+Dockerfile
+get-pip.py
+supervisord.conf
+nginx-1.12.0.tar.gz
+</code></pre><h5 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">FROM centos:7</div><div class="line">WORKDIR /app</div><div class="line">ADD . /app</div><div class="line">RUN python get-pip.py</div><div class="line">RUN pip install supervisor</div><div class="line">COPY supervisord.conf /etc/supervisor/supervisord.conf</div><div class="line">RUN tar -xzvf nginx-1.12.0.tar.gz</div><div class="line">RUN yum -y install gcc</div><div class="line">RUN yum -y install make </div><div class="line">RUN yum -y install pcre-devel openssl openssl-devel</div><div class="line">WORKDIR /app/nginx-1.12.0</div><div class="line">RUN ./configure --prefix=/usr/<span class="built_in">local</span>/nginx</div><div class="line">RUN make</div><div class="line">RUN make install</div><div class="line">EXPOSE 80  9001</div><div class="line">CMD [<span class="string">"/usr/bin/supervisord"</span>]</div></pre></td></tr></table></figure>
+<h5 id="supervisord-conf"><a href="#supervisord-conf" class="headerlink" title="supervisord.conf"></a>supervisord.conf</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">[supervisord]</div><div class="line">nodaemon=<span class="literal">true</span></div><div class="line">logfile=/app/logs/supervisord.log</div><div class="line">pidfile=/app/logs/supervisord.pid</div><div class="line">[inet_http_server]         ; supervisord的tcp服务配置</div><div class="line">port=0.0.0.0:9001          ; tcp端口</div><div class="line">username=demo              ; tcp登陆用户</div><div class="line">password=demopwd           ; tcp登陆密码</div><div class="line"></div><div class="line">[program:nginx]</div><div class="line"><span class="built_in">command</span>=/usr/<span class="built_in">local</span>/nginx/sbin/nginx</div><div class="line">autorestart=unexpected</div><div class="line">autostart=<span class="literal">true</span></div><div class="line">``` </div><div class="line"></div><div class="line"><span class="comment">##### 创建image命令</span></div><div class="line"></div><div class="line">``` bash</div><div class="line"><span class="variable">$bash</span> docker build -t nginx-1.12.0 ./</div></pre></td></tr></table></figure>
+<h5 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$bash</span> docker run --name nginx -id -p 8888:80 -p 9001:9001 nginx-1.12.0</div></pre></td></tr></table></figure>
+<h5 id="进入容器"><a href="#进入容器" class="headerlink" title="进入容器"></a>进入容器</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$bash</span> docker <span class="built_in">exec</span> -it nginx bash</div><div class="line">``` </div><div class="line"></div><div class="line"><span class="comment">##### 查看服务</span></div><div class="line">``` bash</div><div class="line">nginx:</div><div class="line">    http://loclahost:8080/</div><div class="line">supervisor:</div><div class="line">    http://localhost:9001/</div></pre></td></tr></table></figure>
+<p>【完】下面是常用命令</p>
+<hr>
+<h4 id="Docker-常用命令："><a href="#Docker-常用命令：" class="headerlink" title="Docker 常用命令："></a>Docker 常用命令：</h4><p>获取 <a href="https://hub.docker.com/" target="_blank" rel="external">docker hub</a> 上的 image:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull centos:7</div></pre></td></tr></table></figure></p>
+<p>查看本机 image 列表</p>
+<pre><code>docker images
+</code></pre><p>从image创建container:</p>
+<pre><code>(-i 交互式，-t新开启tty，-d daemon运行)
+docker run -i -d centos:7 /bin/bash
+</code></pre><p>查看运行的 container:</p>
+<pre><code>docker ps
+</code></pre><p>查看所有container （stopped starting）</p>
+<pre><code>docker ps -a
+</code></pre><p>进入运行的container:</p>
+<pre><code>docker exec -it [container id] /bin/bash
+</code></pre><p>提交新的image:</p>
+<pre><code>docker commit -m “注释，修改了什么” -a “作者，修改人”  [container id] myimage/centos7:0.1
+</code></pre><p>停止container</p>
+<pre><code>docker stop container id
+</code></pre><p>删除container</p>
+<pre><code>docker rm container id
+</code></pre><p>删除image</p>
+<pre><code>docker rmi image id
+</code></pre>
+      
+    </div>
+
+    
+      <footer class="post-footer">
+        <div class="post-tags">
+          
+            <a href="/tags/教程/">教程</a>
+          
+            <a href="/tags/docker/">docker</a>
+          
+        </div>
+
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2017/08/26/hello-world/">
+        <span class="next-text nav-default">Hello World !!!</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/qingsuo/hexo-theme-qingsuo" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/qingsuo/hexo-theme-qingsuo">QingSuo</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy;
+
+    <span class="author">紫莹</span>
+
+        
+        2017
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+
+
+    
+
+
+  <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+
+    <script type="text/javascript" src="/js/src/qingsuo.js?v=1.0.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.0.0"></script>
+
+  </body>
+</html>

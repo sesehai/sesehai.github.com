@@ -11,6 +11,7 @@
   src: local("Apple Chancery"), url("../fonts/chancery/apple-chancery-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/chancery/apple-chancery-webfont.woff2") format("woff2"), url("../fonts/chancery/apple-chancery-webfont.woff") format("woff"), url("../fonts/chancery/apple-chancery-webfont.ttf") format("truetype"), url("../fonts/chancery/apple-chancery-webfont.svg#apple-chancery") format("svg");
   font-weight: normal;
   font-style: normal; }
+
 /**
  * scss common tools
  */
@@ -432,6 +433,7 @@ h6 {
 @media screen and (max-width: 800px) {
   .container {
     width: 100%; } }
+
 .content-wrapper {
   padding: 0 20px; }
 
@@ -440,26 +442,26 @@ h6 {
  */
 .header {
   /**
-   * logo style
-   */
+ * logo style
+ */
   /*
-   * big screen show
-   */
+ * big screen show
+ */
   /*
-   * small screen show
-   */
+ * small screen show
+ */
   /*
-   * small screen header
-   */
+ * small screen header
+ */
   /**
-   * menu style
-   */
+ * menu style
+ */
   /*
-   * big screen show
-   */
+ * big screen show
+ */
   /*
-   * small screen show
-   */ }
+ * small screen show
+ */ }
   .header:before, .header:after {
     content: " ";
     display: table; }
@@ -491,31 +493,37 @@ h6 {
       float: right;
       position: relative;
       transition: background 0.5s; } }
+
 @keyframes clickfirst {
   0% {
     transform: translateY(6px) rotate(0deg); }
   100% {
     transform: translateY(0) rotate(45deg); } }
+
 @keyframes clickmid {
   0% {
     opacity: 1; }
   100% {
     opacity: 0; } }
+
 @keyframes clicklast {
   0% {
     transform: translateY(-6px) rotate(0deg); }
   100% {
     transform: translateY(0) rotate(-45deg); } }
+
 @keyframes outfirst {
   0% {
     transform: translateY(0) rotate(-45deg); }
   100% {
     transform: translateY(-6px) rotate(0deg); } }
+
 @keyframes outmid {
   0% {
     opacity: 0; }
   100% {
     opacity: 1; } }
+
 @keyframes outlast {
   0% {
     transform: translateY(0) rotate(45deg); }
@@ -665,6 +673,7 @@ h6 {
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     z-index: 1000;
     padding: 5px; } }
+
 /*
  * big screen scroll transition
  */
@@ -674,9 +683,9 @@ h6 {
     -webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
     -moz-transition: background .5s ease-in-out, padding .5s ease-in-out;
     transition: background .5s ease-in-out,padding .5s ease-in-out; }
-
   .top-nav-short {
     padding: 0 15px; } }
+
 /*
  * small screen show
  */
@@ -693,6 +702,7 @@ h6 {
     height: 40px;
     background: #fefefe;
     box-shadow: 0px 2px 2px #cacaca; } }
+
 /**
  * main style
  */
@@ -707,6 +717,7 @@ h6 {
     margin-right: auto;
     margin-left: auto;
     margin-top: 100px; } }
+
 /*
  * small screen show
  */
@@ -716,6 +727,7 @@ h6 {
     margin-right: auto;
     margin-left: auto;
     margin-top: 40px; } }
+
 .page-header {
   text-align: center;
   margin-top: 10px;
@@ -742,8 +754,8 @@ hr.small {
 .post {
   padding: 1em 0 2em;
   /*
-   * small screen show
-   */ }
+ * small screen show
+ */ }
   .post + .post {
     border-top: 1px solid #e6e6e6; }
   .post .post-header .post-title {
@@ -809,6 +821,125 @@ hr.small {
   @media screen and (max-width: 800px) {
     .post .post-toc {
       display: none; } }
+  .post code, .post pre {
+    padding: 7px;
+    font-size: 13px;
+    font-family: Consolas, Monaco, Menlo, Consolas, monospace;
+    background: #f0f2f5; }
+  .post code {
+    padding: 3px 5px;
+    border-radius: 4px;
+    color: #c7254e; }
+  .post .highlight {
+    margin: 1em 0;
+    border-radius: 5px;
+    overflow-x: auto;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.125); }
+    .post .highlight table {
+      position: relative; }
+      .post .highlight table::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        padding: 2px 7px;
+        font-size: 13px;
+        font-weight: bold;
+        color: #cacaca;
+        background: #e7eaef;
+        content: 'CODE'; }
+    .post .highlight.html > ::after {
+      content: "HTML"; }
+    .post .highlight.js > ::after {
+      content: "JS"; }
+    .post .highlight.bash > ::after {
+      content: "BASH"; }
+    .post .highlight.css > ::after {
+      content: "CSS"; }
+    .post .highlight.scss > ::after {
+      content: "SCSS"; }
+    .post .highlight.diff > ::after {
+      content: "DIFF"; }
+    .post .highlight.java > ::after {
+      content: "JAVA"; }
+    .post .highlight.xml > ::after {
+      content: "XML"; }
+    .post .highlight.python > ::after {
+      content: "PYTHON"; }
+    .post .highlight.json > ::after {
+      content: "JSON"; }
+    .post .highlight.swift > ::after {
+      content: "SWIFT"; }
+    .post .highlight.ruby > ::after {
+      content: "RUBY"; }
+    .post .highlight.perl > ::after {
+      content: "PERL"; }
+    .post .highlight.php > ::after {
+      content: "PHP"; }
+    .post .highlight.c > ::after {
+      content: "C"; }
+    .post .highlight.java > ::after {
+      content: "JAVA"; }
+    .post .highlight.cpp > ::after {
+      content: "CPP"; }
+    .post .highlight.scheme > ::after {
+      content: "SCHEME"; }
+    .post .highlight .code pre {
+      margin: 0;
+      padding: 30px 10px 10px; }
+    .post .highlight .gutter {
+      width: 10px;
+      color: #cacaca; }
+      .post .highlight .gutter pre {
+        margin: 0;
+        padding: 30px 7px 10px; }
+    .post .highlight .line {
+      height: 20px; }
+    .post .highlight table, .post .highlight tr, .post .highlight td {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      border-collapse: collapse; }
+    .post .highlight .code .comment,
+    .post .highlight .code .quote {
+      color: #93a1a1; }
+    .post .highlight .code .keyword,
+    .post .highlight .code .selector-tag,
+    .post .highlight .code .addition {
+      color: #859900; }
+    .post .highlight .code .number,
+    .post .highlight .code .string,
+    .post .highlight .code .meta .meta-string,
+    .post .highlight .code .literal,
+    .post .highlight .code .doctag,
+    .post .highlight .code .regexp {
+      color: #2aa198; }
+    .post .highlight .code .attribute,
+    .post .highlight .code .attr,
+    .post .highlight .code .variable,
+    .post .highlight .code .template-variable,
+    .post .highlight .code .class .title,
+    .post .highlight .code .type {
+      color: #b58900; }
+    .post .highlight .code .symbol,
+    .post .highlight .code .bullet,
+    .post .highlight .code .subst,
+    .post .highlight .code .meta,
+    .post .highlight .code .meta .keyword,
+    .post .highlight .code .selector-attr,
+    .post .highlight .code .selector-pseudo,
+    .post .highlight .code .link {
+      color: #cb4b16; }
+    .post .highlight .code .built_in,
+    .post .highlight .code .deletion {
+      color: #dc322f; }
+  .post blockquote {
+    font: 14px/22px normal helvetica, sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 50px;
+    padding-left: 15px;
+    border-left: 3px solid #ccc; }
   .post .post-content .post-content-collapse h1 {
     font-weight: 400;
     font-family: Athelas, STHeiti, Microsoft Yahei, serif; }
@@ -1071,11 +1202,11 @@ hr.small {
   padding-top: 2rem;
   line-height: 2rem;
   /**
-   * Social
-   */
+ * Social
+ */
   /**
-   * Copyright
-   */ }
+ * Copyright
+ */ }
   .footer .social-links {
     text-align: center; }
     .footer .social-links .iconfont {
@@ -1159,6 +1290,7 @@ hr.small {
       .archive .archive-post .archive-post-time {
         font-size: 13px;
         display: block; } }
+
 /**
  * Tags
  */
@@ -1226,6 +1358,7 @@ hr.small {
   /* project id 96542 */
   src: url("//at.alicdn.com/t/font_8gx15cdpiaz41jor.eot");
   src: url("//at.alicdn.com/t/font_8gx15cdpiaz41jor.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_8gx15cdpiaz41jor.woff") format("woff"), url("//at.alicdn.com/t/font_8gx15cdpiaz41jor.ttf") format("truetype"), url("//at.alicdn.com/t/font_8gx15cdpiaz41jor.svg#iconfont") format("svg"); }
+
 .iconfont {
   font-family: "iconfont" !important;
   font-style: normal;
@@ -1317,5 +1450,3 @@ hr.small {
 @media screen and (max-width: 800px) {
   .back-to-top {
     display: none !important; } }
-
-/*# sourceMappingURL=style.css.map */
